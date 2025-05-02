@@ -1,0 +1,40 @@
+@startuml LIVE_TASKS_1_Diagram
+
+entity "LIVE TASKS 1" as LIVE_TASKS_1 {
+  _id : objectId
+  toUser : string
+  plantId : objectId
+  taskId : objectId
+  history : list
+  timeLine : list
+  subTaskStatus : list
+  taskType : string
+  ticket : boolean
+  order : int
+}
+
+entity "HISTORY" as HISTORY {
+  status : string
+  overDue : boolean
+  completedBy : objectId
+  escalationLevel : string
+  createdAt : string
+  completedAt : string
+}
+
+entity "TIME LINE" as TIME_LINE {
+  time : string
+  event : string
+  message : string
+}
+
+entity "SUB TASK STATUS" as SUB_TASK_STATUS {
+  status : string
+  completedBy : string
+}
+
+' // Relationships
+LIVE_TASKS_1 ||--o{ HISTORY : has_history
+LIVE_TASKS_1 ||--o{ TIME_LINE : has_timeLine
+LIVE_TASKS_1 ||--o{ SUB_TASK_STATUS : has_subTaskStatus
+@enduml

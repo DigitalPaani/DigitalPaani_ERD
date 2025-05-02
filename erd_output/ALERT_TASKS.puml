@@ -1,0 +1,131 @@
+@startuml ALERT_TASKS_Diagram
+' !include FIXED_TASKS_1.puml
+' !include ONE_TIME_TASKS.puml
+
+entity "ALERT TASKS" as ALERT_TASKS {
+  _id : objectId
+  toUser : string
+  condition : list
+  type : string
+  dueTimeFromPosting : string
+  autoCalling : boolean
+  escalations : object
+  heading : object
+  description : object
+  subTasks : list
+  metadata : object
+  plantId : objectId
+  attachedTickets : list
+  isOpen : boolean
+  ccUsers : list
+  observationTime : string
+  primaryUser : object
+  resolutionFreq : string
+  equipments : object
+  issueType : list
+}
+
+entity "CONDITION" as CONDITION {
+  0 : object
+}
+
+entity "0" as _0 {
+  operator : string
+  sensorTag : string
+  threshold : int
+  thresholdType : string
+}
+
+entity "ESCALATIONS" as ESCALATIONS {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "LEVEL 1" as LEVEL_1 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 2" as LEVEL_2 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 3" as LEVEL_3 {
+  time : string
+  group : string
+}
+
+entity "HEADING" as HEADING {
+  eng : string
+  hindi : string
+}
+
+entity "DESCRIPTION" as DESCRIPTION {
+  eng : string
+  hind : string
+}
+
+entity "SUB TASKS" as SUB_TASKS {
+  name : string
+  namehindi : string
+}
+
+entity "METADATA" as METADATA {
+  createdBy : string
+  createdAt : string
+}
+
+entity "CC USERS" as CC_USERS {
+  _id : objectId
+  role : string
+  name : string
+  email : string
+  number : string
+  forid : objectId
+  password : string
+  plantId : list
+  userStatus : string
+}
+
+entity "PLANT ID" as PLANT_ID {
+  buffer : binary
+}
+
+entity "PRIMARY USER" as PRIMARY_USER {
+  _id : objectId
+  forWho : string
+  plantId : list
+  name : string
+  number : string
+  email : string
+  forid : objectId
+  role : string
+  password : string
+  userStatus : unknown
+}
+
+entity "EQUIPMENTS" as EQUIPMENTS {
+  id : string
+  nickName : string
+  type : string
+}
+
+' // Relationships
+ALERT_TASKS ||--o{ CONDITION : has_condition
+CONDITION ||--|| _0 : has_0
+ALERT_TASKS ||--|| ESCALATIONS : has_escalations
+ESCALATIONS ||--|| LEVEL_1 : has_Level 1
+ESCALATIONS ||--|| LEVEL_2 : has_Level 2
+ESCALATIONS ||--|| LEVEL_3 : has_Level 3
+ALERT_TASKS ||--|| HEADING : has_heading
+ALERT_TASKS ||--|| DESCRIPTION : has_description
+ALERT_TASKS ||--o{ SUB_TASKS : has_subTasks
+ALERT_TASKS ||--|| METADATA : has_metadata
+ALERT_TASKS ||--o{ CC_USERS : has_ccUsers
+CC_USERS ||--o{ PLANT_ID : has_plantId
+ALERT_TASKS ||--|| PRIMARY_USER : has_primaryUser
+PRIMARY_USER ||--o{ PLANT_ID : has_plantId
+ALERT_TASKS ||--|| EQUIPMENTS : has_equipments
+@enduml

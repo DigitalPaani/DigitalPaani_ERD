@@ -1,0 +1,23 @@
+@startuml HMIS_Diagram
+
+entity "HMIS" as HMIS {
+  _id : objectId
+  plantId : objectId
+  hmiName : string
+  plcIds : list
+  controlSequence : list
+  __v : int
+  lastDataTimeStamp : object
+}
+
+entity "PLC IDS" as PLC_IDS {
+  buffer : binary
+}
+
+entity "LAST DATA TIME STAMP" as LAST_DATA_TIME_STAMP {
+}
+
+' // Relationships
+HMIS ||--o{ PLC_IDS : has_plcIds
+HMIS ||--|| LAST_DATA_TIME_STAMP : has_lastDataTimeStamp
+@enduml

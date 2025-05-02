@@ -1,0 +1,8 @@
+@startuml TESTS_Diagram
+
+entity "TESTS" as TESTS {
+  _id : objectId
+  __v : int
+}
+
+@enduml

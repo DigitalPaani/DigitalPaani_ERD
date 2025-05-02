@@ -1,0 +1,9 @@
+@startuml CACHES_Diagram
+
+entity "CACHES" as CACHES {
+  _id : objectId
+  __v : int
+  value : string
+}
+
+@enduml

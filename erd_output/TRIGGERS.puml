@@ -1,0 +1,32 @@
+@startuml TRIGGERS_Diagram
+
+entity "TRIGGERS" as TRIGGERS {
+  _id : objectId
+  name : string
+  description : string
+  scope : string
+  triggerTag : string
+  assets : list
+  type : string
+  startDate : int
+  triggerComponents : list
+  createdBy : objectId
+  triggerSensorId : objectId
+  status : string
+  isOpen : boolean
+  isDeleted : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+TRIGGERS ||--|| CREATED_AT : has_createdAt
+TRIGGERS ||--|| UPDATED_AT : has_updatedAt
+@enduml

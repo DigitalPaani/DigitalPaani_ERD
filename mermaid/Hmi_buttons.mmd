@@ -1,0 +1,186 @@
+erDiagram
+ HmiButtons {
+    ObjectId _id
+    string equipmentId
+    string hmiPrefix
+    ObjectId plantId
+    ObjectId sensorId
+    string hmiTag
+    ObjectId trackingSensor
+}
+
+HmiButtons }o--|| plantId : belongs_to_plant
+HmiButtons }o--|| sensorId : linked_to_sensor
+HmiButtons }o--|| trackingSensor : uses_tracking_sensor
+
+"plant Config"{
+    ObjectId _id
+    ObjectId plantId
+    Object plantConfig
+}
+"plantConfig"{
+    Array Tanks
+    Array pumps
+    Array Blowers
+    Array Other_Sensors
+    Array Headers
+    Array Core_Equipment
+    Array Flowmeter
+    Array Valves
+}
+
+  PlantInventoryConfigStorage {
+    ObjectId _id
+    string inventoryCategoryName
+    ObjectId plantId
+    ObjectId clientId
+    Array inventoryItemDetails
+    Object formConfiguration
+  }
+
+  inventoryItemDetails{
+    Boolean checked
+    ObjectId itemId
+    String name
+    Number min
+    String unit
+    Array expectedValue
+    Array sensorsConfig
+    ObjectId _id
+  }
+  expectedValue{
+    Number value
+    String unit
+    Number timeMins
+    Number time
+    String timeUnit
+    ObjectId _id
+  }
+  sensorsConfig{
+    ObjectId sensorId
+    String type
+    String sensorTag
+    String sensorType
+    String sensorTypeAbr
+    ObjectId _id
+  }
+
+  formConfiguration {
+    Boolean isFormConfigured
+    ObjectId _id
+  }
+    plant {
+        String plantName
+        Object client
+        Object csm
+        Array sensors 
+        Array packages
+        String status
+        String renewOn
+        String lat
+        String long
+        String schematic
+        String sensorfreq
+        String plantType
+        String createdOn
+        String tur
+        Object serviceProvider
+        Object embeddedLinks
+        String abbr
+        String plantNickname 
+        String pubTopic
+        String subTopic
+        Object dataBreakConfig
+        Object userGroup
+    }
+    client{
+        ObjectId _id
+        String name
+    }
+    csm{
+        ObjectId _id
+        String name
+    }
+    serviceProvider{
+        Null id
+        Null name
+    }
+    dataBreakConfig{
+        Boolean sendDataBreakAlerts
+    }
+    autoEmailing {
+        ObjectId dailyReportPageId
+        ObjectId weeklyReportPageId
+        ObjectId monthlyReportPageId
+    }
+
+    userGroup {
+        ObjectId id
+        string name
+        string abbr
+    }
+     plant ||--|| client : has
+  plant ||--|| csm : has
+  plant ||--|| serviceProvider : serviced_by
+  plant ||--|| autoEmailing : has
+  plant ||--|| userGroup : belongs_to
+  plant ||--|| dataBreakConfig : has
+  plant ||--|| "plant Config" : has_config
+  "plant Config" ||--|| plantConfig : config_details
+  plant ||--o{ PlantInventoryConfigStorage : has_inventory
+  "plant Config" ||--|| PlantInventoryConfigStorage : configured_for_same_plant
+  PlantInventoryConfigStorage ||--o{ inventoryItemDetails : has_item_details
+  inventoryItemDetails ||--o{ expectedValue : has_expected_values
+  inventoryItemDetails ||--o{ sensorsConfig : has_sensor_configs
+  PlantInventoryConfigStorage ||--|| formConfiguration : form_settings
+
+SSEConnections {
+    ObjectId _id
+    ObjectId clientId
+    Date connectionId
+    ObjectId forAssetId
+    Date lastConnected
+    Array plantIds
+  }
+  plantIds{
+    ObjectId plantId
+  }
+  plantId{
+    ObjectId plantId
+  }
+  SSEConnections ||--o{ plantIds : has_plants
+  plantIds ||--o{ plantId : has_plantId
+
+ hmi_events {
+            ObjectId _id
+            ObjectId plantId
+            Array HmiButton
+            Array events
+            ObjectId sensorId
+            Boolean initiated
+            Boolean acknowledged
+            Boolean ongoing
+            Boolean underProcess
+            Boolean successFull
+            Number expiryMins
+            Boolean terminated
+            String userName
+          }
+        
+          HmiButton {
+            ObjectId _id
+            ObjectId plantId
+            String equipmentId
+            String hmiPrefix
+            String sensorId
+            String hmitag
+            ObjectId trackingSensor
+            String equipmentId
+          }
+
+          HmiButton }o--|| plant : belongs_to_plant
+          HmiButton }o--|| sensorLists : linked_to_sensor
+          HmiButton }o--|| sensorLists : uses_tracking_sensor
+          hmi_events }o--|| plant : related_plant
+          hmi_events }o--o{ HmiButton : involves_buttons
+          hmi_events }o--|| sensorLists : triggered_by_sensor

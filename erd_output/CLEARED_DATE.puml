@@ -1,0 +1,9 @@
+@startuml CLEARED_DATE_Diagram
+
+entity "CLEARED DATE" as CLEARED_DATE {
+  _id : objectId
+  type : string
+  date : string
+}
+
+@enduml

@@ -1,0 +1,46 @@
+erDiagram
+"One Time Tasks"{
+    ObjectId _id
+    string toUser
+    string dueTimeFromPosting
+    boolean ticket
+    Object oneTimeheading
+    Object oneTimedescription
+    Array subTasks
+    boolean critical
+    ObjectId plant
+    Object oneTimeequipments
+}
+plant {
+    ObjectId plantId
+}
+oneTimeheading{
+    string eng
+    string hindi
+}
+oneTimedescription{
+    string eng
+    string hindi
+}
+subTasks{
+    string name
+    string namehindi
+}
+oneTimeequipments{
+    string id
+    string nickname
+    string type
+}
+  "One Time Tasks" }o--|| plant : assigned_to_plant
+  "One Time Tasks" ||--|| oneTimeheading : has_heading
+  "One Time Tasks" ||--|| oneTimedescription : has_description
+  "One Time Tasks" ||--o{ subTasks : has_subTasks
+  "One Time Tasks" ||--|| oneTimeequipments : has_equipments
+
+  "obsoleteTasks"{
+    ObjectId taskTemplateId 
+    ObjectId triggerId 
+    ObjectId selectedTriggerIds
+    string conditionType
+    boolean isDeleted
+}

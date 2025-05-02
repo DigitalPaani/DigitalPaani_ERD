@@ -1,0 +1,61 @@
+@startuml FIXED_TASKS_1_Diagram
+
+entity "FIXED TASKS 1" as FIXED_TASKS_1 {
+  _id : objectId
+  toUser : string
+  recurringDays : list
+  weeks : list
+  recurringTimes : string
+  dueTimeFromPosting : string
+  escalations : object
+  heading : object
+  description : object
+  subTasks : list
+  plantId : objectId
+}
+
+entity "ESCALATIONS" as ESCALATIONS {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "LEVEL 1" as LEVEL_1 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 2" as LEVEL_2 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 3" as LEVEL_3 {
+  time : string
+  group : string
+}
+
+entity "HEADING" as HEADING {
+  eng : string
+  hindi : string
+}
+
+entity "DESCRIPTION" as DESCRIPTION {
+  eng : string
+  hind : string
+}
+
+entity "SUB TASKS" as SUB_TASKS {
+  name : string
+  namehindi : string
+}
+
+' // Relationships
+FIXED_TASKS_1 ||--|| ESCALATIONS : has_escalations
+ESCALATIONS ||--|| LEVEL_1 : has_Level 1
+ESCALATIONS ||--|| LEVEL_2 : has_Level 2
+ESCALATIONS ||--|| LEVEL_3 : has_Level 3
+FIXED_TASKS_1 ||--|| HEADING : has_heading
+FIXED_TASKS_1 ||--|| DESCRIPTION : has_description
+FIXED_TASKS_1 ||--o{ SUB_TASKS : has_subTasks
+@enduml

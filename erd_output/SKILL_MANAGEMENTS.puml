@@ -1,0 +1,25 @@
+@startuml SKILL_MANAGEMENTS_Diagram
+
+entity "SKILL MANAGEMENTS" as SKILL_MANAGEMENTS {
+  _id : objectId
+  isArchived : boolean
+  name : string
+  description : string
+  skillType : string
+  skillLevel : string
+  createdBy : objectId
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+SKILL_MANAGEMENTS ||--|| CREATED_AT : has_createdAt
+SKILL_MANAGEMENTS ||--|| UPDATED_AT : has_updatedAt
+@enduml

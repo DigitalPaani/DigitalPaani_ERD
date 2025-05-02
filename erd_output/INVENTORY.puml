@@ -1,0 +1,17 @@
+@startuml INVENTORY_Diagram
+
+entity "INVENTORY" as INVENTORY {
+  _id : objectId
+  name : string
+  data : list
+}
+
+entity "DATA" as DATA {
+  _id : objectId
+  product_name : string
+  unit : string
+}
+
+' // Relationships
+INVENTORY ||--o{ DATA : has_data
+@enduml

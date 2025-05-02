@@ -1,0 +1,37 @@
+erDiagram
+"Live Tasks 1"{
+    objectId _id
+    string toUser
+    ObjectId plant
+    ObjectId taskId
+    array history
+    array timeline
+    array subTaskStatus
+    string taskType
+    boolean ticket
+    number order
+  }
+  plant{
+    ObjectId plantId
+  }
+  history{
+    string status
+    boolean overDue
+    ObjectId completedBy
+    string escalationLevel
+    string createdAt
+    string completedAt
+  }
+  timeLine{
+    string time
+    string event
+    string message
+  }
+  subTaskStatus{
+    string status
+    string completedBy
+  }
+  "Live Tasks 1" }o--|| plant : assigned_to_plant
+  "Live Tasks 1" ||--o{ history : has_history
+  "Live Tasks 1" ||--o{ timeLine : has_timeline
+  "Live Tasks 1" ||--o{ subTaskStatus : has_subtask_status

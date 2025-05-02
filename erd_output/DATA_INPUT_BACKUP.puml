@@ -1,0 +1,67 @@
+@startuml DATA_INPUT_BACKUP_Diagram
+
+entity "DATA INPUT BACKUP" as DATA_INPUT_BACKUP {
+  _id : objectId
+  plantId : objectId
+  data : list
+}
+
+entity "DATA" as DATA {
+  timestamp : string
+  values : object
+}
+
+entity "VALUES" as VALUES {
+  Water Quality Test Result : object
+  Process Observation : object
+  Maintenance : object
+  Inventory : object
+  Lab Test : object
+}
+
+entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+  Inlet pH : string
+  Outlet pH : string
+  Inlet TDS : string
+  Outlet TDS : string
+  Aeration Tank pH of Stream 1  : string
+  Aeration Tank pH of Stream 2 : string
+  DO in Stream 2 : string
+  SV 30 : string
+  SV 30 of Aeration tank 1 : string
+  SV30 of Aeration tank 1 : string
+  SV30  : string
+  SV-30 (Stream-1) : string
+  SV-30 (Stream-2) : string
+}
+
+entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+  SV 30 of Stream 1 : string
+  SV30 of Stream 1 : string
+  SV30 of Aeration Tank 1 : string
+}
+
+entity "MAINTENANCE" as MAINTENANCE {
+}
+
+entity "INVENTORY" as INVENTORY {
+  Urea : string
+  DAP : string
+  Jaggery : string
+  EM Culture : string
+  Bioculture : string
+  Chlorine : string
+}
+
+entity "LAB TEST" as LAB_TEST {
+}
+
+' // Relationships
+DATA_INPUT_BACKUP ||--o{ DATA : has_data
+DATA ||--|| VALUES : has_values
+VALUES ||--|| WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
+VALUES ||--|| PROCESS_OBSERVATION : has_Process Observation
+VALUES ||--|| MAINTENANCE : has_Maintenance
+VALUES ||--|| INVENTORY : has_Inventory
+VALUES ||--|| LAB_TEST : has_Lab Test
+@enduml

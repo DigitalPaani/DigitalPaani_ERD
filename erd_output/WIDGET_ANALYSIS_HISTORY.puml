@@ -1,0 +1,35 @@
+@startuml WIDGET_ANALYSIS_HISTORY_Diagram
+
+entity "WIDGET ANALYSIS HISTORY" as WIDGET_ANALYSIS_HISTORY {
+  _id : objectId
+  heading : string
+  description : string
+  assetId : objectId
+  bookMarked : boolean
+  timeFrame : object
+  date : object
+  __v : int
+}
+
+entity "TIME FRAME" as TIME_FRAME {
+  granularity : string
+  startTime : object
+  endTime : object
+  _id : objectId
+}
+
+entity "START TIME" as START_TIME {
+}
+
+entity "END TIME" as END_TIME {
+}
+
+entity "DATE" as DATE {
+}
+
+' // Relationships
+WIDGET_ANALYSIS_HISTORY ||--|| TIME_FRAME : has_timeFrame
+TIME_FRAME ||--|| START_TIME : has_startTime
+TIME_FRAME ||--|| END_TIME : has_endTime
+WIDGET_ANALYSIS_HISTORY ||--|| DATE : has_date
+@enduml

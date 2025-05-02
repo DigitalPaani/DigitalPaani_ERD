@@ -1,0 +1,70 @@
+@startuml FORMULAS_Diagram
+
+entity "FORMULAS" as FORMULAS {
+  _id : objectId
+  variableList : list
+  isArchived : boolean
+  sensorSettingIds : list
+  formulaChips : list
+  nextCalculationTime : int
+  version : int
+  name : string
+  description : string
+  userGroupId : objectId
+  createdBy : objectId
+  plantId : objectId
+  unit : string
+  workspaceId : objectId
+  formulaTag : string
+  applyToHistoricalData : boolean
+  frequency : object
+  type : string
+  formulaSensorId : objectId
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "SENSOR SETTING IDS" as SENSOR_SETTING_IDS {
+  buffer : binary
+}
+
+entity "FORMULA CHIPS" as FORMULA_CHIPS {
+  value : string
+  type : string
+  color : string
+  sensorSetting : object
+  _id : objectId
+}
+
+entity "SENSOR SETTING" as SENSOR_SETTING {
+  sensorId : string
+  sensorTag : string
+  granularity : string
+  aggregation : string
+  firstReferenceTimeInMinutes : int
+  lastReferenceTimeInMinutes : int
+  returnType : string
+  _id : objectId
+}
+
+entity "FREQUENCY" as FREQUENCY {
+  dateTime : int
+  timeInMinutes : int
+  _id : objectId
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+FORMULAS ||--o{ SENSOR_SETTING_IDS : has_sensorSettingIds
+FORMULAS ||--o{ FORMULA_CHIPS : has_formulaChips
+FORMULA_CHIPS ||--|| SENSOR_SETTING : has_sensorSetting
+FORMULAS ||--|| FREQUENCY : has_frequency
+FORMULAS ||--|| CREATED_AT : has_createdAt
+FORMULAS ||--|| UPDATED_AT : has_updatedAt
+@enduml

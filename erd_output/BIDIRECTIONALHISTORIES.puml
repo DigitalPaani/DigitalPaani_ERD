@@ -1,0 +1,56 @@
+@startuml BIDIRECTIONALHISTORIES_Diagram
+
+entity "BIDIRECTIONALHISTORIES" as BIDIRECTIONALHISTORIES {
+  _id : objectId
+  plantId : objectId
+  hmiButtons : list
+  equipmentId : string
+  created_at : object
+  events : list
+  sensorId : objectId
+  initiated : boolean
+  acknowledged : boolean
+  ongoing : boolean
+  underProcess : boolean
+  successFull : boolean
+  expiryMins : int
+  terminated : boolean
+  userName : string
+  __v : int
+}
+
+entity "HMI BUTTONS" as HMI_BUTTONS {
+  _id : objectId
+  plantId : objectId
+  equipmentId : string
+  hmiPrefix : string
+  sensorId : objectId
+  __v : int
+  hmiTag : string
+  trackingSensor : objectId
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "EVENTS" as EVENTS {
+  userId : objectId
+  command : string
+  ipAddr : string
+  browserDetails : string
+  timestamp : object
+  type : string
+  heading : string
+  success : boolean
+  _id : objectId
+}
+
+entity "TIMESTAMP" as TIMESTAMP {
+}
+
+' // Relationships
+BIDIRECTIONALHISTORIES ||--o{ HMI_BUTTONS : has_hmiButtons
+BIDIRECTIONALHISTORIES ||--|| CREATED_AT : has_created_at
+BIDIRECTIONALHISTORIES ||--o{ EVENTS : has_events
+EVENTS ||--|| TIMESTAMP : has_timestamp
+@enduml

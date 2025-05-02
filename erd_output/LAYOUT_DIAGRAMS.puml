@@ -1,0 +1,161 @@
+@startuml LAYOUT_DIAGRAMS_Diagram
+
+entity "LAYOUT DIAGRAMS" as LAYOUT_DIAGRAMS {
+  _id : objectId
+  assetId : objectId
+  __v : int
+  assetName : string
+  assetType : string
+  concernedPlantIds : list
+  edges : list
+  nodes : list
+}
+
+entity "CONCERNED PLANT IDS" as CONCERNED_PLANT_IDS {
+  buffer : binary
+}
+
+entity "EDGES" as EDGES {
+  id : string
+  source : string
+  target : string
+  predictedStatus : string
+  sensorDataAvailability : boolean
+  data : object
+  _id : objectId
+}
+
+entity "DATA" as DATA {
+  sensors : list
+  properties : object
+  concernedAssetIds : list
+  componentId : string
+  label : string
+  configInfo : object
+  image : string
+  imageControlId : string
+  componentInside : boolean
+  _id : objectId
+}
+
+entity "PROPERTIES" as PROPERTIES {
+  color : string
+  width : int
+}
+
+entity "NODES" as NODES {
+  id : string
+  type : string
+  position : object
+  data : object
+  sourcePosition : string
+  targetPosition : string
+  _id : objectId
+}
+
+entity "POSITION" as POSITION {
+  x : float
+  y : float
+}
+
+entity "CONFIG INFO" as CONFIG_INFO {
+  id : string
+  name : string
+  count : int
+  sensors : list
+  area : int
+  height : int
+  free board : int
+  material : string
+  drain : string
+  overflow : string
+  bypass : string
+  nickName : string
+  layoutDiagram : object
+  Output : list
+  _id : string
+  displayNode : boolean
+  subEquipments : object
+}
+
+entity "SENSORS" as SENSORS {
+  _id : string
+  plantId : string
+  sensorName : string
+  sensorTag : string
+  sensorNickName : string
+  dateCreated : string
+  isEnabled : boolean
+  sensorId : string
+  dataType : string
+  plcId : string
+  unit : object
+  display : boolean
+  maxValue : string
+  minValue : string
+  oldSensorTag : string
+}
+
+entity "UNIT" as UNIT {
+  label : string
+  value : string
+}
+
+entity "LAYOUT DIAGRAM" as LAYOUT_DIAGRAM {
+  imageURL : string
+  imageControlId : string
+}
+
+entity "SUB EQUIPMENTS" as SUB_EQUIPMENTS {
+  Tanks : list
+  Core Equipments : list
+  Pumps : list
+  Flowmeter : list
+  Valves : list
+  Headers : list
+  Blowers : list
+  Other Sensors : list
+}
+
+entity "PUMPS" as PUMPS {
+  count : int
+  sensors : list
+  In : list
+  Out : list
+  type : string
+  make : string
+  model : string
+  motorRating : string
+  nickName : string
+  id : string
+  displayNode : boolean
+  hmiButtons : list
+  layoutDiagram : object
+  pumpName : string
+  bidDirectionalControl : boolean
+  _id : string
+}
+
+entity "HMI BUTTONS" as HMI_BUTTONS {
+  hmiTag : string
+}
+
+' // Relationships
+LAYOUT_DIAGRAMS ||--o{ CONCERNED_PLANT_IDS : has_concernedPlantIds
+LAYOUT_DIAGRAMS ||--o{ EDGES : has_edges
+EDGES ||--|| DATA : has_data
+DATA ||--|| PROPERTIES : has_properties
+LAYOUT_DIAGRAMS ||--o{ NODES : has_nodes
+NODES ||--|| POSITION : has_position
+NODES ||--|| DATA : has_data
+DATA ||--|| CONFIG_INFO : has_configInfo
+CONFIG_INFO ||--o{ SENSORS : has_sensors
+SENSORS ||--|| UNIT : has_unit
+CONFIG_INFO ||--|| LAYOUT_DIAGRAM : has_layoutDiagram
+CONFIG_INFO ||--|| SUB_EQUIPMENTS : has_subEquipments
+SUB_EQUIPMENTS ||--o{ PUMPS : has_Pumps
+PUMPS ||--o{ SENSORS : has_sensors
+PUMPS ||--o{ HMI_BUTTONS : has_hmiButtons
+PUMPS ||--|| LAYOUT_DIAGRAM : has_layoutDiagram
+DATA ||--|| PROPERTIES : has_properties
+@enduml

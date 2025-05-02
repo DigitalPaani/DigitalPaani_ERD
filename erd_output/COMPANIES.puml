@@ -1,0 +1,34 @@
+@startuml COMPANIES_Diagram
+
+entity "COMPANIES" as COMPANIES {
+  _id : objectId
+  companyName : string
+  companyDescription : string
+  companyAddress : string
+  tags : list
+  contactDetails : list
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CONTACT DETAILS" as CONTACT_DETAILS {
+  fullName : string
+  phoneNumber : string
+  emailId : string
+  designation : string
+  comments : string
+  _id : objectId
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+COMPANIES ||--o{ CONTACT_DETAILS : has_contactDetails
+COMPANIES ||--|| CREATED_AT : has_createdAt
+COMPANIES ||--|| UPDATED_AT : has_updatedAt
+@enduml

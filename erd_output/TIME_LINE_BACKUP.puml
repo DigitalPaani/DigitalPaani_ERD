@@ -1,0 +1,78 @@
+@startuml TIME_LINE_BACKUP_Diagram
+
+entity "TIME LINE BACKUP" as TIME_LINE_BACKUP {
+  _id : objectId
+  taskId : objectId
+  Backup : list
+}
+
+entity "BACKUP" as BACKUP {
+  0 : object
+  1 : object
+  2 : object
+  3 : object
+  4 : object
+  5 : object
+  6 : object
+  7 : object
+}
+
+entity "0" as _0 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "1" as _1 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "2" as _2 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "3" as _3 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "4" as _4 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "5" as _5 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "6" as _6 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "7" as _7 {
+  time : string
+  event : string
+  message : string
+}
+
+' // Relationships
+TIME_LINE_BACKUP ||--o{ BACKUP : has_Backup
+BACKUP ||--|| _0 : has_0
+BACKUP ||--|| _1 : has_1
+BACKUP ||--|| _2 : has_2
+BACKUP ||--|| _3 : has_3
+BACKUP ||--|| _4 : has_4
+BACKUP ||--|| _5 : has_5
+BACKUP ||--|| _6 : has_6
+BACKUP ||--|| _7 : has_7
+@enduml

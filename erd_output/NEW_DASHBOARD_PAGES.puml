@@ -1,0 +1,70 @@
+@startuml NEW_DASHBOARD_PAGES_Diagram
+
+entity "NEW DASHBOARD PAGES" as NEW_DASHBOARD_PAGES {
+  _id : objectId
+  plantId : objectId
+  pageConfig : object
+  deleted : boolean
+}
+
+entity "PAGE CONFIG" as PAGE_CONFIG {
+  pageName : string
+  autoEmailing : boolean
+  public : boolean
+  defaultTimeInDays : int
+  createdBy : string
+  lastUpdateInfo : object
+  data : list
+  defaultTimeRangeSettings : object
+  defaultGranularitySettings : object
+}
+
+entity "LAST UPDATE INFO" as LAST_UPDATE_INFO {
+  lastUpdated : string
+  lastUpdater : objectId
+}
+
+entity "DATA" as DATA {
+  widgets : list
+  background : string
+  clusterName : string
+}
+
+entity "WIDGETS" as WIDGETS {
+  widgetId : objectId
+  checked : boolean
+  widgetType : string
+  widgetOriginId : objectId
+}
+
+entity "DEFAULT TIME RANGE SETTINGS" as DEFAULT_TIME_RANGE_SETTINGS {
+  unit : string
+  unitMultiplier : int
+  timeRangeInMins : int
+  timeRangeType : string
+  startTime : object
+  endTime : object
+}
+
+entity "START TIME" as START_TIME {
+}
+
+entity "END TIME" as END_TIME {
+}
+
+entity "DEFAULT GRANULARITY SETTINGS" as DEFAULT_GRANULARITY_SETTINGS {
+  unit : string
+  unitMultiplier : int
+  granularityInMins : int
+}
+
+' // Relationships
+NEW_DASHBOARD_PAGES ||--|| PAGE_CONFIG : has_pageConfig
+PAGE_CONFIG ||--|| LAST_UPDATE_INFO : has_lastUpdateInfo
+PAGE_CONFIG ||--o{ DATA : has_data
+DATA ||--o{ WIDGETS : has_widgets
+PAGE_CONFIG ||--|| DEFAULT_TIME_RANGE_SETTINGS : has_defaultTimeRangeSettings
+DEFAULT_TIME_RANGE_SETTINGS ||--|| START_TIME : has_startTime
+DEFAULT_TIME_RANGE_SETTINGS ||--|| END_TIME : has_endTime
+PAGE_CONFIG ||--|| DEFAULT_GRANULARITY_SETTINGS : has_defaultGranularitySettings
+@enduml

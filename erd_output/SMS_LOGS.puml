@@ -1,0 +1,56 @@
+@startuml SMS_LOGS_Diagram
+
+entity "SMS LOGS" as SMS_LOGS {
+  _id : objectId
+  from : string
+  to : string
+  message : string
+  libResponse : object
+  serviceType : string
+  code : string
+  errorDetails : unknown
+  status : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "LIB RESPONSE" as LIB_RESPONSE {
+  body : string
+  numSegments : string
+  direction : string
+  from : string
+  to : string
+  dateUpdated : string
+  price : unknown
+  errorMessage : unknown
+  uri : string
+  accountSid : string
+  numMedia : string
+  status : string
+  messagingServiceSid : unknown
+  sid : string
+  dateSent : unknown
+  dateCreated : string
+  errorCode : unknown
+  priceUnit : string
+  apiVersion : string
+  subresourceUris : object
+}
+
+entity "SUBRESOURCE URIS" as SUBRESOURCE_URIS {
+  media : string
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+SMS_LOGS ||--|| LIB_RESPONSE : has_libResponse
+LIB_RESPONSE ||--|| SUBRESOURCE_URIS : has_subresourceUris
+SMS_LOGS ||--|| CREATED_AT : has_createdAt
+SMS_LOGS ||--|| UPDATED_AT : has_updatedAt
+@enduml

@@ -1,0 +1,19 @@
+@startuml NOTIFICATIONS_Diagram
+
+entity "NOTIFICATIONS" as NOTIFICATIONS {
+  _id : objectId
+  read : boolean
+  title : string
+  message : string
+  user : objectId
+  to : string
+  timeStamp : object
+  plantId : objectId
+}
+
+entity "TIME STAMP" as TIME_STAMP {
+}
+
+' // Relationships
+NOTIFICATIONS ||--|| TIME_STAMP : has_timeStamp
+@enduml

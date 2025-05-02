@@ -1,0 +1,31 @@
+@startuml ROSTERS_Diagram
+
+entity "ROSTERS" as ROSTERS {
+  _id : objectId
+  assetIds : list
+  isArchived : boolean
+  name : string
+  description : string
+  userGroupId : objectId
+  managementUserId : objectId
+  createdBy : objectId
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "ASSET IDS" as ASSET_IDS {
+  buffer : binary
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+ROSTERS ||--o{ ASSET_IDS : has_assetIds
+ROSTERS ||--|| CREATED_AT : has_createdAt
+ROSTERS ||--|| UPDATED_AT : has_updatedAt
+@enduml

@@ -1,0 +1,13 @@
+@startuml NOTIFICATIONS_62C7D90FE88EB11E6362B33C_Diagram
+
+entity "NOTIFICATIONS 62C7D90FE88EB11E6362B33C" as NOTIFICATIONS_62C7D90FE88EB11E6362B33C {
+  _id : objectId
+  read : boolean
+  title : string
+  message : string
+  user : objectId
+  to : string
+  timeStamp : string
+}
+
+@enduml

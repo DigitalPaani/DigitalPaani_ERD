@@ -1,0 +1,91 @@
+@startuml TICKETS_65FC6984959A296577A79CB3_Diagram
+
+entity "TICKETS 65FC6984959A296577A79CB3" as TICKETS_65FC6984959A296577A79CB3 {
+  _id : objectId
+  plantId : objectId
+  alertId : objectId
+  dueTimeFromPosting : string
+  observationFreq : string
+  escalations : object
+  createdAt : object
+  isOpen : boolean
+  openingInfo : object
+  closingInfo : object
+  attachedSolutions : list
+  events : list
+  preDueNotification : object
+  overdue : boolean
+  escalationLevel : string
+  isEscalated : boolean
+}
+
+entity "ESCALATIONS" as ESCALATIONS {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "LEVEL 1" as LEVEL_1 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 2" as LEVEL_2 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 3" as LEVEL_3 {
+  time : string
+  group : string
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "OPENING INFO" as OPENING_INFO {
+  openedAt : object
+  openedBy : string
+}
+
+entity "OPENED AT" as OPENED_AT {
+}
+
+entity "CLOSING INFO" as CLOSING_INFO {
+  closedAt : object
+  closedBy : string
+}
+
+entity "CLOSED AT" as CLOSED_AT {
+}
+
+entity "EVENTS" as EVENTS {
+  event : string
+  message : string
+  time : object
+}
+
+entity "TIME" as TIME {
+}
+
+entity "PRE DUE NOTIFICATION" as PRE_DUE_NOTIFICATION {
+  Due : boolean
+  Escalation Level 1 : boolean
+  Escalation Level 2 : boolean
+  Escalation Level 3 : boolean
+}
+
+' // Relationships
+TICKETS_65FC6984959A296577A79CB3 ||--|| ESCALATIONS : has_escalations
+ESCALATIONS ||--|| LEVEL_1 : has_Level 1
+ESCALATIONS ||--|| LEVEL_2 : has_Level 2
+ESCALATIONS ||--|| LEVEL_3 : has_Level 3
+TICKETS_65FC6984959A296577A79CB3 ||--|| CREATED_AT : has_createdAt
+TICKETS_65FC6984959A296577A79CB3 ||--|| OPENING_INFO : has_openingInfo
+OPENING_INFO ||--|| OPENED_AT : has_openedAt
+TICKETS_65FC6984959A296577A79CB3 ||--|| CLOSING_INFO : has_closingInfo
+CLOSING_INFO ||--|| CLOSED_AT : has_closedAt
+TICKETS_65FC6984959A296577A79CB3 ||--o{ EVENTS : has_events
+EVENTS ||--|| TIME : has_time
+TICKETS_65FC6984959A296577A79CB3 ||--|| PRE_DUE_NOTIFICATION : has_preDueNotification
+@enduml

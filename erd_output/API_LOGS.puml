@@ -1,0 +1,11 @@
+@startuml API_LOGS_Diagram
+
+entity "API LOGS" as API_LOGS {
+  _id : objectId
+  apiUrl : string
+  timesCalled : int
+  requestBody : unknown
+  __v : int
+}
+
+@enduml

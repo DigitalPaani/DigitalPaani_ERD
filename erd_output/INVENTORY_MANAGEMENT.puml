@@ -1,0 +1,41 @@
+@startuml INVENTORY_MANAGEMENT_Diagram
+
+entity "INVENTORY MANAGEMENT" as INVENTORY_MANAGEMENT {
+  _id : objectId
+  plant_id : string
+  plant_inventory : list
+}
+
+entity "PLANT INVENTORY" as PLANT_INVENTORY {
+  inventory_list : list
+  inventory : string
+}
+
+entity "INVENTORY LIST" as INVENTORY_LIST {
+  product_data : object
+  product_id : string
+}
+
+entity "PRODUCT DATA" as PRODUCT_DATA {
+  quantity : object
+  remarks : object
+}
+
+entity "QUANTITY" as QUANTITY {
+  total : int
+  current_balance : int
+  unit : string
+}
+
+entity "REMARKS" as REMARKS {
+  add : list
+  remove : list
+}
+
+' // Relationships
+INVENTORY_MANAGEMENT ||--o{ PLANT_INVENTORY : has_plant_inventory
+PLANT_INVENTORY ||--o{ INVENTORY_LIST : has_inventory_list
+INVENTORY_LIST ||--|| PRODUCT_DATA : has_product_data
+PRODUCT_DATA ||--|| QUANTITY : has_quantity
+PRODUCT_DATA ||--|| REMARKS : has_remarks
+@enduml

@@ -1,0 +1,14 @@
+@startuml SENSOR_HISTORY_Diagram
+
+entity "SENSOR HISTORY" as SENSOR_HISTORY {
+  _id : objectId
+  updatedBy : objectId
+  updatedAt : string
+  comment : string
+  activeCount : int
+  inActiveCount : int
+  isEnabled : boolean
+  sensorId : objectId
+}
+
+@enduml

@@ -1,0 +1,190 @@
+@startuml MASTER_Diagram
+
+entity "MASTER" as MASTER {
+  _id : objectId
+  master : string
+  masterData : object
+}
+
+entity "MASTER DATA" as MASTER_DATA {
+  Water Quality Test Result : object
+  Process Observation : object
+  Maintenance : object
+  Lab Test : object
+  Inventory : object
+}
+
+entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+  General : list
+  Tanks : list
+  Pumps : list
+  Blowers : list
+  Flowmeter : list
+  Headers : list
+  Core Equipments : list
+}
+
+entity "GENERAL" as GENERAL {
+  title : string
+  min : int
+  max : string
+  checked : boolean
+  type : string
+  range : boolean
+  options : list
+  sensorType : string
+  sensorTypeAbr : string
+  sensorTag : string
+}
+
+entity "TANKS" as TANKS {
+  title : string
+  min : int
+  max : int
+  checked : boolean
+  type : string
+  range : boolean
+  sensorTypeAbr : string
+  sensorType : string
+  sensorTag : string
+}
+
+entity "CORE EQUIPMENTS" as CORE_EQUIPMENTS {
+  title : string
+  min : int
+  max : int
+  checked : boolean
+  type : string
+  range : boolean
+  sensorTypeAbr : string
+  sensorType : string
+  sensorTag : string
+}
+
+entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+  General : list
+}
+
+entity "MAINTENANCE" as MAINTENANCE {
+  General : list
+  Blowers : list
+  Pumps : list
+  Headers : list
+  Flowmeter : list
+  Valves : list
+  Other Sensors : list
+}
+
+entity "BLOWERS" as BLOWERS {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "PUMPS" as PUMPS {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "HEADERS" as HEADERS {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "FLOWMETER" as FLOWMETER {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "VALVES" as VALVES {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "OTHER SENSORS" as OTHER_SENSORS {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "LAB TEST" as LAB_TEST {
+  General : list
+  Tanks : list
+  Pumps : list
+  Blowers : list
+  Flowmeter : list
+  Headers : list
+  Core Equipments : list
+}
+
+entity "INVENTORY" as INVENTORY {
+  Chemicals : object
+  Consumables : object
+  Electrical Spare List : object
+  Mechanical Spare List : object
+  Tool List (Electrical & Mechanical) : object
+  Tool for Cleaning : object
+}
+
+entity "CHEMICALS" as CHEMICALS {
+  General : list
+}
+
+entity "CONSUMABLES" as CONSUMABLES {
+  General : list
+}
+
+entity "ELECTRICAL SPARE LIST" as ELECTRICAL_SPARE_LIST {
+  General : list
+}
+
+entity "MECHANICAL SPARE LIST" as MECHANICAL_SPARE_LIST {
+  General : list
+}
+
+entity "TOOL LIST ELECTRICAL MECHANICAL" as TOOL_LIST__ELECTRICAL___MECHANICAL_ {
+  General : list
+}
+
+entity "TOOL FOR CLEANING" as TOOL_FOR_CLEANING {
+  General : list
+}
+
+' // Relationships
+MASTER ||--|| MASTER_DATA : has_masterData
+MASTER_DATA ||--|| WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
+WATER_QUALITY_TEST_RESULT ||--o{ GENERAL : has_General
+WATER_QUALITY_TEST_RESULT ||--o{ TANKS : has_Tanks
+WATER_QUALITY_TEST_RESULT ||--o{ CORE_EQUIPMENTS : has_Core Equipments
+MASTER_DATA ||--|| PROCESS_OBSERVATION : has_Process Observation
+PROCESS_OBSERVATION ||--o{ GENERAL : has_General
+MASTER_DATA ||--|| MAINTENANCE : has_Maintenance
+MAINTENANCE ||--o{ GENERAL : has_General
+MAINTENANCE ||--o{ BLOWERS : has_Blowers
+MAINTENANCE ||--o{ PUMPS : has_Pumps
+MAINTENANCE ||--o{ HEADERS : has_Headers
+MAINTENANCE ||--o{ FLOWMETER : has_Flowmeter
+MAINTENANCE ||--o{ VALVES : has_Valves
+MAINTENANCE ||--o{ OTHER_SENSORS : has_Other Sensors
+MASTER_DATA ||--|| LAB_TEST : has_Lab Test
+LAB_TEST ||--o{ GENERAL : has_General
+LAB_TEST ||--o{ TANKS : has_Tanks
+LAB_TEST ||--o{ CORE_EQUIPMENTS : has_Core Equipments
+MASTER_DATA ||--|| INVENTORY : has_Inventory
+INVENTORY ||--|| CHEMICALS : has_Chemicals
+CHEMICALS ||--o{ GENERAL : has_General
+INVENTORY ||--|| CONSUMABLES : has_Consumables
+CONSUMABLES ||--o{ GENERAL : has_General
+INVENTORY ||--|| ELECTRICAL_SPARE_LIST : has_Electrical Spare List
+ELECTRICAL_SPARE_LIST ||--o{ GENERAL : has_General
+INVENTORY ||--|| MECHANICAL_SPARE_LIST : has_Mechanical Spare List
+MECHANICAL_SPARE_LIST ||--o{ GENERAL : has_General
+INVENTORY ||--|| TOOL_LIST__ELECTRICAL___MECHANICAL_ : has_Tool List (Electrical & Mechanical)
+TOOL_LIST__ELECTRICAL___MECHANICAL_ ||--o{ GENERAL : has_General
+INVENTORY ||--|| TOOL_FOR_CLEANING : has_Tool for Cleaning
+TOOL_FOR_CLEANING ||--o{ GENERAL : has_General
+@enduml

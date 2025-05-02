@@ -1,0 +1,172 @@
+@startuml TASK_COMPONENTS_Diagram
+
+entity "TASK COMPONENTS" as TASK_COMPONENTS {
+  _id : objectId
+  taskTemplateId : objectId
+  taskData : object
+  assetId : objectId
+  userGroupId : objectId
+  name : string
+  description : string
+  trainingVideoId : string
+  priority : string
+  taskType : string
+  workflowId : objectId
+  workflowDetails : object
+  taskCompletion : string
+  taskCompletionState : string
+  assigneeMethod : string
+  complexity : int
+  taskDeadlineTime : int
+  taskDeadlineUnit : string
+  taskExpectedTime : int
+  taskExpectedUnit : string
+  skillsSelected : list
+  dataEntry : boolean
+  richTextContent : string
+  escalations : list
+  componentActions : list
+  isSubtask : boolean
+  triggerId : objectId
+  TaskFormDataId : string
+  workflowActions : list
+  isDeleted : boolean
+  isObsolete : boolean
+  taskCompleted : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "TASK DATA" as TASK_DATA {
+  taskTemplateId : objectId
+  name : string
+  description : string
+  dataEntry : boolean
+}
+
+entity "WORKFLOW DETAILS" as WORKFLOW_DETAILS {
+  name : string
+  description : string
+  nodes : list
+  edges : list
+  workflowActions : list
+}
+
+entity "NODES" as NODES {
+  id : string
+  type : string
+  position : object
+  data : object
+  width : int
+  height : int
+  selected : boolean
+  positionAbsolute : object
+  dragging : boolean
+}
+
+entity "POSITION" as POSITION {
+  x : float
+  y : float
+}
+
+entity "DATA" as DATA {
+  type : string
+  label : string
+}
+
+entity "POSITION ABSOLUTE" as POSITION_ABSOLUTE {
+  x : float
+  y : float
+}
+
+entity "EDGES" as EDGES {
+  id : string
+  source : string
+  sourceHandle : string
+  target : string
+  targetHandle : string
+  type : string
+  animated : boolean
+  data : object
+  markerEnd : object
+}
+
+entity "MARKER END" as MARKER_END {
+  type : string
+  width : int
+  height : int
+  color : string
+}
+
+entity "WORKFLOW ACTIONS" as WORKFLOW_ACTIONS {
+  nodeId : string
+  nodeLabel : string
+  actionNodes : list
+  _id : string
+}
+
+entity "ACTION NODES" as ACTION_NODES {
+  id : string
+  label : string
+  selectedAction : string
+  selectedActionValue : string
+  _id : string
+  actionIds : list
+  nodeId : string
+}
+
+entity "SKILLS SELECTED" as SKILLS_SELECTED {
+  buffer : binary
+}
+
+entity "ESCALATIONS" as ESCALATIONS {
+  value : string
+  unit : string
+  timeInMinutes : string
+  communicationMedium : string
+  userIds : list
+}
+
+entity "USER IDS" as USER_IDS {
+  buffer : binary
+}
+
+entity "COMPONENT ACTIONS" as COMPONENT_ACTIONS {
+  nodeId : string
+  actionNodes : list
+}
+
+entity "ACTION IDS" as ACTION_IDS {
+  buffer : binary
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+TASK_COMPONENTS ||--|| TASK_DATA : has_taskData
+TASK_COMPONENTS ||--|| WORKFLOW_DETAILS : has_workflowDetails
+WORKFLOW_DETAILS ||--o{ NODES : has_nodes
+NODES ||--|| POSITION : has_position
+NODES ||--|| DATA : has_data
+NODES ||--|| POSITION_ABSOLUTE : has_positionAbsolute
+WORKFLOW_DETAILS ||--o{ EDGES : has_edges
+EDGES ||--|| DATA : has_data
+EDGES ||--|| MARKER_END : has_markerEnd
+WORKFLOW_DETAILS ||--o{ WORKFLOW_ACTIONS : has_workflowActions
+WORKFLOW_ACTIONS ||--o{ ACTION_NODES : has_actionNodes
+TASK_COMPONENTS ||--o{ SKILLS_SELECTED : has_skillsSelected
+TASK_COMPONENTS ||--o{ ESCALATIONS : has_escalations
+ESCALATIONS ||--o{ USER_IDS : has_userIds
+TASK_COMPONENTS ||--o{ COMPONENT_ACTIONS : has_componentActions
+COMPONENT_ACTIONS ||--o{ ACTION_NODES : has_actionNodes
+ACTION_NODES ||--o{ ACTION_IDS : has_actionIds
+TASK_COMPONENTS ||--o{ WORKFLOW_ACTIONS : has_workflowActions
+WORKFLOW_ACTIONS ||--o{ ACTION_NODES : has_actionNodes
+TASK_COMPONENTS ||--|| CREATED_AT : has_createdAt
+TASK_COMPONENTS ||--|| UPDATED_AT : has_updatedAt
+@enduml

@@ -1,0 +1,32 @@
+@startuml COMMUNICATION_COMPONENTS_Diagram
+
+entity "COMMUNICATION COMPONENTS" as COMMUNICATION_COMPONENTS {
+  _id : objectId
+  userIds : list
+  message : string
+  attachments : list
+  type : string
+  userGroup : objectId
+  asset : objectId
+  messageFormat : string
+  isDeleted : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "USER IDS" as USER_IDS {
+  buffer : binary
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+COMMUNICATION_COMPONENTS ||--o{ USER_IDS : has_userIds
+COMMUNICATION_COMPONENTS ||--|| CREATED_AT : has_createdAt
+COMMUNICATION_COMPONENTS ||--|| UPDATED_AT : has_updatedAt
+@enduml

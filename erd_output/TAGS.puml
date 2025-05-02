@@ -1,0 +1,22 @@
+@startuml TAGS_Diagram
+
+entity "TAGS" as TAGS {
+  _id : objectId
+  name : string
+  type : string
+  userId : objectId
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+TAGS ||--|| CREATED_AT : has_createdAt
+TAGS ||--|| UPDATED_AT : has_updatedAt
+@enduml

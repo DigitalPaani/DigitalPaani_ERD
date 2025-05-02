@@ -1,0 +1,13 @@
+@startuml SOLUTION_Diagram
+
+entity "SOLUTION" as SOLUTION {
+  _id : objectId
+  plant_id : string
+  name : string
+  current_amount : int
+  concentration : int
+  created_date : string
+  modification_date : string
+}
+
+@enduml

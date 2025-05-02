@@ -1,0 +1,113 @@
+erDiagram
+bidirectionalhistories {
+    ObjectId _id
+    ObjectId plantId
+    Array hmiButtons
+    String equipmentId
+    Date createdAt
+    Array events
+    ObjectId sensorId
+    Boolean initiated
+    Boolean acknowledged
+    Boolean ongoing
+    Boolean underProcess
+    Boolean successFull
+    Number expiryMins
+    Boolean terminated
+    String userName
+  }
+  sensors{
+    ObjectId sensorId
+  }
+  plant{
+    ObjectId plantId
+  }
+  
+  hmiButtons {
+    ObjectId _id
+    ObjectId plantId
+    String equipmentId
+    String hmiPrefix
+    ObjectId sensorId
+    String hmiTag
+    ObjectId trackingSensor
+  }
+
+  events {
+    ObjectId userId
+    String command
+    String ipAddr
+    String browserDetails
+    Date timestamp
+    String type
+    String heading
+    Boolean success
+    ObjectId _id
+  }
+
+
+bidirectionalhistories||--o{hmiButtons:includes
+bidirectionalhistories||--o{events:includes
+bidirectionalhistories||--||sensors:has
+bidirectionalhistories||--||plant:has
+
+caches{
+    ObjectId _id
+    String Value
+}
+
+  CallLog {
+        string _id
+        string from
+        string to
+        string message
+        any libResponse
+        string serviceType
+        string code
+        any errorDetails
+        string status
+
+    }
+    libResponse{
+         string sid
+        date dateCreated
+        date dateUpdated
+        string parentCallSid
+        string accountSid
+        string to
+        string toFormatted
+        string from
+        string fromFormatted
+        string phoneNumberSid
+        string status
+        date startTime
+        date endTime
+        int duration
+        float price
+        string priceUnit
+        string direction
+        string answeredBy
+        string apiVersion
+        string forwardedFrom
+        Null groupSid
+        Null callerName
+        String queueTime
+        Null trunkSidString
+        String uri
+        Object subresourceUris
+    }
+    subresourceUris{
+        String events
+        String notifications
+        String payments
+        String recordings
+        String spirec
+        String streams
+        String transactions
+        String user_defined_message_subscriptions
+        String user_defined_messages
+    }
+
+    errorDetails{
+        String stack
+    }

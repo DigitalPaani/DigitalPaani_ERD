@@ -1,0 +1,114 @@
+erDiagram
+Task {
+    ObjectId triggerId
+    ObjectId taskTemplateId
+    ObjectId userGroupId
+    ObjectId assetId
+    ObjectId assignee
+    ObjectId workspaceId
+    Object workflowDetails
+    string name
+    string description
+    ObjectId trainingVideoId
+    ObjectId attachmentId
+    number priority
+    string taskType
+    string taskCompletion
+    string assigneeMethod
+    string emergencyTaskCommonId
+    string taskCompletionState
+    number complexity
+    number taskDeadlineTime
+    number taskExpectedTime
+    number taskCompletionTime
+    string equipmentSelected
+    ObjectId skillsSelected
+    boolean dataEntry
+    ObjectId sensorId
+    string richTextContent
+    boolean isObsolete
+    ObjectId taskComponentId
+    boolean taskCompleted
+    boolean isArchived
+    ObjectId createdBy
+  }
+
+  workflowDetails {
+    ObjectId workflowId
+    string name
+    string description
+    Array nodes
+    Array edges
+    Array workflowActions
+    string transitionStatus
+  }
+
+  workflowAction {
+    string nodeId
+    string nodeLabel
+    WorkflowActionNode[] actionNodes
+  }
+
+  workflowActionNode {
+    string id
+    string label
+    string selectedAction
+    string selectedActionValue
+    boolean actionCompleted
+  }
+
+  Escalation {
+    number timeInMinutes
+    string communicationMedium
+    ObjectId userIds
+    boolean isNotified
+  }
+
+  ComponentActions {
+    string nodeId
+    Array actionNodes
+  }
+
+  ActionNode {
+    string id
+    string label
+    string selectedAction
+    string selectedActionValue
+    ObjectId[] actionIds
+  }
+
+  "Escalation Hierarchy" {
+    ObjectId _id
+    Object escalation
+    ObjectId plantId
+  }
+
+  escalation {
+    Array Escalation_Level_1
+    Array Escalation_Level_2
+    Array Escalation_Level_3
+    Array Emergency_Group
+    Array Email_Group
+  }
+
+%% RELATIONSHIPS
+
+  Task ||--|| workflowDetails : has_workflow
+  workflowDetails ||--o{ workflowAction : includes_actions
+  workflowAction ||--o{ workflowActionNode : has_nodes
+
+  Task ||--o{ Escalation : has_escalations
+  Escalation ||--o{ ObjectId : escalates_to_users
+
+  Task ||--o{ ComponentActions : performs_component_actions
+  ComponentActions ||--o{ ActionNode : has_action_nodes
+  ActionNode ||--o{ ObjectId : uses_action_ids
+
+  "Escalation Hierarchy" ||--|| escalation : has_escalation
+  escalation ||--o{ Escalation_Level_1 : includes
+  escalation ||--o{ Escalation_Level_2 : includes
+  escalation ||--o{ Escalation_Level_3 : includes
+  escalation ||--o{ Emergency_Group : includes
+  escalation ||--o{ Email_Group : includes
+
+  Escalation ||--|| "Escalation Hierarchy" : references_hierarchy

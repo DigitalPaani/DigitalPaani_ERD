@@ -1,0 +1,27 @@
+@startuml INSIGHTS_TEMPLATES_Diagram
+
+entity "INSIGHTS TEMPLATES" as INSIGHTS_TEMPLATES {
+  _id : objectId
+  description : string
+  equipmentTypes : list
+  attachmentId : unknown
+  richTextContent : string
+  isArchived : boolean
+  name : string
+  insightClassification : string
+  insightType : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+INSIGHTS_TEMPLATES ||--|| CREATED_AT : has_createdAt
+INSIGHTS_TEMPLATES ||--|| UPDATED_AT : has_updatedAt
+@enduml

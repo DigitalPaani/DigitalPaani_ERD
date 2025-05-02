@@ -1,0 +1,21 @@
+@startuml LAYOUT_PATHS_Diagram
+
+entity "LAYOUT PATHS" as LAYOUT_PATHS {
+  _id : objectId
+  graphId : objectId
+  __v : int
+  createdAt : object
+  layoutSets : list
+  updatedAt : object
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+LAYOUT_PATHS ||--|| CREATED_AT : has_createdAt
+LAYOUT_PATHS ||--|| UPDATED_AT : has_updatedAt
+@enduml

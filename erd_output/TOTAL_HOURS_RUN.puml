@@ -1,0 +1,32 @@
+@startuml TOTAL_HOURS_RUN_Diagram
+
+entity "TOTAL HOURS RUN" as TOTAL_HOURS_RUN {
+  _id : objectId
+  hoursRun : object
+  plantId : objectId
+  lastUpdated : string
+}
+
+entity "HOURS RUN" as HOURS_RUN {
+  ONOFF_EQTdd1ssATdd1_1 : float
+  ONOFF_EQTdd1ssATdd1_2 : float
+  ONOFF_CCTdd1ssTWTdd1_1 : float
+  ONOFF_CCTdd1ssTWTdd1_2 : float
+  ONOFF_TSTdd1ssATdd1_1 : int
+  ONOFF_TSTdd1ssATdd1_2 : float
+  ONOFF_TWTdd1ssSWTdd1_1 : int
+  ONOFF_TWTdd1ssSWTdd1_2 : int
+  ONOFF_SWTdd1ssCTdd1_1 : int
+  ONOFF_SWTdd1ssCTdd1_2 : int
+  ONOFF_TWTdd1ssIRdd1_1 : int
+  ONOFF_TWTdd1ssIRdd1_2 : float
+  ONOFF_SHTdd1ssFPdd1_1 : int
+  ONOFF_BLW_1 : float
+  ONOFF_BLW_2 : float
+  ONOFF_BLW_3 : float
+  ONOFF_FP_1 : int
+}
+
+' // Relationships
+TOTAL_HOURS_RUN ||--|| HOURS_RUN : has_hoursRun
+@enduml

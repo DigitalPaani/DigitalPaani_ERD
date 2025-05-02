@@ -1,0 +1,10 @@
+@startuml INVENTORY_MIGRATION_LOGS_Diagram
+
+entity "INVENTORY MIGRATION LOGS" as INVENTORY_MIGRATION_LOGS {
+  _id : objectId
+  plantId : objectId
+  messages : list
+  migrationSuccessfull : boolean
+}
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml ROSTER_SCHEDULES_Diagram
+
+entity "ROSTER SCHEDULES" as ROSTER_SCHEDULES {
+  _id : objectId
+  rosterId : objectId
+  userId : objectId
+  reoccurrenceId : string
+  fromDate : int
+  toDate : int
+  slots : list
+  rule : string
+  color : string
+  isArchived : boolean
+  createdBy : objectId
+  __v : int
+  createdAt : object
+  updatedAt : object
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+ROSTER_SCHEDULES ||--|| CREATED_AT : has_createdAt
+ROSTER_SCHEDULES ||--|| UPDATED_AT : has_updatedAt
+@enduml

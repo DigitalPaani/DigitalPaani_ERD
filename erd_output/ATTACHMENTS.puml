@@ -1,0 +1,23 @@
+@startuml ATTACHMENTS_Diagram
+
+entity "ATTACHMENTS" as ATTACHMENTS {
+  _id : objectId
+  attachmentLink : string
+  filename : string
+  expireAt : unknown
+  mimetype : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+ATTACHMENTS ||--|| CREATED_AT : has_createdAt
+ATTACHMENTS ||--|| UPDATED_AT : has_updatedAt
+@enduml

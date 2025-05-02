@@ -1,0 +1,59 @@
+@startuml LAYOUTS_Diagram
+
+entity "LAYOUTS" as LAYOUTS {
+  _id : objectId
+  nodeId : objectId
+  __v : int
+  createdAt : object
+  layout : object
+  updatedAt : object
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "LAYOUT" as LAYOUT {
+  cells : list
+}
+
+entity "CELLS" as CELLS {
+  type : string
+  attrs : object
+  position : object
+  size : object
+  angle : int
+  id : string
+  z : int
+}
+
+entity "ATTRS" as ATTRS {
+  label : object
+}
+
+entity "LABEL" as LABEL {
+  text : string
+}
+
+entity "POSITION" as POSITION {
+  x : int
+  y : int
+}
+
+entity "SIZE" as SIZE {
+  width : int
+  height : int
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+LAYOUTS ||--|| CREATED_AT : has_createdAt
+LAYOUTS ||--|| LAYOUT : has_layout
+LAYOUT ||--o{ CELLS : has_cells
+CELLS ||--|| ATTRS : has_attrs
+ATTRS ||--|| LABEL : has_label
+CELLS ||--|| POSITION : has_position
+CELLS ||--|| SIZE : has_size
+LAYOUTS ||--|| UPDATED_AT : has_updatedAt
+@enduml

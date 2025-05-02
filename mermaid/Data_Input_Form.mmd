@@ -1,0 +1,176 @@
+erDiagram
+
+  "Data Input Backup" {
+    ObjectId _id
+    ObjectId plantId
+    Array of Object data
+  }
+
+  data {
+    String timestamp
+    Object values
+  }
+
+  values {
+    Object Water_Quality_Test_Result
+    Object Process_Observation
+    Object Maintenance
+    Object inventory
+    Object Lab_Test
+  }
+
+  "Data Input Form" {
+    ObjectId _id
+    Object plantId
+    Object form
+  }
+
+  form {
+    Array Water_Quality_Test_Result
+    Array Process_Observation
+    Array Maintenance
+    Array Lab_Test
+    Array inventory
+  }
+
+  Water_Quality_Test_Result {
+    String title
+    Number min
+    Number max
+    Boolean checked
+    String type
+    Boolean range
+  }
+
+  Process_Observation {
+    String type
+    String title
+    Boolean checked
+    Array options
+  }
+
+  Maintenance {
+    String title
+    String type
+    Boolean checked
+  }
+
+  Lab_Test {
+    String title
+    Number min
+    Number max
+    Boolean checked
+    String type
+    Boolean range
+  }
+
+  inventory {
+    Array Chemicals
+    Array Consumables
+    Array Electrical_Spare_List
+    Array Mechanical_Spare_List
+    Array Tool_List
+    Array Tool_for_Cleaning
+  }
+
+  "Firebase Token" {
+    ObjectId _id
+    String token
+    ObjectId user
+  }
+
+  "Form Data" {
+    ObjectId _id
+    Object data
+    ObjectId plantId
+  }
+
+  formDataData {
+    Object Water_Quality_Test_Result
+    Object Process_Observation
+    Object Maintenance
+    Object Lab_Test
+    Object inventory
+  }
+
+%% RELATIONSHIPS
+
+  "Data Input Backup" ||--o{ data : has_data
+data ||--|| values : contains_values
+
+values ||--|| Water_Quality_Test_Result : has_water_quality_test_result
+values ||--|| Process_Observation : has_process_observation
+values ||--|| Maintenance : has_maintenance
+values ||--|| inventory : has_inventory
+values ||--|| Lab_Test : has_lab_test
+
+"Data Input Form" ||--|| form : has_form
+
+form ||--o{ Water_Quality_Test_Result : defines_water_quality_test_result
+form ||--o{ Process_Observation : defines_process_observation
+form ||--o{ Maintenance : defines_maintenance
+form ||--o{ Lab_Test : defines_lab_test
+form ||--o{ inventory : defines_inventory
+
+"Form Data" ||--|| formDataData : has_form_data
+
+formDataData ||--|| Water_Quality_Test_Result : has_water_quality_test_result
+formDataData ||--|| Process_Observation : has_process_observation
+formDataData ||--|| Maintenance : has_maintenance
+formDataData ||--|| Lab_Test : has_lab_test
+formDataData ||--|| inventory : has_inventory
+
+  "Inventory"{
+    ObjectId _id
+    String name
+    Array inventory_data
+  }
+
+  "inventory_data"{
+    ObjectId _id
+    String product_name
+  }
+
+  Inventory_Management {
+    ObjectId _id
+    string plant_id
+    Array plant_inventory
+  }
+
+  plant_inventory {
+    Array inventory_list
+    String inventory
+  }
+
+  inventory_list {
+    Object product_data
+    string product_id
+  }
+
+  product_data {
+    Object quantity
+    Object remarks
+  }
+
+  quantity {
+    number total
+    number current_balance
+    string unit
+  }
+
+  remarks {
+    Array add
+    Array remove
+  }
+
+  "Inventory" ||--o{ inventory_data : has_inventory_data
+
+Inventory_Management ||--|{ plant_inventory : has_plant_inventory
+plant_inventory ||--|{ inventory_list : has_inventory_list
+inventory_list ||--|| product_data : has_product_data
+product_data ||--|| quantity : includes_quantity
+product_data ||--|| remarks : includes_remarks
+
+
+
+  

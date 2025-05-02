@@ -1,0 +1,18 @@
+@startuml NOTIFICATIONS_65ABD6EECA86713F28B8248F_Diagram
+
+entity "NOTIFICATIONS 65ABD6EECA86713F28B8248F" as NOTIFICATIONS_65ABD6EECA86713F28B8248F {
+  _id : objectId
+  read : boolean
+  title : string
+  message : string
+  user : objectId
+  to : string
+  timeStamp : object
+}
+
+entity "TIME STAMP" as TIME_STAMP {
+}
+
+' // Relationships
+NOTIFICATIONS_65ABD6EECA86713F28B8248F ||--|| TIME_STAMP : has_timeStamp
+@enduml

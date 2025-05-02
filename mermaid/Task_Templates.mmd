@@ -1,0 +1,228 @@
+erDiagram
+"task-comments"{
+    ObjectId taskId
+    string message
+    boolean isArchived
+    ObjectId createdBy
+}
+
+"task-logs" {
+  ObjectId taskId
+  string actionId
+  object transitionFrom
+  object transitionTo
+  string url
+  string filename
+  string mimetype
+  string message
+  string type
+  boolean isArchived
+  ObjectId createdBy
+}
+"taskId"{
+    ObjectId taskId
+}
+  "task-comments" }o--|| "taskId" : belongs_to_task
+  "task-logs" }o--|| "taskId" : belongs_to_task
+
+"task-templates" {
+
+    ObjectId userGroupId
+    Array skillsSelected
+    boolean dataEntry
+    boolean isArchived
+    string name
+    string description
+    string scope
+    ObjectId trainingVideoId
+    ObjectId attachmentId
+    string priority
+    string taskType
+    ObjectId workflowId
+    string taskCompletion
+    string taskCompletionState
+    string assigneeMethod
+    number complexity
+    number taskDeadlineTime
+    number taskExpectedTime
+    string equipmentSelected
+    string sensorTag
+    string richTextContent
+    ObjectId createdBy
+}
+
+  "taskComponent" {
+    ObjectId taskTemplateId
+    Object taskData
+    ObjectId assetId
+    ObjectId userGroupId
+    string name
+    string description
+    string trainingVideoId
+    string priority
+    string taskType
+    ObjectId workflowId
+    object workflowDetails
+    string taskCompletion
+    string taskCompletionState
+    string assigneeMethod
+    number complexity
+    number taskDeadlineTime
+    string taskDeadlineUnit
+    number taskExpectedTime
+    string taskExpectedUnit
+    Array skillsSelected
+    boolean dataEntry
+    string richTextContent
+    array of Object escalations
+    array of Object componentActions
+    boolean isSubtask
+    ObjectId triggerId
+    string TaskFormDataId
+    array of Object workflowActions
+    boolean isDeleted
+    boolean isObsolete
+    boolean taskCompleted 
+  }
+  "taskData"{
+    ObjectId taskTemplateId
+    String name
+    String description
+    Boolean dataEntry
+  }
+
+"workflowDetails"{
+    String name
+    String description
+    Array nodes
+    Array edges
+    Array workflowActions
+}
+"nodes"{
+    String id
+    String type
+    Object position
+    Object data
+    Number width
+    Number height
+    Boolean Selected
+    Object positionAbsolute
+    Boolean dragging
+}
+"edges"{
+    String id
+    String source
+    String sourceHandle
+    String target
+    String targetHandle
+    String type
+    Boolean animated
+    Object data
+    Object markerEnd
+}
+"workflowActions"{
+    String nodeId
+    String nodeLabel
+    Array actionNodes
+    String _id
+}
+"skillsSelected"{
+    ObjectId skillId
+}
+"escalations"{
+    String value
+    String unit
+    String timeInMinutes
+    String communicationMedium
+    Array userIds
+}
+"userIds"{
+    ObjectId userId
+}
+
+"componentActions"{
+    String nodeId
+    Array of Object actionNodes
+}
+"actionNodes"{
+    String id
+    String label
+    String selectedAction
+    String selectedActionValue
+    Array actionIds
+    String nodeId
+}
+"actionIds"{
+    ObjectId actionId
+}
+
+ taskComponent }o--|| task-templates : taskTemplateId
+  taskComponent ||--o{ skillsSelected : uses
+  taskComponent ||--o{ escalations : has
+  escalations ||--o{ userIds : includes
+  taskComponent ||--o{ componentActions : triggers
+  componentActions ||--o{ actionNodes : contains
+  actionNodes ||--o{ actionIds : links
+  taskComponent ||--|| workflowDetails : uses
+  workflowDetails ||--o{ nodes : has
+  workflowDetails ||--o{ edges : connects
+  workflowDetails ||--o{ workflowActions : includes
+  workflowActions ||--o{ actionNodes : defines
+  taskComponent ||--|| taskData : embeds
+
+%% "taskCounts"{
+%%     ObjectId _id
+%%     String For
+%%     Object of Objects count
+%% }
+%% "count"{
+%%     Object plantId
+%% }
+%% "plantId"{
+%%     Object SeniorClient
+%%     Object OperatorGroup
+%%     Object Operator 
+%%     Object ServiceHead
+%%     Object MaintenanceInCharge
+%%     Object BuildingLevelClient
+%% }
+%% "SeniorClient"{
+%%     Number overdue
+%%     Number pending
+%%     Number completed
+%% }
+%% "OperatorGroup"{
+%%     Number overdue
+%%     Number pending
+%%     Number completed
+%% }
+%% "Operator"{
+%%     Number overdue
+%%     Number pending
+%%     Number completed
+%% }
+%% "ServiceHead"{
+%%     Number overdue
+%%     Number pending
+%%     Number completed
+%% }
+%% "MaintenanceInCharge"{
+%%     Number overdue
+%%     Number pending
+%%     Number completed
+%% }
+%% "BuildingLevelClient"{
+%%     Number overdue
+%%     Number pending
+%%     Number completed
+%% }
+%%   taskCounts ||--|| count : has
+%%   count ||--|| plantId : contains
+%%   plantId ||--|| SeniorClient : includes
+%%   plantId ||--|| OperatorGroup : includes
+%%   plantId ||--|| Operator : includes
+%%   plantId ||--|| ServiceHead : includes
+%%   plantId ||--|| MaintenanceInCharge : includes
+%%   plantId ||--|| BuildingLevelClient : includes
+
+  

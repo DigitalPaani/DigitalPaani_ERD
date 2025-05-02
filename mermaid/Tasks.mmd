@@ -1,0 +1,746 @@
+erDiagram
+  "ALERT TASK" {
+    string _id
+    string toUser
+    array condition
+    string type
+    string dueTimeFromPosting
+    boolean isOpen
+    boolean autoCalling
+    object alertescalations
+    object alertheading
+    object alertdescription
+    array alertsubTasks
+    object metadata
+    objectId plantId
+    array attachedTickets
+    array ccUsers
+    string observationTime
+    object primaryUser
+    string resolutionFreq
+    object alertequipments
+    array issuetype
+  }
+  condition {
+    string operator
+    string sensorTag
+    number threshold
+    string thresholdType
+  }
+  alertescalations {
+    object level
+  }
+  level{
+    string time
+    string group
+  }
+  alertheading{
+    string eng
+    string hindi
+  }
+  alertdescription {
+    string eng
+    string hind
+  }
+  alertsubTasks{
+    string name
+    string namehindi
+  }
+  metadata {
+    string createdBy
+    string createdAt
+  }
+  ccUsers{
+    objectId _id
+    string role
+    string name
+    string email
+    string number
+    objectId forid
+    string password
+    array plantId
+    string userStatus
+  }
+  plantId{
+    objectId plantId
+  }
+  primaryUser{
+    objectId _id
+    string forWho
+    array plantId
+    string name
+    string number
+    string email
+    objectId forid
+    string role
+    string password
+    null userStatus
+  }
+  attachedTickets {
+    string ticketId
+  }
+  alertequipments{
+    string id
+    string nickname
+    string type
+  }
+  "ALERT TASK" ||--o{ condition : has_conditions
+  "ALERT TASK" ||--o{ alertescalations : has_escalations
+  alertescalations ||--o{ level : has_levels
+  "ALERT TASK" ||--|| alertheading : has_heading
+  "ALERT TASK" ||--|| alertdescription : has_description
+  "ALERT TASK" ||--o{ alertsubTasks : has_subTasks
+  "ALERT TASK" ||--|| metadata : has_metadata
+  "ALERT TASK" ||--o{ attachedTickets : has_attachedTickets
+  "ALERT TASK" ||--o{ ccUsers : has_ccUsers
+  ccUsers }o--o{ plantId : assigned_plants
+  primaryUser ||--o{ plantId : manages_plant
+  "ALERT TASK" ||--|| primaryUser : has_primaryUser
+  "ALERT TASK" ||--|| alertequipments : has_equipments
+
+  "Fixed Tasks 1"{
+    objectId _id
+    string toUser
+    array recurringDays
+    array weeks
+    string recurringTimes
+    string dueTimeFromPosting
+    object fixedescalations
+    object fixedheading
+    object fixeddescription
+    array fixedsubTasks
+    objectId plantId
+  }
+  recurringDays{
+    string days
+  }
+  weeks{
+    string week
+  }
+  fixedescalations{
+    object levels
+  }
+  levels{
+    string time
+    string group
+  }
+  fixedheading{
+    string eng
+    string hindi
+  }
+  fixeddescription{
+    string eng
+    string hindi
+  }
+  fixedsubTasks{
+    string name
+    string namehindi
+  }
+ "Fixed Tasks 1" ||--o{ recurringDays : occurs_on_days
+  "Fixed Tasks 1" ||--o{ weeks : occurs_on_weeks
+  "Fixed Tasks 1" ||--|| fixedescalations : has_escalation
+  fixedescalations ||--o{ levels : has_levels
+  "Fixed Tasks 1" ||--|| fixedheading : has_headings
+  "Fixed Tasks 1" ||--|| fixeddescription : has_descriptions
+  "Fixed Tasks 1" ||--o{ fixedsubTasks : has_subTasks
+  "Fixed Tasks 1" }o--|| plantId : belongs_to_plant
+
+  "Live Tasks 1"{
+    objectId _id
+    string toUser
+    ObjectId plantId
+    ObjectId taskId
+    array history
+    array timeline
+    array subTaskStatus
+    string taskType
+    boolean ticket
+    number order
+  }
+  history{
+    string status
+    boolean overDue
+    ObjectId completedBy
+    string escalationLevel
+    string createdAt
+    string completedAt
+  }
+  timeLine{
+    string time
+    string event
+    string message
+  }
+  subTaskStatus{
+    string status
+    string completedBy
+  }
+  "Live Tasks 1" }o--|| plantId : assigned_to_plant
+  "Live Tasks 1" ||--o{ history : has_history
+  "Live Tasks 1" ||--o{ timeLine : has_timeline
+  "Live Tasks 1" ||--o{ subTaskStatus : has_subtask_status
+
+"One Time Tasks"{
+    ObjectId _id
+    string toUser
+    string dueTimeFromPosting
+    boolean ticket
+    Object oneTimeheading
+    Object oneTimedescription
+    Array subTasks
+    boolean critical
+    ObjectId plantId
+    Object oneTimeequipments
+}
+oneTimeheading{
+    string eng
+    string hindi
+}
+oneTimedescription{
+    string eng
+    string hindi
+}
+subTasks{
+    string name
+    string namehindi
+}
+oneTimeequipments{
+    string id
+    string nickname
+    string type
+}
+  "One Time Tasks" }o--|| plantId : assigned_to_plant
+  "One Time Tasks" ||--|| oneTimeheading : has_heading
+  "One Time Tasks" ||--|| oneTimedescription : has_description
+  "One Time Tasks" ||--o{ subTasks : has_subTasks
+  "One Time Tasks" ||--|| oneTimeequipments : has_equipments
+
+  "obsoleteTasks"{
+    ObjectId taskTemplateId 
+    ObjectId triggerId 
+    ObjectId selectedTriggerIds
+    string conditionType
+    boolean isDeleted
+}
+
+"task-comments"{
+    ObjectId taskId
+    string message
+    boolean isArchived
+    ObjectId createdBy
+}
+
+"task-logs" {
+  ObjectId taskId
+  string actionId
+  object transitionFrom
+  object transitionTo
+  string url
+  string filename
+  string mimetype
+  string message
+  string type
+  boolean isArchived
+  ObjectId createdBy
+}
+"taskId"{
+    ObjectId taskId
+}
+  "task-comments" }o--|| "taskId" : belongs_to_task
+  "task-logs" }o--|| "taskId" : belongs_to_task
+
+"task-templates" {
+
+    ObjectId userGroupId
+    Array skillsSelected
+    boolean dataEntry
+    boolean isArchived
+    string name
+    string description
+    string scope
+    ObjectId trainingVideoId
+    ObjectId attachmentId
+    string priority
+    string taskType
+    ObjectId workflowId
+    string taskCompletion
+    string taskCompletionState
+    string assigneeMethod
+    number complexity
+    number taskDeadlineTime
+    number taskExpectedTime
+    string equipmentSelected
+    string sensorTag
+    string richTextContent
+    ObjectId createdBy
+}
+
+  "taskComponent" {
+    ObjectId taskTemplateId
+    Object taskData
+    ObjectId assetId
+    ObjectId userGroupId
+    string name
+    string description
+    string trainingVideoId
+    string priority
+    string taskType
+    ObjectId workflowId
+    object workflowDetails
+    string taskCompletion
+    string taskCompletionState
+    string assigneeMethod
+    number complexity
+    number taskDeadlineTime
+    string taskDeadlineUnit
+    number taskExpectedTime
+    string taskExpectedUnit
+    Array skillsSelected
+    boolean dataEntry
+    string richTextContent
+    array of Object escalations
+    array of Object componentActions
+    boolean isSubtask
+    ObjectId triggerId
+    string TaskFormDataId
+    array of Object workflowActions
+    boolean isDeleted
+    boolean isObsolete
+    boolean taskCompleted 
+  }
+  "taskData"{
+    ObjectId taskTemplateId
+    String name
+    String description
+    Boolean dataEntry
+  }
+
+"workflowDetails"{
+    String name
+    String description
+    Array nodes
+    Array edges
+    Array workflowActions
+}
+"nodes"{
+    String id
+    String type
+    Object position
+    Object data
+    Number width
+    Number height
+    Boolean Selected
+    Object positionAbsolute
+    Boolean dragging
+}
+"edges"{
+    String id
+    String source
+    String sourceHandle
+    String target
+    String targetHandle
+    String type
+    Boolean animated
+    Object data
+    Object markerEnd
+}
+"workflowActions"{
+    String nodeId
+    String nodeLabel
+    Array actionNodes
+    String _id
+}
+"skillsSelected"{
+    ObjectId skillId
+}
+"escalations"{
+    String value
+    String unit
+    String timeInMinutes
+    String communicationMedium
+    Array userIds
+}
+"userIds"{
+    ObjectId userId
+}
+
+"componentActions"{
+    String nodeId
+    Array of Object actionNodes
+}
+"actionNodes"{
+    String id
+    String label
+    String selectedAction
+    String selectedActionValue
+    Array actionIds
+    String nodeId
+}
+"actionIds"{
+    ObjectId actionId
+}
+
+ taskComponent }o--|| task-templates : taskTemplateId
+  taskComponent ||--o{ skillsSelected : uses
+  taskComponent ||--o{ escalations : has
+  escalations ||--o{ userIds : includes
+  taskComponent ||--o{ componentActions : triggers
+  componentActions ||--o{ actionNodes : contains
+  actionNodes ||--o{ actionIds : links
+  taskComponent ||--|| workflowDetails : uses
+  workflowDetails ||--o{ nodes : has
+  workflowDetails ||--o{ edges : connects
+  workflowDetails ||--o{ workflowActions : includes
+  workflowActions ||--o{ actionNodes : defines
+  taskComponent ||--|| taskData : embeds
+
+"taskCounts"{
+    ObjectId _id
+    String For
+    Object of Objects count
+}
+"count"{
+    Object plantId
+}
+"plantId"{
+    Object SeniorClient
+    Object OperatorGroup
+    Object Operator 
+    Object ServiceHead
+    Object MaintenanceInCharge
+    Object BuildingLevelClient
+}
+"SeniorClient"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"OperatorGroup"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"Operator"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"ServiceHead"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"MaintenanceInCharge"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"BuildingLevelClient"{
+    Number overdue
+    Number pending
+    Number completed
+}
+  taskCounts ||--|| count : has
+  count ||--|| plantId : contains
+  plantId ||--|| SeniorClient : includes
+  plantId ||--|| OperatorGroup : includes
+  plantId ||--|| Operator : includes
+  plantId ||--|| ServiceHead : includes
+  plantId ||--|| MaintenanceInCharge : includes
+  plantId ||--|| BuildingLevelClient : includes
+
+   Task {
+    ObjectId triggerId
+    ObjectId taskTemplateId
+    ObjectId userGroupId
+    ObjectId assetId
+    ObjectId assignee
+    ObjectId workspaceId
+    Object workflowDetails
+    string name
+    string description
+    ObjectId trainingVideoId
+    ObjectId attachmentId
+    number priority
+    string taskType
+    string taskCompletion
+    string assigneeMethod
+    string emergencyTaskCommonId
+    string taskCompletionState
+    number complexity
+    number taskDeadlineTime
+    number taskExpectedTime
+    number taskCompletionTime
+    string equipmentSelected
+    ObjectId skillsSelected
+    boolean dataEntry
+    ObjectId sensorId
+    string richTextContent
+    boolean isObsolete
+    ObjectId taskComponentId
+    boolean taskCompleted
+    boolean isArchived
+    ObjectId createdBy
+  }
+
+  workflowDetails {
+    ObjectId workflowId
+    string name
+    string description
+    Array nodes
+    Array edges
+    Array workflowActions
+    string transitionStatus
+  }
+
+  workflowAction {
+    string nodeId
+    string nodeLabel
+    WorkflowActionNode[] actionNodes
+  }
+
+  workflowActionNode {
+    string id
+    string label
+    string selectedAction
+    string selectedActionValue
+    boolean actionCompleted
+  }
+
+  Escalation {
+    number timeInMinutes
+    string communicationMedium
+    ObjectId userIds
+    boolean isNotified
+  }
+
+  ComponentActions {
+    string nodeId
+    Array actionNodes
+  }
+
+  ActionNode {
+    string id
+    string label
+    string selectedAction
+    string selectedActionValue
+    ObjectId[] actionIds
+  }
+
+  "Escalation Hierarchy" {
+    ObjectId _id
+    Object escalation
+    ObjectId plantId
+  }
+
+  escalation {
+    Array Escalation_Level_1
+    Array Escalation_Level_2
+    Array Escalation_Level_3
+    Array Emergency_Group
+    Array Email_Group
+  }
+
+%% RELATIONSHIPS
+
+  Task ||--|| workflowDetails : has_workflow
+  workflowDetails ||--o{ workflowAction : includes_actions
+  workflowAction ||--o{ workflowActionNode : has_nodes
+
+  Task ||--o{ Escalation : has_escalations
+  Escalation ||--o{ ObjectId : escalates_to_users
+
+  Task ||--o{ ComponentActions : performs_component_actions
+  ComponentActions ||--o{ ActionNode : has_action_nodes
+  ActionNode ||--o{ ObjectId : uses_action_ids
+
+  "Escalation Hierarchy" ||--|| escalation : has_escalation
+  escalation ||--o{ Escalation_Level_1 : includes
+  escalation ||--o{ Escalation_Level_2 : includes
+  escalation ||--o{ Escalation_Level_3 : includes
+  escalation ||--o{ Emergency_Group : includes
+  escalation ||--o{ Email_Group : includes
+
+  Escalation ||--|| "Escalation Hierarchy" : references_hierarchy
+
+  HmiButtons {
+    ObjectId _id
+    string equipmentId
+    string hmiPrefix
+    ObjectId plantId
+    ObjectId sensorId
+    string hmiTag
+    ObjectId trackingSensor
+}
+
+HmiButtons }o--|| plantId : belongs_to_plant
+HmiButtons }o--|| sensorId : linked_to_sensor
+HmiButtons }o--|| trackingSensor : uses_tracking_sensor
+
+"plant Config"{
+    ObjectId _id
+    ObjectId plantId
+    Object plantConfig
+}
+"plantConfig"{
+    Array Tanks
+    Array pumps
+    Array Blowers
+    Array Other_Sensors
+    Array Headers
+    Array Core_Equipment
+    Array Flowmeter
+    Array Valves
+}
+
+  PlantInventoryConfigStorage {
+    ObjectId _id
+    string inventoryCategoryName
+    ObjectId plantId
+    ObjectId clientId
+    Array inventoryItemDetails
+    Object formConfiguration
+  }
+
+  inventoryItemDetails{
+    Boolean checked
+    ObjectId itemId
+    String name
+    Number min
+    String unit
+    Array expectedValue
+    Array sensorsConfig
+    ObjectId _id
+  }
+  expectedValue{
+    Number value
+    String unit
+    Number timeMins
+    Number time
+    String timeUnit
+    ObjectId _id
+  }
+  sensorsConfig{
+    ObjectId sensorId
+    String type
+    String sensorTag
+    String sensorType
+    String sensorTypeAbr
+    ObjectId _id
+  }
+
+  formConfiguration {
+    Boolean isFormConfigured
+    ObjectId _id
+  }
+    plant {
+        String plantName
+        Object client
+        Object csm
+        Array sensors 
+        Array packages
+        String status
+        String renewOn
+        String lat
+        String long
+        String schematic
+        String sensorfreq
+        String plantType
+        String createdOn
+        String tur
+        Object serviceProvider
+        Object embeddedLinks
+        String abbr
+        String plantNickname 
+        String pubTopic
+        String subTopic
+        Object dataBreakConfig
+        Object userGroup
+    }
+    client{
+        ObjectId _id
+        String name
+    }
+    csm{
+        ObjectId _id
+        String name
+    }
+    serviceProvider{
+        Null id
+        Null name
+    }
+    dataBreakConfig{
+        Boolean sendDataBreakAlerts
+    }
+    autoEmailing {
+        ObjectId dailyReportPageId
+        ObjectId weeklyReportPageId
+        ObjectId monthlyReportPageId
+    }
+
+    userGroup {
+        ObjectId id
+        string name
+        string abbr
+    }
+     plant ||--|| client : has
+  plant ||--|| csm : has
+  plant ||--|| serviceProvider : serviced_by
+  plant ||--|| autoEmailing : has
+  plant ||--|| userGroup : belongs_to
+  plant ||--|| dataBreakConfig : has
+  plant ||--|| "plant Config" : has_config
+  "plant Config" ||--|| plantConfig : config_details
+  plant ||--o{ PlantInventoryConfigStorage : has_inventory
+  "plant Config" ||--|| PlantInventoryConfigStorage : configured_for_same_plant
+  PlantInventoryConfigStorage ||--o{ inventoryItemDetails : has_item_details
+  inventoryItemDetails ||--o{ expectedValue : has_expected_values
+  inventoryItemDetails ||--o{ sensorsConfig : has_sensor_configs
+  PlantInventoryConfigStorage ||--|| formConfiguration : form_settings
+
+SSEConnections {
+    ObjectId _id
+    ObjectId clientId
+    Date connectionId
+    ObjectId forAssetId
+    Date lastConnected
+    Array plantIds
+  }
+  plantIds{
+    ObjectId plantId
+  }
+  SSEConnections ||--o{ plantIds : has_plants
+  plantIds ||--o{ plantId : has_plantId
+
+ hmi_events {
+            ObjectId _id
+            ObjectId plantId
+            Array HmiButtons
+            Array events
+            ObjectId sensorId
+            Boolean initiated
+            Boolean acknowledged
+            Boolean ongoing
+            Boolean underProcess
+            Boolean successFull
+            Number expiryMins
+            Boolean terminated
+            String userName
+          }
+        
+          HmiButtons {
+            ObjectId _id
+            ObjectId plantId
+            String equipmentId
+            String hmiPrefix
+            String sensorId
+            String hmitag
+            ObjectId trackingSensor
+            String equipmentId
+          }
+
+          HmiButtons }o--|| plant : belongs_to_plant
+          HmiButtons }o--|| sensorLists : linked_to_sensor
+          HmiButtons }o--|| sensorLists : uses_tracking_sensor
+          hmi_events }o--|| plant : related_plant
+          hmi_events }o--o{ HmiButtons : involves_buttons
+          hmi_events }o--|| sensorLists : triggered_by_sensor

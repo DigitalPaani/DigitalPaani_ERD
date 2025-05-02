@@ -1,0 +1,13 @@
+@startuml NEW_USERS_Diagram
+
+entity "NEW USERS" as NEW_USERS {
+  _id : objectId
+  name : string
+  email : string
+  password : string
+  isStaff : boolean
+  isArchived : boolean
+  protected : boolean
+}
+
+@enduml

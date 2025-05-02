@@ -1,0 +1,11 @@
+@startuml USERS_Diagram
+
+entity "USERS" as USERS {
+  _id : objectId
+  name : string
+  email : string
+  password : string
+  role : string
+}
+
+@enduml

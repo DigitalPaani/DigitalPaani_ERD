@@ -1,0 +1,21 @@
+@startuml STORES_Diagram
+
+entity "STORES" as STORES {
+  _id : objectId
+  name : string
+  assets : list
+  clients : list
+  archived : boolean
+  totalItems : int
+  serialNo : int
+  storeAbbr : string
+  __v : int
+}
+
+entity "ASSETS" as ASSETS {
+  buffer : binary
+}
+
+' // Relationships
+STORES ||--o{ ASSETS : has_assets
+@enduml

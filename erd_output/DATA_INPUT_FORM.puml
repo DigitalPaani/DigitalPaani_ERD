@@ -1,0 +1,70 @@
+@startuml DATA_INPUT_FORM_Diagram
+
+entity "DATA INPUT FORM" as DATA_INPUT_FORM {
+  _id : objectId
+  plantId : objectId
+  form : object
+}
+
+entity "FORM" as FORM {
+  Water Quality Test Result : list
+  Process Observation : list
+  Maintenance : list
+  Lab Test : list
+  Inventory : object
+}
+
+entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+  title : string
+  min : int
+  max : int
+  checked : boolean
+  type : string
+  range : boolean
+}
+
+entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+  type : string
+  title : string
+  checked : boolean
+  options : list
+}
+
+entity "MAINTENANCE" as MAINTENANCE {
+  title : string
+  type : string
+  checked : boolean
+}
+
+entity "INVENTORY" as INVENTORY {
+  Chemicals : list
+  Consumables : list
+  Electrical Spare List : list
+  Mechanical Spare List : list
+  Tool List (Electrical & Mechanical) : list
+  Tool for Cleaning : list
+}
+
+entity "CHEMICALS" as CHEMICALS {
+  title : string
+  min : int
+  checked : boolean
+  type : string
+}
+
+entity "CONSUMABLES" as CONSUMABLES {
+  title : string
+  min : int
+  checked : boolean
+  type : string
+}
+
+' // Relationships
+DATA_INPUT_FORM ||--|| FORM : has_form
+FORM ||--o{ WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
+FORM ||--o{ PROCESS_OBSERVATION : has_Process Observation
+FORM ||--o{ MAINTENANCE : has_Maintenance
+FORM ||--|| INVENTORY : has_Inventory
+INVENTORY ||--o{ CHEMICALS : has_Chemicals
+INVENTORY ||--o{ CONSUMABLES : has_Consumables
+@enduml

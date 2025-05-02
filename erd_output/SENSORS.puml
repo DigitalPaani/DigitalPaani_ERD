@@ -1,0 +1,16 @@
+@startuml SENSORS_Diagram
+
+entity "SENSORS" as SENSORS {
+  _id : objectId
+  sensorTag : string
+  plantId : objectId
+  sensorType : string
+  dateCreated : unknown
+  sensorId : string
+  sensorName : string
+  sensorNickName : unknown
+  isEnabled : boolean
+  oldSensorTag : string
+}
+
+@enduml

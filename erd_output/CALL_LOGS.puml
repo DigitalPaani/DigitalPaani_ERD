@@ -1,0 +1,70 @@
+@startuml CALL_LOGS_Diagram
+
+entity "CALL LOGS" as CALL_LOGS {
+  _id : objectId
+  from : string
+  to : string
+  message : string
+  libResponse : object
+  serviceType : string
+  code : string
+  errorDetails : unknown
+  status : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "LIB RESPONSE" as LIB_RESPONSE {
+  sid : string
+  dateCreated : unknown
+  dateUpdated : unknown
+  parentCallSid : unknown
+  accountSid : string
+  to : string
+  toFormatted : string
+  from : string
+  fromFormatted : string
+  phoneNumberSid : string
+  status : string
+  startTime : unknown
+  endTime : unknown
+  duration : unknown
+  price : unknown
+  priceUnit : string
+  direction : string
+  answeredBy : unknown
+  apiVersion : string
+  forwardedFrom : unknown
+  groupSid : unknown
+  callerName : unknown
+  queueTime : string
+  trunkSid : unknown
+  uri : string
+  subresourceUris : object
+}
+
+entity "SUBRESOURCE URIS" as SUBRESOURCE_URIS {
+  events : string
+  notifications : string
+  payments : string
+  recordings : string
+  siprec : string
+  streams : string
+  transcriptions : string
+  user_defined_message_subscriptions : string
+  user_defined_messages : string
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+CALL_LOGS ||--|| LIB_RESPONSE : has_libResponse
+LIB_RESPONSE ||--|| SUBRESOURCE_URIS : has_subresourceUris
+CALL_LOGS ||--|| CREATED_AT : has_createdAt
+CALL_LOGS ||--|| UPDATED_AT : has_updatedAt
+@enduml

@@ -1,0 +1,20 @@
+@startuml PERSISTENTNOTIFICATIONS_Diagram
+
+entity "PERSISTENTNOTIFICATIONS" as PERSISTENTNOTIFICATIONS {
+  _id : objectId
+  plantId : objectId
+  heading : string
+  subHeading : string
+  type : string
+  read : boolean
+  created_at : object
+  __v : int
+  userId : objectId
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+' // Relationships
+PERSISTENTNOTIFICATIONS ||--|| CREATED_AT : has_created_at
+@enduml

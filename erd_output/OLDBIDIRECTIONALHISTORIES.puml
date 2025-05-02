@@ -1,0 +1,59 @@
+@startuml OLDBIDIRECTIONALHISTORIES_Diagram
+
+entity "OLDBIDIRECTIONALHISTORIES" as OLDBIDIRECTIONALHISTORIES {
+  _id : objectId
+  plantId : objectId
+  hmiButtons : list
+  hmiButtonStates : object
+  equipmentId : string
+  created_at : object
+  events : list
+  sensorId : objectId
+  initiated : boolean
+  acknowledged : boolean
+  ongoing : boolean
+  underProcess : boolean
+  successFull : boolean
+  expiryMins : int
+  __v : int
+}
+
+entity "HMI BUTTONS" as HMI_BUTTONS {
+  _id : objectId
+  equipmentId : string
+  hmiPrefix : string
+  plantId : objectId
+  sensorId : objectId
+  __v : int
+  hmiTag : string
+}
+
+entity "HMI BUTTON STATES" as HMI_BUTTON_STATES {
+  BYP_EQTdd1ssMBBRdd1_2 : string
+  isChanged : boolean
+  MCONOFF_EQTdd1ssMBBRdd1_2 : string
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "EVENTS" as EVENTS {
+  userId : objectId
+  command : string
+  ipAddr : string
+  browserDetails : string
+  timestamp : object
+  type : string
+  _id : objectId
+}
+
+entity "TIMESTAMP" as TIMESTAMP {
+}
+
+' // Relationships
+OLDBIDIRECTIONALHISTORIES ||--o{ HMI_BUTTONS : has_hmiButtons
+OLDBIDIRECTIONALHISTORIES ||--|| HMI_BUTTON_STATES : has_hmiButtonStates
+OLDBIDIRECTIONALHISTORIES ||--|| CREATED_AT : has_created_at
+OLDBIDIRECTIONALHISTORIES ||--o{ EVENTS : has_events
+EVENTS ||--|| TIMESTAMP : has_timestamp
+@enduml

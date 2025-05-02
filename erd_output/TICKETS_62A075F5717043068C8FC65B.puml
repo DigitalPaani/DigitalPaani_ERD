@@ -1,0 +1,76 @@
+@startuml TICKETS_62A075F5717043068C8FC65B_Diagram
+
+entity "TICKETS 62A075F5717043068C8FC65B" as TICKETS_62A075F5717043068C8FC65B {
+  _id : objectId
+  plantId : objectId
+  alertId : objectId
+  dueTimeFromPosting : string
+  observationFreq : string
+  escalations : object
+  createdAt : object
+  isOpen : boolean
+  openingInfo : object
+  closingInfo : object
+  attachedSolutions : list
+  events : list
+  __v : int
+}
+
+entity "ESCALATIONS" as ESCALATIONS {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "LEVEL 1" as LEVEL_1 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 2" as LEVEL_2 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 3" as LEVEL_3 {
+  time : string
+  group : string
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "OPENING INFO" as OPENING_INFO {
+  openedAt : object
+  openedBy : string
+}
+
+entity "OPENED AT" as OPENED_AT {
+}
+
+entity "CLOSING INFO" as CLOSING_INFO {
+  closedAt : string
+  closedBy : string
+}
+
+entity "EVENTS" as EVENTS {
+  event : string
+  message : string
+  time : object
+}
+
+entity "TIME" as TIME {
+}
+
+' // Relationships
+TICKETS_62A075F5717043068C8FC65B ||--|| ESCALATIONS : has_escalations
+ESCALATIONS ||--|| LEVEL_1 : has_Level 1
+ESCALATIONS ||--|| LEVEL_2 : has_Level 2
+ESCALATIONS ||--|| LEVEL_3 : has_Level 3
+TICKETS_62A075F5717043068C8FC65B ||--|| CREATED_AT : has_createdAt
+TICKETS_62A075F5717043068C8FC65B ||--|| OPENING_INFO : has_openingInfo
+OPENING_INFO ||--|| OPENED_AT : has_openedAt
+TICKETS_62A075F5717043068C8FC65B ||--|| CLOSING_INFO : has_closingInfo
+TICKETS_62A075F5717043068C8FC65B ||--o{ EVENTS : has_events
+EVENTS ||--|| TIME : has_time
+@enduml

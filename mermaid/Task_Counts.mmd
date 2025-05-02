@@ -1,0 +1,55 @@
+erDiagram
+"taskCounts"{
+    ObjectId _id
+    String For
+    Object of Objects count
+}
+"count"{
+    Object plantId
+}
+"plantId"{
+    Object SeniorClient
+    Object OperatorGroup
+    Object Operator 
+    Object ServiceHead
+    Object MaintenanceInCharge
+    Object BuildingLevelClient
+}
+"SeniorClient"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"OperatorGroup"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"Operator"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"ServiceHead"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"MaintenanceInCharge"{
+    Number overdue
+    Number pending
+    Number completed
+}
+"BuildingLevelClient"{
+    Number overdue
+    Number pending
+    Number completed
+}
+  taskCounts ||--|| count : has
+  count ||--|| plantId : contains
+  plantId ||--|| SeniorClient : includes
+  plantId ||--|| OperatorGroup : includes
+  plantId ||--|| Operator : includes
+  plantId ||--|| ServiceHead : includes
+  plantId ||--|| MaintenanceInCharge : includes
+  plantId ||--|| BuildingLevelClient : includes

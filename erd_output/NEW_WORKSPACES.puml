@@ -1,0 +1,29 @@
+@startuml NEW_WORKSPACES_Diagram
+
+entity "NEW WORKSPACES" as NEW_WORKSPACES {
+  _id : objectId
+  name : string
+  description : string
+  createdBy : objectId
+  assetIds : list
+  isArchived : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "ASSET IDS" as ASSET_IDS {
+  buffer : binary
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+NEW_WORKSPACES ||--o{ ASSET_IDS : has_assetIds
+NEW_WORKSPACES ||--|| CREATED_AT : has_createdAt
+NEW_WORKSPACES ||--|| UPDATED_AT : has_updatedAt
+@enduml

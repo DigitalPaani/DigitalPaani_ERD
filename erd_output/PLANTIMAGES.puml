@@ -1,0 +1,11 @@
+@startuml PLANTIMAGES_Diagram
+
+entity "PLANTIMAGES" as PLANTIMAGES {
+  _id : objectId
+  url : string
+  imageControlId : string
+  imageName : string
+  __v : int
+}
+
+@enduml

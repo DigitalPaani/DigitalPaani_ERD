@@ -1,0 +1,46 @@
+@startuml FLOCSAMPLES_Diagram
+
+entity "FLOCSAMPLES" as FLOCSAMPLES {
+  _id : objectId
+  isDefault : boolean
+  hide : boolean
+  timeRange : list
+  marks : list
+  sensorId : objectId
+  startTime : object
+  endTime : object
+  createdAt : object
+  updatedAt : object
+  __v : int
+  isArchived : boolean
+}
+
+entity "MARKS" as MARKS {
+  mark : string
+  timestamp : object
+  _id : objectId
+}
+
+entity "TIMESTAMP" as TIMESTAMP {
+}
+
+entity "START TIME" as START_TIME {
+}
+
+entity "END TIME" as END_TIME {
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+FLOCSAMPLES ||--o{ MARKS : has_marks
+MARKS ||--|| TIMESTAMP : has_timestamp
+FLOCSAMPLES ||--|| START_TIME : has_startTime
+FLOCSAMPLES ||--|| END_TIME : has_endTime
+FLOCSAMPLES ||--|| CREATED_AT : has_createdAt
+FLOCSAMPLES ||--|| UPDATED_AT : has_updatedAt
+@enduml

@@ -1,0 +1,13 @@
+@startuml WORKSPACE_FORMULA_SENSORS_Diagram
+
+entity "WORKSPACE FORMULA SENSORS" as WORKSPACE_FORMULA_SENSORS {
+  _id : objectId
+  workspaceId : objectId
+  sensorTag : string
+  dataType : string
+  sensorTypeAbr : string
+  dataInputType : string
+  isEnabled : boolean
+}
+
+@enduml

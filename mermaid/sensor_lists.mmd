@@ -1,0 +1,253 @@
+erDiagram
+
+  sensorLists {
+    ObjectId _id
+    String sensorName
+    ObjectId sensorCompanyId
+    String sensorModelNumber
+    Array granularity
+    Array purpose
+    Array inputType
+    Array tags
+  }
+
+  solutions {
+    ObjectId _id
+    ObjectId clientId
+    ObjectId plantId
+    ObjectId operatorId
+    ObjectId chemicalId
+    String solutionName
+    Number chemicalQuantity
+    Number waterQuantity
+    Number solutionQuantity
+    String chemicalUnit
+    String solventUnit
+    Number solutionsPending
+    String tankId
+    String dosingMechanism
+    Array solutionUsage
+    ObjectId chemicalStoreId
+  }
+
+  StoreItems {
+    ObjectId _id
+    ObjectId storeId
+    String storeCategoryName
+    Array storeItemDetails
+    Date createdAt
+    Date updatedAt
+  }
+
+  storeItemDetails {
+    ObjectId itemId
+    String name
+    Number min
+    Number max
+    String unit
+    Array assetIds
+    Array expectedValue
+    Array sensors
+  }
+
+  assetIds {
+    ObjectId _id
+  }
+
+  expectedValue {
+    Number value
+    Number timeMins
+    Number time
+    String timeUnit
+    ObjectId _id
+  }
+
+  sensors {
+    ObjectId sensorId
+  }
+
+  store {
+    ObjectId _id
+    String name
+    Array assets
+    Array clients
+    Boolean archived
+    Number totalItems
+    Number serialNo
+    String storeAbbr
+  }
+
+  clients {
+    ObjectId _id
+  }
+
+  "Total Hours Run" {
+    ObjectId _id
+    Object hoursRun
+    ObjectId plantId
+    String lastUpdated
+  }
+
+  plant {
+    ObjectId _id
+  }
+
+  %% RELATIONSHIPS
+
+  StoreItems ||--o{ storeItemDetails : has_items
+  storeItemDetails ||--o{ assetIds : linked_assets
+  storeItemDetails ||--o{ expectedValue : expected_values
+  storeItemDetails ||--o{ sensors : has_sensors
+
+  store ||--o{ clients : has_clients
+
+  "Total Hours Run" }o--|| plant : logs_hours_for
+
+  solutions }o--|| plant : used_in_plant
+  solutions }o--|| clients : belongs_to_client
+  StoreItems }o--|| store : belongs_to_store
+
+  users {
+    ObjectId _id
+    String name
+    String email
+    String password
+    String role
+  }
+
+  WidgetAnalysisHistory {
+    ObjectId _id
+    String heading
+    String description
+    ObjectId assetId
+    Boolean bookMarked
+    Object timeFrame
+    Date date
+  }
+
+  timeFrame {
+    String granularity
+    Date startTime
+    Date endTime
+    ObjectId _id
+  }
+
+  WidgetAnalysisHistory }o--|| assetIds : linked_asset
+  WidgetAnalysisHistory ||--|| timeFrame : has_timeframe
+
+  apiLogs {
+    ObjectId _id
+    String apiUrl
+    Number timesCalled
+    Null requestBody
+  }
+
+  attachments {
+    ObjectId _id
+    String attachmentLink
+    String filename
+    Null expireAt
+    String mimetype
+  }
+
+  bidirectionalhistories {
+    ObjectId _id
+    ObjectId plantId
+    Array hmiButtons
+    String equipmentId
+    Date createdAt
+    Array events
+    ObjectId sensorId
+    Boolean initiated
+    Boolean acknowledged
+    Boolean ongoing
+    Boolean underProcess
+    Boolean successFull
+    Number expiryMins
+    Boolean terminated
+    String userName
+  }
+  
+  hmiButtons {
+    ObjectId _id
+    ObjectId plantId
+    String equipmentId
+    String hmiPrefix
+    ObjectId sensorId
+    String hmiTag
+    ObjectId trackingSensor
+  }
+
+  events {
+    ObjectId userId
+    String command
+    String ipAddr
+    String browserDetails
+    Date timestamp
+    String type
+    String heading
+    Boolean success
+    ObjectId _id
+  }
+
+bidirectionalhistories||--o{hmiButtons:includes
+bidirectionalhistories||--o{events:includes
+bidirectionalhistories||--||sensors:has
+bidirectionalhistories||--||plant:has
+
+caches{
+    ObjectId _id
+    String Value
+}
+
+  CallLog {
+        string _id
+        string from
+        string to
+        string message
+        any libResponse
+        string serviceType
+        string code
+        any errorDetails
+        string status
+
+    }
+    libResponse{
+         string sid
+        date dateCreated
+        date dateUpdated
+        string parentCallSid
+        string accountSid
+        string to
+        string toFormatted
+        string from
+        string fromFormatted
+        string phoneNumberSid
+        string status
+        date startTime
+        date endTime
+        int duration
+        float price
+        string priceUnit
+        string direction
+        string answeredBy
+        string apiVersion
+        string forwardedFrom
+        Null groupSid
+        Null callerName
+        String queueTime
+        Null trunkSidString
+        String uri
+        Object subresourceUris
+    }
+    subresourceUris{
+        String events
+        String notifications
+        String payments
+        String recordings
+        String spirec
+        String streams
+        String transactions
+        String user_defined_message_subscriptions
+        String user_defined_messages
+    }

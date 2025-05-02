@@ -1,0 +1,24 @@
+@startuml TRIGGER_COMPONENTS_Diagram
+
+entity "TRIGGER COMPONENTS" as TRIGGER_COMPONENTS {
+  _id : objectId
+  triggerId : objectId
+  componentName : string
+  externalType : string
+  externalId : objectId
+  isDeleted : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "CREATED AT" as CREATED_AT {
+}
+
+entity "UPDATED AT" as UPDATED_AT {
+}
+
+' // Relationships
+TRIGGER_COMPONENTS ||--|| CREATED_AT : has_createdAt
+TRIGGER_COMPONENTS ||--|| UPDATED_AT : has_updatedAt
+@enduml

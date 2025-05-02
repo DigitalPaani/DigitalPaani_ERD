@@ -1,0 +1,51 @@
+erDiagram
+"Fixed Tasks 1"{
+    objectId _id
+    string toUser
+    array recurringDays
+    array weeks
+    string recurringTimes
+    string dueTimeFromPosting
+    object fixedescalations
+    object fixedheading
+    object fixeddescription
+    array fixedsubTasks
+    ObjectId plant
+  }
+  plant{
+    ObjectId plantId
+  }
+  recurringDays{
+    string days
+  }
+  weeks{
+    string week
+  }
+  fixedescalations{
+    object levels
+  }
+  levels{
+    string time
+    string group
+  }
+  fixedheading{
+    string eng
+    string hindi
+  }
+  fixeddescription{
+    string eng
+    string hindi
+  }
+  fixedsubTasks{
+    string name
+    string namehindi
+  }
+  "Fixed Tasks 1" ||--o{ recurringDays : occurs_on_days
+  "Fixed Tasks 1" ||--o{ weeks : occurs_on_weeks
+  "Fixed Tasks 1" ||--|| fixedescalations : has_escalation
+  fixedescalations ||--o{ levels : has_levels
+  "Fixed Tasks 1" ||--|| fixedheading : has_headings
+  "Fixed Tasks 1" ||--|| fixeddescription : has_descriptions
+  "Fixed Tasks 1" ||--o{ fixedsubTasks : has_subTasks
+  "Fixed Tasks 1" }o--|| plant : belongs_to_plant
+

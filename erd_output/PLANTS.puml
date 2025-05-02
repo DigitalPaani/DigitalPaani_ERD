@@ -1,0 +1,74 @@
+@startuml PLANTS_Diagram
+
+entity "PLANTS" as PLANTS {
+  _id : objectId
+  plantName : string
+  client : object
+  csm : object
+  sensors : list
+  packages : list
+  status : string
+  renewOn : string
+  lat : string
+  long : string
+  schematic : string
+  sensorfreq : string
+  plantType : string
+  createdOn : string
+  tur : string
+  serviceProvider : object
+  autoEmailing : object
+  embeddedLinks : list
+  abbr : string
+  plantNickName : string
+  pubTopic : string
+  subTopic : string
+  dataBreakConfig : object
+  userGroup : object
+}
+
+entity "CLIENT" as CLIENT {
+  id : objectId
+  name : string
+}
+
+entity "CSM" as CSM {
+  id : objectId
+  name : string
+}
+
+entity "SERVICE PROVIDER" as SERVICE_PROVIDER {
+  id : unknown
+  name : unknown
+}
+
+entity "AUTO EMAILING" as AUTO_EMAILING {
+  dailyReportPageId : objectId
+  weeklyReportPageId : objectId
+  monthlyReportPageId : objectId
+}
+
+entity "EMBEDDED LINKS" as EMBEDDED_LINKS {
+  name : string
+  link : string
+}
+
+entity "DATA BREAK CONFIG" as DATA_BREAK_CONFIG {
+  sendDataBreakAlerts : boolean
+}
+
+entity "USER GROUP" as USER_GROUP {
+  id : objectId
+  name : string
+  abbr : string
+}
+
+' // Relationships
+PLANTS ||--|| CLIENT : has_client
+PLANTS ||--|| CSM : has_csm
+PLANTS ||--|| SERVICE_PROVIDER : has_serviceProvider
+PLANTS ||--|| AUTO_EMAILING : has_autoEmailing
+PLANTS ||--o{ EMBEDDED_LINKS : has_embeddedLinks
+PLANTS ||--|| DATA_BREAK_CONFIG : has_dataBreakConfig
+PLANTS ||--|| USER_GROUP : has_userGroup
+@enduml

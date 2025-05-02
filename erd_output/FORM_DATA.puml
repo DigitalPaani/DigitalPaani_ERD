@@ -1,0 +1,109 @@
+@startuml FORM_DATA_Diagram
+
+entity "FORM DATA" as FORM_DATA {
+  _id : objectId
+  data : object
+  plantId : objectId
+}
+
+entity "DATA" as DATA {
+  Water Quality Test Result : object
+  Process Observation : object
+  Maintenance : object
+  Inventory : object
+  Lab Test : object
+}
+
+entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+}
+
+entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+}
+
+entity "MAINTENANCE" as MAINTENANCE {
+  Is RFP is working? : string
+  Is FFP is working? : string
+  Is SRP is working? : string
+  Is SCP is working? : string
+  Is SMP is working? : string
+  Is CDP is working? : string
+  Is UFBP is working? : string
+  Is UFBP1 is working? : string
+  Is UFBP2 is working? : string
+  Is UFBP3 is working? : string
+  Is UFFP is working? : string
+  Is UFFP1 is working? : string
+  Is UFFP2 is working? : string
+  Is UFFP3 is working? : string
+  Is FLS is working? : string
+  Is FLS1 is working? : string
+  Is GP is working? : string
+  Is GP1 is working? : string
+  Is SRP1 is working? : string
+  Is SRP2 is working? : string
+  Is SRP3 is working? : string
+  Is FFP1 is working? : string
+  Is RFP1 is working? : string
+  Oil leakage in EQT Air Blower? : string
+  Oil leakage in Aeration Air Blower? : string
+  Is the bar Screen Broken or damaged? : string
+  Is Outlet Flowmeter is working? : string
+  Is Sludge Recirculation Flowmeter2 is working? : string
+  Is Sludge Recirculation Flowmeter1 is working? : string
+  Is Inlet Flowmeter-2 is working? : string
+  Is Inlet Flowmeter-1 is working? : string
+  Is EQT Air Blower is working? : string
+  Is Aeration Air Blower is working? : string
+  Is Aeration Air Blower1 is working? : string
+  Is Aeration Air Blower2 is working? : string
+  Is Aeration Air Blower3 is working? : string
+  Is EQT Air Blower1 is working? : string
+  Is EQT Air Blower2 is working? : string
+  Is Screw Press1 is working? : string
+  Is MGF2 is working? : string
+  Is MGF1 is working? : string
+  Is Energy Meter1 is working? : string
+  Is Header2 is working? : string
+  Is Header1 is working? : string
+}
+
+entity "INVENTORY" as INVENTORY {
+  Urea : string
+  DAP : string
+  Jaggery : string
+  EM Culture : string
+  Bioculture : string
+  Chlorine : string
+  Chlorine Balance : string
+  FRC Kit : string
+  DO Kit : string
+  PH Paper : string
+  pH Kit/ pH meter : string
+  Hardness Kit : string
+  TDS Kit : string
+  Blower Oil (EP-90) : string
+  V - BELT : string
+  V-Belt (B-52) Bioreactor : string
+  Grease : string
+  Glass beaker : string
+  EM : string
+  Poly : string
+}
+
+entity "LAB TEST" as LAB_TEST {
+  pH : string
+  BOD : string
+  COD : string
+  TSS : string
+  TDS : string
+  Oil & Grease : string
+}
+
+' // Relationships
+FORM_DATA ||--|| DATA : has_data
+DATA ||--|| WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
+DATA ||--|| PROCESS_OBSERVATION : has_Process Observation
+DATA ||--|| MAINTENANCE : has_Maintenance
+DATA ||--|| INVENTORY : has_Inventory
+DATA ||--|| LAB_TEST : has_Lab Test
+@enduml

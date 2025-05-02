@@ -1,0 +1,184 @@
+@startuml PLANT_CONFIG_Diagram
+
+entity "PLANT CONFIG" as PLANT_CONFIG {
+  _id : objectId
+  plantId : objectId
+  Tanks : list
+  Pumps : list
+  Blowers : list
+  Other Sensors : list
+  Headers : list
+  Core Equipments : list
+  Flowmeter : list
+  sensorsName : object
+  Valves : list
+  plantConfig : object
+}
+
+entity "TANKS" as TANKS {
+  id : string
+  name : string
+  count : int
+  sensors : list
+  area : int
+  height : int
+  free board : int
+  material : string
+  drain : string
+  overflow : string
+  bypass : string
+  displayNode : boolean
+  _id : objectId
+}
+
+entity "SENSORS" as SENSORS {
+  sensorName : unknown
+  sensorId : string
+  sensorTag : string
+  sensorNickName : string
+  display : boolean
+  dateCreated : string
+  minValue : string
+  maxValue : string
+}
+
+entity "PUMPS" as PUMPS {
+  count : int
+  sensors : list
+  In : list
+  Out : list
+  type : string
+  make : string
+  model : string
+  motorRating : string
+  nickName : string
+  id : string
+  onFlow : string
+  pumpName : string
+  tagName : string
+  minHead : string
+  maxHead : string
+  dutyHead : string
+  designFlow : string
+  hmiButtons : list
+  displayNode : boolean
+  _id : objectId
+}
+
+entity "HMI BUTTONS" as HMI_BUTTONS {
+  hmiTag : string
+}
+
+entity "BLOWERS" as BLOWERS {
+  id : string
+  count : int
+  sensors : list
+  Out : list
+  make : string
+  model : string
+  nickName : string
+  rpm : string
+  motorRating : string
+  capacity : string
+  designPressure : string
+  age : string
+  tagName : string
+  hmiButtons : list
+  displayNode : boolean
+  _id : objectId
+}
+
+entity "OTHER SENSORS" as OTHER_SENSORS {
+  id : string
+  name : string
+  count : int
+  sensors : list
+  displayNode : boolean
+  _id : objectId
+}
+
+entity "HEADERS" as HEADERS {
+  id : string
+  count : int
+  sensors : list
+  Out : list
+  make : string
+  model : string
+  displayNode : boolean
+  _id : objectId
+}
+
+entity "CORE EQUIPMENTS" as CORE_EQUIPMENTS {
+  id : string
+  name : string
+  count : int
+  sensors : list
+  displayNode : boolean
+  _id : objectId
+  nickName : string
+}
+
+entity "FLOWMETER" as FLOWMETER {
+  id : string
+  count : int
+  In : list
+  Out : list
+  nickName : string
+  sensors : list
+  name : string
+  displayNode : boolean
+  _id : objectId
+  EQTdd1ss : string
+  ssTWTdd1 : string
+}
+
+entity "SENSORS NAME" as SENSORS_NAME {
+  Flowmeter : object
+  Others : object
+}
+
+entity "OTHERS" as OTHERS {
+  EQTdd1ss : string
+  CCTdd1ssTWTdd1 : string
+  ss : string
+  TWTdd1ssSWTdd1 : string
+  SWTdd1ss : string
+}
+
+entity "VALVES" as VALVES {
+  id : string
+  count : int
+  In : list
+  Out : list
+  nickName : string
+  age : string
+  tagName : string
+  sensors : list
+  displayNode : boolean
+  _id : objectId
+}
+
+' // Relationships
+PLANT_CONFIG ||--|| PLANT_CONFIG : has_plantConfig
+PLANT_CONFIG ||--o{ TANKS : has_Tanks
+TANKS ||--o{ SENSORS : has_sensors
+PLANT_CONFIG ||--o{ PUMPS : has_Pumps
+PUMPS ||--o{ SENSORS : has_sensors
+PUMPS ||--o{ HMI_BUTTONS : has_hmiButtons
+PLANT_CONFIG ||--o{ BLOWERS : has_Blowers
+BLOWERS ||--o{ SENSORS : has_sensors
+BLOWERS ||--o{ HMI_BUTTONS : has_hmiButtons
+PLANT_CONFIG ||--o{ OTHER_SENSORS : has_Other Sensors
+OTHER_SENSORS ||--o{ SENSORS : has_sensors
+PLANT_CONFIG ||--o{ HEADERS : has_Headers
+HEADERS ||--o{ SENSORS : has_sensors
+PLANT_CONFIG ||--o{ CORE_EQUIPMENTS : has_Core Equipments
+CORE_EQUIPMENTS ||--o{ SENSORS : has_sensors
+PLANT_CONFIG ||--o{ FLOWMETER : has_Flowmeter
+FLOWMETER ||--o{ SENSORS : has_sensors
+PLANT_CONFIG ||--|| SENSORS_NAME : has_sensorsName
+SENSORS_NAME ||--|| FLOWMETER : has_Flowmeter
+SENSORS_NAME ||--|| OTHERS : has_Others
+PLANT_CONFIG ||--o{ VALVES : has_Valves
+VALVES ||--o{ SENSORS : has_sensors
+@enduml

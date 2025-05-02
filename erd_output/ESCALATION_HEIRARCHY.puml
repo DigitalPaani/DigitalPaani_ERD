@@ -1,0 +1,44 @@
+@startuml ESCALATION_HEIRARCHY_Diagram
+
+entity "ESCALATION HEIRARCHY" as ESCALATION_HEIRARCHY {
+  _id : objectId
+  escalation : object
+  plantId : objectId
+}
+
+entity "ESCALATION" as ESCALATION {
+  Escalation Level 1 : list
+  Escalation Level 2 : list
+  Escalation Level 3 : list
+  Emergency Group : list
+  Email Group : list
+}
+
+entity "ESCALATION LEVEL 1" as ESCALATION_LEVEL_1 {
+  buffer : binary
+}
+
+entity "ESCALATION LEVEL 2" as ESCALATION_LEVEL_2 {
+  buffer : binary
+}
+
+entity "ESCALATION LEVEL 3" as ESCALATION_LEVEL_3 {
+  buffer : binary
+}
+
+entity "EMERGENCY GROUP" as EMERGENCY_GROUP {
+  buffer : binary
+}
+
+entity "EMAIL GROUP" as EMAIL_GROUP {
+  buffer : binary
+}
+
+' // Relationships
+ESCALATION_HEIRARCHY ||--|| ESCALATION : has_escalation
+ESCALATION ||--o{ ESCALATION_LEVEL_1 : has_Escalation Level 1
+ESCALATION ||--o{ ESCALATION_LEVEL_2 : has_Escalation Level 2
+ESCALATION ||--o{ ESCALATION_LEVEL_3 : has_Escalation Level 3
+ESCALATION ||--o{ EMERGENCY_GROUP : has_Emergency Group
+ESCALATION ||--o{ EMAIL_GROUP : has_Email Group
+@enduml

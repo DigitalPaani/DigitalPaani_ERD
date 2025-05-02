@@ -1,0 +1,8 @@
+@startuml REMARKS_Diagram
+
+entity "REMARKS" as REMARKS {
+  _id : objectId
+  remark_name : string
+}
+
+@enduml

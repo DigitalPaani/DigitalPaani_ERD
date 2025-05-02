@@ -1,0 +1,65 @@
+@startuml USERADDEDITEMS_Diagram
+
+entity "USERADDEDITEMS" as USERADDEDITEMS {
+  _id : objectId
+  itemType : string
+  assets : list
+  itemData : object
+  __v : int
+}
+
+entity "ASSETS" as ASSETS {
+  buffer : binary
+}
+
+entity "ITEM DATA" as ITEM_DATA {
+  name : string
+  description : string
+  unit : string
+  sensors : object
+}
+
+entity "SENSORS" as SENSORS {
+  sensorQuant : object
+  sensorConsumed : object
+  sensorConsumedInPlant : object
+  sensorAdd : object
+}
+
+entity "SENSOR QUANT" as SENSOR_QUANT {
+  sensorTag : string
+  sensorType : string
+  sensorTypeAbr : string
+  type : string
+}
+
+entity "SENSOR CONSUMED" as SENSOR_CONSUMED {
+  sensorTag : string
+  sensorType : string
+  sensorTypeAbr : string
+  type : string
+}
+
+entity "SENSOR CONSUMED IN PLANT" as SENSOR_CONSUMED_IN_PLANT {
+  sensorTag : string
+  sensorType : string
+  sensorTypeAbr : string
+  type : string
+}
+
+entity "SENSOR ADD" as SENSOR_ADD {
+  sensorTag : string
+  sensorType : string
+  sensorTypeAbr : string
+  type : string
+}
+
+' // Relationships
+USERADDEDITEMS ||--o{ ASSETS : has_assets
+USERADDEDITEMS ||--|| ITEM_DATA : has_itemData
+ITEM_DATA ||--|| SENSORS : has_sensors
+SENSORS ||--|| SENSOR_QUANT : has_sensorQuant
+SENSORS ||--|| SENSOR_CONSUMED : has_sensorConsumed
+SENSORS ||--|| SENSOR_CONSUMED_IN_PLANT : has_sensorConsumedInPlant
+SENSORS ||--|| SENSOR_ADD : has_sensorAdd
+@enduml

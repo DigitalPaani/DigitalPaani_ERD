@@ -1,0 +1,62 @@
+@startuml WORKSPACE_ALERTS_Diagram
+
+entity "WORKSPACE ALERTS" as WORKSPACE_ALERTS {
+  _id : objectId
+  toUser : string
+  observationConditions : list
+  resolutionConditions : list
+  type : string
+  dueTimeFromPosting : string
+  autoCalling : boolean
+  escalations : object
+  heading : object
+  description : object
+  subTasks : list
+  workspaceId : objectId
+}
+
+entity "ESCALATIONS" as ESCALATIONS {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "LEVEL 1" as LEVEL_1 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 2" as LEVEL_2 {
+  time : string
+  group : string
+}
+
+entity "LEVEL 3" as LEVEL_3 {
+  time : string
+  group : string
+}
+
+entity "HEADING" as HEADING {
+  eng : string
+  hindi : string
+}
+
+entity "DESCRIPTION" as DESCRIPTION {
+  eng : string
+  hindi : string
+}
+
+entity "SUB TASKS" as SUB_TASKS {
+  name : string
+  namehindi : string
+}
+
+' // Relationships
+WORKSPACE_ALERTS ||--|| ESCALATIONS : has_escalations
+ESCALATIONS ||--|| LEVEL_1 : has_Level 1
+ESCALATIONS ||--|| LEVEL_2 : has_Level 2
+ESCALATIONS ||--|| LEVEL_3 : has_Level 3
+WORKSPACE_ALERTS ||--|| HEADING : has_heading
+WORKSPACE_ALERTS ||--|| DESCRIPTION : has_description
+WORKSPACE_ALERTS ||--o{ SUB_TASKS : has_subTasks
+@enduml

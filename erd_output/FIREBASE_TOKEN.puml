@@ -1,0 +1,9 @@
+@startuml FIREBASE_TOKEN_Diagram
+
+entity "FIREBASE TOKEN" as FIREBASE_TOKEN {
+  _id : objectId
+  token : string
+  user : objectId
+}
+
+@enduml

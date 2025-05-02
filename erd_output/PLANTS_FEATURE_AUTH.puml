@@ -1,0 +1,44 @@
+@startuml PLANTS_FEATURE_AUTH_Diagram
+
+entity "PLANTS FEATURE AUTH" as PLANTS_FEATURE_AUTH {
+  _id : objectId
+  plantId : objectId
+  featureList : list
+  __v : int
+}
+
+entity "FEATURE LIST" as FEATURE_LIST {
+  featureName : string
+  access : boolean
+  totalUsage : int
+  creditsAvailable : int
+  userUsage : list
+  featureSettings : object
+}
+
+entity "USER USAGE" as USER_USAGE {
+  userId : objectId
+  featureUsage : int
+  totalCrashed : int
+  lastUsed : object
+}
+
+entity "LAST USED" as LAST_USED {
+}
+
+entity "FEATURE SETTINGS" as FEATURE_SETTINGS {
+  plantLevelSettings : object
+}
+
+entity "PLANT LEVEL SETTINGS" as PLANT_LEVEL_SETTINGS {
+  gptModel : string
+  paidPlan : boolean
+}
+
+' // Relationships
+PLANTS_FEATURE_AUTH ||--o{ FEATURE_LIST : has_featureList
+FEATURE_LIST ||--o{ USER_USAGE : has_userUsage
+USER_USAGE ||--|| LAST_USED : has_lastUsed
+FEATURE_LIST ||--|| FEATURE_SETTINGS : has_featureSettings
+FEATURE_SETTINGS ||--|| PLANT_LEVEL_SETTINGS : has_plantLevelSettings
+@enduml
