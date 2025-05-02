@@ -1,0 +1,28 @@
+@startuml twilioCalls_Diagram
+
+entity "twilioCalls" as twilioCalls {
+  _id : ObjectId
+  from : string
+  to : string
+  message : string
+  retryingCount : int
+  callSid : string
+  callAnswered : boolean
+  serviceType : string
+  code : string
+  commonCallId : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+twilioCalls ||--|| createdAt : has_createdAt
+twilioCalls ||--|| updatedAt : has_updatedAt
+@enduml

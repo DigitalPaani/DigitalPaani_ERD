@@ -1,22 +1,22 @@
-@startuml LAYOUTS_Diagram
+@startuml Layouts_Diagram
 
-entity "LAYOUTS" as LAYOUTS {
-  _id : objectId
-  nodeId : objectId
+entity "Layouts" as Layouts {
+  _id : ObjectId
+  nodeId : ObjectId
   __v : int
   createdAt : object
   layout : object
   updatedAt : object
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "LAYOUT" as LAYOUT {
+entity "layout" as layout {
   cells : list
 }
 
-entity "CELLS" as CELLS {
+entity "cells" as cells {
   type : string
   attrs : object
   position : object
@@ -26,34 +26,34 @@ entity "CELLS" as CELLS {
   z : int
 }
 
-entity "ATTRS" as ATTRS {
+entity "attrs" as attrs {
   label : object
 }
 
-entity "LABEL" as LABEL {
+entity "label" as label {
   text : string
 }
 
-entity "POSITION" as POSITION {
+entity "position" as position {
   x : int
   y : int
 }
 
-entity "SIZE" as SIZE {
+entity "size" as size {
   width : int
   height : int
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-LAYOUTS ||--|| CREATED_AT : has_createdAt
-LAYOUTS ||--|| LAYOUT : has_layout
-LAYOUT ||--o{ CELLS : has_cells
-CELLS ||--|| ATTRS : has_attrs
-ATTRS ||--|| LABEL : has_label
-CELLS ||--|| POSITION : has_position
-CELLS ||--|| SIZE : has_size
-LAYOUTS ||--|| UPDATED_AT : has_updatedAt
+Layouts ||--|| createdAt : has_createdAt
+Layouts ||--|| layout : has_layout
+layout ||--o{ cells : has_cells
+cells ||--|| attrs : has_attrs
+attrs ||--|| label : has_label
+cells ||--|| position : has_position
+cells ||--|| size : has_size
+Layouts ||--|| updatedAt : has_updatedAt
 @enduml

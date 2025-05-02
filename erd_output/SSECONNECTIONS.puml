@@ -1,27 +1,27 @@
-@startuml SSECONNECTIONS_Diagram
+@startuml SSEConnections_Diagram
 
-entity "SSECONNECTIONS" as SSECONNECTIONS {
-  _id : objectId
-  clientId : objectId
+entity "SSEConnections" as SSEConnections {
+  _id : ObjectId
+  clientId : ObjectId
   __v : int
   connectionId : object
-  forAssetId : objectId
+  forAssetId : ObjectId
   lastConnected : object
   plantIds : list
 }
 
-entity "CONNECTION ID" as CONNECTION_ID {
+entity "connectionId" as connectionId {
 }
 
-entity "LAST CONNECTED" as LAST_CONNECTED {
+entity "lastConnected" as lastConnected {
 }
 
-entity "PLANT IDS" as PLANT_IDS {
-  buffer : binary
+entity "plantIds" as plantIds {
+  _id : ObjectId
 }
 
 ' // Relationships
-SSECONNECTIONS ||--|| CONNECTION_ID : has_connectionId
-SSECONNECTIONS ||--|| LAST_CONNECTED : has_lastConnected
-SSECONNECTIONS ||--o{ PLANT_IDS : has_plantIds
+SSEConnections ||--|| connectionId : has_connectionId
+SSEConnections ||--|| lastConnected : has_lastConnected
+SSEConnections ||--o{ plantIds : has_plantIds
 @enduml

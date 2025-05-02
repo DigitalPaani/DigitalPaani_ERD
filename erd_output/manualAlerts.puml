@@ -1,0 +1,106 @@
+@startuml manualAlerts_Diagram
+
+entity "manualAlerts" as manualAlerts {
+  _id : ObjectId
+  toUser : string
+  condition : string
+  type : string
+  dueTimeFromPosting : string
+  autoCalling : boolean
+  equipments : unknown
+  issueType : list
+  isOpen : boolean
+  escalations : object
+  heading : object
+  description : object
+  subTasks : list
+  plantId : ObjectId
+  metaData : object
+  attachedTickets : list
+  ccUsers : list
+  checked : boolean
+  primaryUser : object
+  verifiedClosed : boolean
+}
+
+entity "escalations" as escalations {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "Level 1" as Level_1 {
+  time : string
+  group : string
+}
+
+entity "Level 2" as Level_2 {
+  time : string
+  group : string
+}
+
+entity "Level 3" as Level_3 {
+  time : string
+  group : string
+}
+
+entity "heading" as heading {
+  eng : string
+  hindi : string
+}
+
+entity "description" as description {
+  eng : string
+  hindi : string
+}
+
+entity "subTasks" as subTasks {
+  name : string
+  namehindi : string
+}
+
+entity "metaData" as metaData {
+  createdManually : boolean
+  createdBy : string
+}
+
+entity "ccUsers" as ccUsers {
+  _id : string
+  role : string
+  name : string
+  email : string
+  number : string
+  plantId : list
+  defaultPageId : object
+}
+
+entity "defaultPageId" as defaultPageId {
+  62c7d90fe88eb11e6362b33c : string
+  63838083547b8c18e1a3b7bd : string
+  63838168547b8c18e1a3b7c1 : string
+}
+
+entity "primaryUser" as primaryUser {
+  _id : string
+  role : string
+  name : string
+  email : string
+  number : string
+  forid : string
+  plantId : list
+  userStatus : string
+}
+
+' // Relationships
+manualAlerts ||--|| escalations : has_escalations
+escalations ||--|| Level_1 : has_Level 1
+escalations ||--|| Level_2 : has_Level 2
+escalations ||--|| Level_3 : has_Level 3
+manualAlerts ||--|| heading : has_heading
+manualAlerts ||--|| description : has_description
+manualAlerts ||--o{ subTasks : has_subTasks
+manualAlerts ||--|| metaData : has_metaData
+manualAlerts ||--o{ ccUsers : has_ccUsers
+ccUsers ||--|| defaultPageId : has_defaultPageId
+manualAlerts ||--|| primaryUser : has_primaryUser
+@enduml

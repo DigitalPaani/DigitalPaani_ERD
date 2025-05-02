@@ -1,12 +1,12 @@
-@startuml FLOCSAMPLES_Diagram
+@startuml flocsamples_Diagram
 
-entity "FLOCSAMPLES" as FLOCSAMPLES {
-  _id : objectId
+entity "flocsamples" as flocsamples {
+  _id : ObjectId
   isDefault : boolean
   hide : boolean
   timeRange : list
   marks : list
-  sensorId : objectId
+  sensorId : ObjectId
   startTime : object
   endTime : object
   createdAt : object
@@ -15,32 +15,32 @@ entity "FLOCSAMPLES" as FLOCSAMPLES {
   isArchived : boolean
 }
 
-entity "MARKS" as MARKS {
+entity "marks" as marks {
   mark : string
   timestamp : object
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "TIMESTAMP" as TIMESTAMP {
+entity "timestamp" as timestamp {
 }
 
-entity "START TIME" as START_TIME {
+entity "startTime" as startTime {
 }
 
-entity "END TIME" as END_TIME {
+entity "endTime" as endTime {
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-FLOCSAMPLES ||--o{ MARKS : has_marks
-MARKS ||--|| TIMESTAMP : has_timestamp
-FLOCSAMPLES ||--|| START_TIME : has_startTime
-FLOCSAMPLES ||--|| END_TIME : has_endTime
-FLOCSAMPLES ||--|| CREATED_AT : has_createdAt
-FLOCSAMPLES ||--|| UPDATED_AT : has_updatedAt
+flocsamples ||--o{ marks : has_marks
+marks ||--|| timestamp : has_timestamp
+flocsamples ||--|| startTime : has_startTime
+flocsamples ||--|| endTime : has_endTime
+flocsamples ||--|| createdAt : has_createdAt
+flocsamples ||--|| updatedAt : has_updatedAt
 @enduml

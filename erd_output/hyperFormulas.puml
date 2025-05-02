@@ -1,0 +1,28 @@
+@startuml hyperFormulas_Diagram
+
+entity "hyperFormulas" as hyperFormulas {
+  _id : ObjectId
+  functionName : string
+  method : string
+  parameters : list
+  __v : int
+  createdAt : object
+  updatedAt : object
+}
+
+entity "parameters" as parameters {
+  argumentType : string
+  isRequired : boolean
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+hyperFormulas ||--o{ parameters : has_parameters
+hyperFormulas ||--|| createdAt : has_createdAt
+hyperFormulas ||--|| updatedAt : has_updatedAt
+@enduml

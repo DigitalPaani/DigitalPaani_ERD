@@ -1,7 +1,7 @@
-@startuml APILOGS_Diagram
+@startuml apiLogs_Diagram
 
-entity "APILOGS" as APILOGS {
-  _id : objectId
+entity "apiLogs" as apiLogs {
+  _id : ObjectId
   apiUrl : string
   timesCalled : int
   requestBody : unknown

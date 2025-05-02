@@ -1,11 +1,11 @@
-@startuml SOLUTIONS_Diagram
+@startuml Solutions_Diagram
 
-entity "SOLUTIONS" as SOLUTIONS {
-  _id : objectId
-  clientId : objectId
-  plantId : objectId
-  operatorId : objectId
-  chemicalId : objectId
+entity "Solutions" as Solutions {
+  _id : ObjectId
+  clientId : ObjectId
+  plantId : ObjectId
+  operatorId : ObjectId
+  chemicalId : ObjectId
   solutionName : string
   chemicalQuantity : int
   waterQuantity : int
@@ -19,7 +19,7 @@ entity "SOLUTIONS" as SOLUTIONS {
   createdOn : string
   modifiedOn : string
   __v : int
-  chemicalStoreId : objectId
+  chemicalStoreId : ObjectId
 }
 
 @enduml

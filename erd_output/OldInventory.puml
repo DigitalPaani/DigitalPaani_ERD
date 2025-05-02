@@ -1,0 +1,34 @@
+@startuml OldInventory_Diagram
+
+entity "OldInventory" as OldInventory {
+  _id : ObjectId
+  plantId : ObjectId
+  Inventory : object
+}
+
+entity "Inventory" as Inventory {
+  Urea : string
+  DAP : string
+  Jaggery : string
+  EM Culture : string
+  Bioculture : string
+  Chlorine : string
+  Chlorine Balance : string
+  FRC Kit : string
+  DO Kit : string
+  PH Paper : string
+  pH Kit/ pH meter : string
+  Hardness Kit : string
+  TDS Kit : string
+  Blower Oil (EP-90) : string
+  V - BELT : string
+  V-Belt (B-52) Bioreactor : string
+  Grease : string
+  Glass beaker : string
+  EM : string
+  Poly : string
+}
+
+' // Relationships
+OldInventory ||--|| Inventory : has_Inventory
+@enduml

@@ -1,9 +1,9 @@
-@startuml FIREBASE_TOKEN_Diagram
+@startuml Firebase_Token_Diagram
 
-entity "FIREBASE TOKEN" as FIREBASE_TOKEN {
-  _id : objectId
+entity "Firebase Token" as Firebase_Token {
+  _id : ObjectId
   token : string
-  user : objectId
+  user : ObjectId
 }
 
 @enduml

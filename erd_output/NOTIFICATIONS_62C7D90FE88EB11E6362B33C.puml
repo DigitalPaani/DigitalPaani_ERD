@@ -1,11 +1,11 @@
-@startuml NOTIFICATIONS_62C7D90FE88EB11E6362B33C_Diagram
+@startuml Notifications_62c7d90fe88eb11e6362b33c_Diagram
 
-entity "NOTIFICATIONS 62C7D90FE88EB11E6362B33C" as NOTIFICATIONS_62C7D90FE88EB11E6362B33C {
-  _id : objectId
+entity "Notifications 62c7d90fe88eb11e6362b33c" as Notifications_62c7d90fe88eb11e6362b33c {
+  _id : ObjectId
   read : boolean
   title : string
   message : string
-  user : objectId
+  user : ObjectId
   to : string
   timeStamp : string
 }

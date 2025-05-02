@@ -1,14 +1,14 @@
-@startuml OLDBIDIRECTIONALHISTORIES_Diagram
+@startuml oldbidirectionalhistories_Diagram
 
-entity "OLDBIDIRECTIONALHISTORIES" as OLDBIDIRECTIONALHISTORIES {
-  _id : objectId
-  plantId : objectId
+entity "oldbidirectionalhistories" as oldbidirectionalhistories {
+  _id : ObjectId
+  plantId : ObjectId
   hmiButtons : list
   hmiButtonStates : object
   equipmentId : string
   created_at : object
   events : list
-  sensorId : objectId
+  sensorId : ObjectId
   initiated : boolean
   acknowledged : boolean
   ongoing : boolean
@@ -18,42 +18,42 @@ entity "OLDBIDIRECTIONALHISTORIES" as OLDBIDIRECTIONALHISTORIES {
   __v : int
 }
 
-entity "HMI BUTTONS" as HMI_BUTTONS {
-  _id : objectId
+entity "hmiButtons" as hmiButtons {
+  _id : ObjectId
   equipmentId : string
   hmiPrefix : string
-  plantId : objectId
-  sensorId : objectId
+  plantId : ObjectId
+  sensorId : ObjectId
   __v : int
   hmiTag : string
 }
 
-entity "HMI BUTTON STATES" as HMI_BUTTON_STATES {
+entity "hmiButtonStates" as hmiButtonStates {
   BYP_EQTdd1ssMBBRdd1_2 : string
   isChanged : boolean
   MCONOFF_EQTdd1ssMBBRdd1_2 : string
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "created at" as created_at {
 }
 
-entity "EVENTS" as EVENTS {
-  userId : objectId
+entity "events" as events {
+  userId : ObjectId
   command : string
   ipAddr : string
   browserDetails : string
   timestamp : object
   type : string
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "TIMESTAMP" as TIMESTAMP {
+entity "timestamp" as timestamp {
 }
 
 ' // Relationships
-OLDBIDIRECTIONALHISTORIES ||--o{ HMI_BUTTONS : has_hmiButtons
-OLDBIDIRECTIONALHISTORIES ||--|| HMI_BUTTON_STATES : has_hmiButtonStates
-OLDBIDIRECTIONALHISTORIES ||--|| CREATED_AT : has_created_at
-OLDBIDIRECTIONALHISTORIES ||--o{ EVENTS : has_events
-EVENTS ||--|| TIMESTAMP : has_timestamp
+oldbidirectionalhistories ||--o{ hmiButtons : has_hmiButtons
+oldbidirectionalhistories ||--|| hmiButtonStates : has_hmiButtonStates
+oldbidirectionalhistories ||--|| created_at : has_created_at
+oldbidirectionalhistories ||--o{ events : has_events
+events ||--|| timestamp : has_timestamp
 @enduml

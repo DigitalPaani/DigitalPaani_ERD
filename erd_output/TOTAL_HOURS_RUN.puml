@@ -1,13 +1,13 @@
-@startuml TOTAL_HOURS_RUN_Diagram
+@startuml Total_Hours_Run_Diagram
 
-entity "TOTAL HOURS RUN" as TOTAL_HOURS_RUN {
-  _id : objectId
+entity "Total Hours Run" as Total_Hours_Run {
+  _id : ObjectId
   hoursRun : object
-  plantId : objectId
+  plantId : ObjectId
   lastUpdated : string
 }
 
-entity "HOURS RUN" as HOURS_RUN {
+entity "hoursRun" as hoursRun {
   ONOFF_EQTdd1ssATdd1_1 : float
   ONOFF_EQTdd1ssATdd1_2 : float
   ONOFF_CCTdd1ssTWTdd1_1 : float
@@ -28,5 +28,5 @@ entity "HOURS RUN" as HOURS_RUN {
 }
 
 ' // Relationships
-TOTAL_HOURS_RUN ||--|| HOURS_RUN : has_hoursRun
+Total_Hours_Run ||--|| hoursRun : has_hoursRun
 @enduml

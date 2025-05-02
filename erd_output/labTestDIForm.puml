@@ -1,0 +1,56 @@
+@startuml labTestDIForm_Diagram
+
+entity "labTestDIForm" as labTestDIForm {
+  _id : ObjectId
+  plantId : ObjectId
+  form : object
+  formConfiguration : object
+}
+
+entity "form" as form {
+  formName : string
+  timeInputRequired : boolean
+  clearSection : boolean
+  lastUpdated : string
+  questionBank : object
+  calculatedAt : string
+}
+
+entity "questionBank" as questionBank {
+  Treated Water Tank1 : object
+}
+
+entity "Treated Water Tank1" as Treated_Water_Tank1 {
+  nickName : unknown
+  questions : list
+}
+
+entity "questions" as questions {
+  title : string
+  min : int
+  max : int
+  checked : boolean
+  type : string
+  range : boolean
+  sensorTypeAbr : string
+  sensorType : string
+  sensorTag : string
+  sensorNickName : string
+  currentValue : unknown
+  previousValue : string
+  prevTimeDataStored : unknown
+  time : unknown
+  sensorId : ObjectId
+}
+
+entity "formConfiguration" as formConfiguration {
+  isFormConfigured : boolean
+}
+
+' // Relationships
+labTestDIForm ||--|| form : has_form
+form ||--|| questionBank : has_questionBank
+questionBank ||--|| Treated_Water_Tank1 : has_Treated Water Tank1
+Treated_Water_Tank1 ||--o{ questions : has_questions
+labTestDIForm ||--|| formConfiguration : has_formConfiguration
+@enduml

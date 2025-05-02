@@ -1,0 +1,70 @@
+@startuml plantFormulasAndVars_Diagram
+
+entity "plantFormulasAndVars" as plantFormulasAndVars {
+  _id : ObjectId
+  plantId : ObjectId
+  globalFormulas : list
+  globalVariables : list
+  customFormulas : list
+}
+
+entity "globalFormulas" as globalFormulas {
+  _id : ObjectId
+  lhs : string
+  rhs : string
+  tag : string
+  variableList : list
+  type : string
+  isVirtualSensor : boolean
+  priorityNum : int
+}
+
+entity "globalVariables" as globalVariables {
+  _id : string
+  lhs : string
+  type : string
+  priorityNum : int
+  tag : string
+  isVirtualSensor : boolean
+  rhs : string
+  variableList : list
+}
+
+entity "customFormulas" as customFormulas {
+  lhs : string
+  rhs : string
+  variableList : list
+  type : string
+  tag : string
+  priorityNum : int
+  isVirtualSensor : boolean
+  sensorId : string
+  sensorData : list
+  sensorType : string
+}
+
+entity "sensorData" as sensorData {
+  _id : ObjectId
+  sensorTag : string
+  plantId : ObjectId
+  sensorType : string
+  dataType : string
+  dateCreated : unknown
+  sensorId : string
+  sensorName : string
+  sensorNickName : unknown
+  plcId : ObjectId
+  isEnabled : boolean
+  oldSensorTag : string
+  display : boolean
+  maxValue : unknown
+  minValue : unknown
+  unit : unknown
+}
+
+' // Relationships
+plantFormulasAndVars ||--o{ globalFormulas : has_globalFormulas
+plantFormulasAndVars ||--o{ globalVariables : has_globalVariables
+plantFormulasAndVars ||--o{ customFormulas : has_customFormulas
+customFormulas ||--o{ sensorData : has_sensorData
+@enduml

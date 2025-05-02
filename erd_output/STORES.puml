@@ -1,7 +1,7 @@
-@startuml STORES_Diagram
+@startuml Stores_Diagram
 
-entity "STORES" as STORES {
-  _id : objectId
+entity "Stores" as Stores {
+  _id : ObjectId
   name : string
   assets : list
   clients : list
@@ -12,10 +12,10 @@ entity "STORES" as STORES {
   __v : int
 }
 
-entity "ASSETS" as ASSETS {
-  buffer : binary
+entity "assets" as assets {
+  _id : ObjectId
 }
 
 ' // Relationships
-STORES ||--o{ ASSETS : has_assets
+Stores ||--o{ assets : has_assets
 @enduml

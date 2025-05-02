@@ -1,8 +1,8 @@
-@startuml WORKFLOWS_Diagram
+@startuml workflows_Diagram
 
-entity "WORKFLOWS" as WORKFLOWS {
-  _id : objectId
-  userGroupId : objectId
+entity "workflows" as workflows {
+  _id : ObjectId
+  userGroupId : ObjectId
   isArchived : boolean
   nodes : list
   edges : list
@@ -10,13 +10,13 @@ entity "WORKFLOWS" as WORKFLOWS {
   name : string
   description : string
   scope : string
-  createdBy : objectId
+  createdBy : ObjectId
   createdAt : object
   updatedAt : object
   __v : int
 }
 
-entity "NODES" as NODES {
+entity "nodes" as nodes {
   id : string
   type : string
   position : object
@@ -28,22 +28,22 @@ entity "NODES" as NODES {
   dragging : boolean
 }
 
-entity "POSITION" as POSITION {
+entity "position" as position {
   x : float
   y : float
 }
 
-entity "DATA" as DATA {
+entity "data" as data {
   type : string
   label : string
 }
 
-entity "POSITION ABSOLUTE" as POSITION_ABSOLUTE {
+entity "positionAbsolute" as positionAbsolute {
   x : float
   y : float
 }
 
-entity "EDGES" as EDGES {
+entity "edges" as edges {
   source : string
   sourceHandle : string
   target : string
@@ -55,44 +55,44 @@ entity "EDGES" as EDGES {
   markerEnd : object
 }
 
-entity "MARKER END" as MARKER_END {
+entity "markerEnd" as markerEnd {
   type : string
   width : int
   height : int
   color : string
 }
 
-entity "WORKFLOW ACTIONS" as WORKFLOW_ACTIONS {
+entity "workflowActions" as workflowActions {
   nodeId : string
   nodeLabel : string
   actionNodes : list
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "ACTION NODES" as ACTION_NODES {
+entity "actionNodes" as actionNodes {
   id : string
   label : string
   selectedAction : string
   selectedActionValue : string
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-WORKFLOWS ||--o{ NODES : has_nodes
-NODES ||--|| POSITION : has_position
-NODES ||--|| DATA : has_data
-NODES ||--|| POSITION_ABSOLUTE : has_positionAbsolute
-WORKFLOWS ||--o{ EDGES : has_edges
-EDGES ||--|| DATA : has_data
-EDGES ||--|| MARKER_END : has_markerEnd
-WORKFLOWS ||--o{ WORKFLOW_ACTIONS : has_workflowActions
-WORKFLOW_ACTIONS ||--o{ ACTION_NODES : has_actionNodes
-WORKFLOWS ||--|| CREATED_AT : has_createdAt
-WORKFLOWS ||--|| UPDATED_AT : has_updatedAt
+workflows ||--o{ nodes : has_nodes
+nodes ||--|| position : has_position
+nodes ||--|| data : has_data
+nodes ||--|| positionAbsolute : has_positionAbsolute
+workflows ||--o{ edges : has_edges
+edges ||--|| data : has_data
+edges ||--|| markerEnd : has_markerEnd
+workflows ||--o{ workflowActions : has_workflowActions
+workflowActions ||--o{ actionNodes : has_actionNodes
+workflows ||--|| createdAt : has_createdAt
+workflows ||--|| updatedAt : has_updatedAt
 @enduml

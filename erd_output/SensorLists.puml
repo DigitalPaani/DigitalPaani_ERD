@@ -1,0 +1,26 @@
+@startuml SensorLists_Diagram
+
+entity "SensorLists" as SensorLists {
+  _id : ObjectId
+  sensorName : string
+  sensorCompanyId : ObjectId
+  sensorModelNumber : string
+  granularity : list
+  purpose : list
+  inputType : list
+  tags : list
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+SensorLists ||--|| createdAt : has_createdAt
+SensorLists ||--|| updatedAt : has_updatedAt
+@enduml

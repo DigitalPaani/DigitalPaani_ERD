@@ -1,0 +1,54 @@
+@startuml emailLogs_Diagram
+
+entity "emailLogs" as emailLogs {
+  _id : ObjectId
+  from : string
+  to : string
+  subject : string
+  message : string
+  libResponse : list
+  serviceType : string
+  code : string
+  errorDetails : unknown
+  status : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "libResponse" as libResponse {
+  statusCode : int
+  body : string
+  headers : object
+}
+
+entity "headers" as headers {
+  server : string
+  date : string
+  content-length : string
+  connection : string
+  x-message-id : string
+  access-control-allow-origin : string
+  access-control-allow-methods : string
+  access-control-allow-headers : string
+  access-control-max-age : string
+  x-no-cors-reason : string
+  strict-transport-security : string
+  content-security-policy : string
+  cache-control : string
+  x-content-type-options : string
+  referrer-policy : string
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+emailLogs ||--o{ libResponse : has_libResponse
+libResponse ||--|| headers : has_headers
+emailLogs ||--|| createdAt : has_createdAt
+emailLogs ||--|| updatedAt : has_updatedAt
+@enduml

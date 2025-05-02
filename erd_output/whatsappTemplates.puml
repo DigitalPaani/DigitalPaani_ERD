@@ -1,0 +1,31 @@
+@startuml whatsappTemplates_Diagram
+
+entity "whatsappTemplates" as whatsappTemplates {
+  _id : ObjectId
+  contentTemplateSid : string
+  templateName : string
+  templateContent : string
+  variables : list
+  isArchived : boolean
+  __v : int
+  createdAt : object
+  updatedAt : object
+}
+
+entity "variables" as variables {
+  position : int
+  value : string
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+whatsappTemplates ||--o{ variables : has_variables
+whatsappTemplates ||--|| createdAt : has_createdAt
+whatsappTemplates ||--|| updatedAt : has_updatedAt
+@enduml

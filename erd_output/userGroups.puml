@@ -1,0 +1,43 @@
+@startuml userGroups_Diagram
+
+entity "userGroups" as userGroups {
+  _id : ObjectId
+  name : string
+  description : string
+  createdBy : ObjectId
+  userIds : list
+  featureTags : list
+  workspaceAssets : list
+  isArchived : boolean
+  abbr : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "userIds" as userIds {
+  _id : ObjectId
+}
+
+entity "workspaceAssets" as workspaceAssets {
+  workspaceId : ObjectId
+  assetIds : list
+}
+
+entity "assetIds" as assetIds {
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+userGroups ||--o{ userIds : has_userIds
+userGroups ||--o{ workspaceAssets : has_workspaceAssets
+workspaceAssets ||--o{ assetIds : has_assetIds
+userGroups ||--|| createdAt : has_createdAt
+userGroups ||--|| updatedAt : has_updatedAt
+@enduml

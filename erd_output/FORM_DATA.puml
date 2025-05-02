@@ -1,12 +1,12 @@
-@startuml FORM_DATA_Diagram
+@startuml Form_Data_Diagram
 
-entity "FORM DATA" as FORM_DATA {
-  _id : objectId
+entity "Form Data" as Form_Data {
+  _id : ObjectId
   data : object
-  plantId : objectId
+  plantId : ObjectId
 }
 
-entity "DATA" as DATA {
+entity "data" as data {
   Water Quality Test Result : object
   Process Observation : object
   Maintenance : object
@@ -14,13 +14,13 @@ entity "DATA" as DATA {
   Lab Test : object
 }
 
-entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+entity "Water Quality Test Result" as Water_Quality_Test_Result {
 }
 
-entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+entity "Process Observation" as Process_Observation {
 }
 
-entity "MAINTENANCE" as MAINTENANCE {
+entity "Maintenance" as Maintenance {
   Is RFP is working? : string
   Is FFP is working? : string
   Is SRP is working? : string
@@ -67,7 +67,7 @@ entity "MAINTENANCE" as MAINTENANCE {
   Is Header1 is working? : string
 }
 
-entity "INVENTORY" as INVENTORY {
+entity "Inventory" as Inventory {
   Urea : string
   DAP : string
   Jaggery : string
@@ -90,7 +90,7 @@ entity "INVENTORY" as INVENTORY {
   Poly : string
 }
 
-entity "LAB TEST" as LAB_TEST {
+entity "Lab Test" as Lab_Test {
   pH : string
   BOD : string
   COD : string
@@ -100,10 +100,10 @@ entity "LAB TEST" as LAB_TEST {
 }
 
 ' // Relationships
-FORM_DATA ||--|| DATA : has_data
-DATA ||--|| WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
-DATA ||--|| PROCESS_OBSERVATION : has_Process Observation
-DATA ||--|| MAINTENANCE : has_Maintenance
-DATA ||--|| INVENTORY : has_Inventory
-DATA ||--|| LAB_TEST : has_Lab Test
+Form_Data ||--|| data : has_data
+data ||--|| Water_Quality_Test_Result : has_Water Quality Test Result
+data ||--|| Process_Observation : has_Process Observation
+data ||--|| Maintenance : has_Maintenance
+data ||--|| Inventory : has_Inventory
+data ||--|| Lab_Test : has_Lab Test
 @enduml

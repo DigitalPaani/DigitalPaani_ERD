@@ -1,0 +1,50 @@
+@startuml plantLayoutDiagram_Diagram
+
+entity "plantLayoutDiagram" as plantLayoutDiagram {
+  _id : ObjectId
+  plantId : ObjectId
+  __v : int
+  edges : list
+  nodes : list
+}
+
+entity "nodes" as nodes {
+  id : string
+  type : string
+  data : object
+  _id : ObjectId
+}
+
+entity "data" as data {
+  label : string
+  configInfo : object
+  image : string
+  imageControlId : string
+}
+
+entity "configInfo" as configInfo {
+  id : string
+  name : string
+  count : int
+  sensors : list
+  area : float
+  height : float
+  free board : float
+  material : string
+  drain : string
+  overflow : string
+  bypass : string
+}
+
+entity "sensors" as sensors {
+  sensorName : string
+  sensorId : string
+  sensorTag : string
+}
+
+' // Relationships
+plantLayoutDiagram ||--o{ nodes : has_nodes
+nodes ||--|| data : has_data
+data ||--|| configInfo : has_configInfo
+configInfo ||--o{ sensors : has_sensors
+@enduml

@@ -1,7 +1,7 @@
-@startuml TASK_TEMPLATES_Diagram
+@startuml task_templates_Diagram
 
-entity "TASK TEMPLATES" as TASK_TEMPLATES {
-  _id : objectId
+entity "task templates" as task_templates {
+  _id : ObjectId
   userGroupId : unknown
   skillsSelected : list
   dataEntry : boolean
@@ -10,10 +10,10 @@ entity "TASK TEMPLATES" as TASK_TEMPLATES {
   description : string
   scope : string
   trainingVideoId : unknown
-  attachmentId : objectId
+  attachmentId : ObjectId
   priority : string
   taskType : string
-  workflowId : objectId
+  workflowId : ObjectId
   taskCompletion : string
   taskCompletionState : unknown
   assigneeMethod : string
@@ -22,19 +22,19 @@ entity "TASK TEMPLATES" as TASK_TEMPLATES {
   taskExpectedTime : int
   sensorTag : string
   richTextContent : string
-  createdBy : objectId
+  createdBy : ObjectId
   createdAt : object
   updatedAt : object
   __v : int
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-TASK_TEMPLATES ||--|| CREATED_AT : has_createdAt
-TASK_TEMPLATES ||--|| UPDATED_AT : has_updatedAt
+task_templates ||--|| createdAt : has_createdAt
+task_templates ||--|| updatedAt : has_updatedAt
 @enduml

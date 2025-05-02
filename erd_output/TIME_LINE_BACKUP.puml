@@ -1,12 +1,60 @@
-@startuml TIME_LINE_BACKUP_Diagram
+@startuml Time_Line_Backup_Diagram
 
-entity "TIME LINE BACKUP" as TIME_LINE_BACKUP {
-  _id : objectId
-  taskId : objectId
+entity "0" as 0 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "1" as 1 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "2" as 2 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "3" as 3 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "4" as 4 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "5" as 5 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "6" as 6 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "7" as 7 {
+  time : string
+  event : string
+  message : string
+}
+
+entity "Time Line Backup" as Time_Line_Backup {
+  _id : ObjectId
+  taskId : ObjectId
   Backup : list
 }
 
-entity "BACKUP" as BACKUP {
+entity "Backup" as Backup {
   0 : object
   1 : object
   2 : object
@@ -17,62 +65,14 @@ entity "BACKUP" as BACKUP {
   7 : object
 }
 
-entity "0" as _0 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "1" as _1 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "2" as _2 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "3" as _3 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "4" as _4 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "5" as _5 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "6" as _6 {
-  time : string
-  event : string
-  message : string
-}
-
-entity "7" as _7 {
-  time : string
-  event : string
-  message : string
-}
-
 ' // Relationships
-TIME_LINE_BACKUP ||--o{ BACKUP : has_Backup
-BACKUP ||--|| _0 : has_0
-BACKUP ||--|| _1 : has_1
-BACKUP ||--|| _2 : has_2
-BACKUP ||--|| _3 : has_3
-BACKUP ||--|| _4 : has_4
-BACKUP ||--|| _5 : has_5
-BACKUP ||--|| _6 : has_6
-BACKUP ||--|| _7 : has_7
+Time_Line_Backup ||--o{ Backup : has_Backup
+Backup ||--|| 0 : has_0
+Backup ||--|| 1 : has_1
+Backup ||--|| 2 : has_2
+Backup ||--|| 3 : has_3
+Backup ||--|| 4 : has_4
+Backup ||--|| 5 : has_5
+Backup ||--|| 6 : has_6
+Backup ||--|| 7 : has_7
 @enduml

@@ -1,0 +1,12 @@
+@startuml errorLogsBackup_Diagram
+
+entity "errorLogsBackup" as errorLogsBackup {
+  _id : ObjectId
+  errorMsg : string
+  topic : string
+  functionName : string
+  fileName : string
+  time : string
+}
+
+@enduml

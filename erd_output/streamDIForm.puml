@@ -1,0 +1,29 @@
+@startuml streamDIForm_Diagram
+
+entity "streamDIForm" as streamDIForm {
+  _id : ObjectId
+  plantId : ObjectId
+  form : object
+  formConfiguration : object
+}
+
+entity "form" as form {
+  formName : string
+  timeInputRequired : boolean
+  clearSection : boolean
+  lastUpdated : string
+  questionBank : object
+}
+
+entity "questionBank" as questionBank {
+}
+
+entity "formConfiguration" as formConfiguration {
+  isFormConfigured : boolean
+}
+
+' // Relationships
+streamDIForm ||--|| form : has_form
+form ||--|| questionBank : has_questionBank
+streamDIForm ||--|| formConfiguration : has_formConfiguration
+@enduml

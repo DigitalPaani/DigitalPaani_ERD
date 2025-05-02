@@ -1,7 +1,7 @@
-@startuml SOLUTION_Diagram
+@startuml Solution_Diagram
 
-entity "SOLUTION" as SOLUTION {
-  _id : objectId
+entity "Solution" as Solution {
+  _id : ObjectId
   plant_id : string
   name : string
   current_amount : int

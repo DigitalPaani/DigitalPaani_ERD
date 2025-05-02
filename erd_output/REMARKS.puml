@@ -1,7 +1,7 @@
-@startuml REMARKS_Diagram
+@startuml Remarks_Diagram
 
-entity "REMARKS" as REMARKS {
-  _id : objectId
+entity "Remarks" as Remarks {
+  _id : ObjectId
   remark_name : string
 }
 

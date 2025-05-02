@@ -1,0 +1,33 @@
+@startuml dashboardEmailConfigs_Diagram
+
+entity "dashboardEmailConfigs" as dashboardEmailConfigs {
+  _id : ObjectId
+  clusterId : ObjectId
+  dashboardPageId : ObjectId
+  usersOrUserGroups : list
+  createdBy : ObjectId
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "usersOrUserGroups" as usersOrUserGroups {
+  id : ObjectId
+  type : string
+  dailyEmail : boolean
+  weeklyEmail : boolean
+  monthlyEmail : boolean
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+dashboardEmailConfigs ||--o{ usersOrUserGroups : has_usersOrUserGroups
+dashboardEmailConfigs ||--|| createdAt : has_createdAt
+dashboardEmailConfigs ||--|| updatedAt : has_updatedAt
+@enduml

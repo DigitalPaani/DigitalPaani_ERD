@@ -1,9 +1,9 @@
-@startuml ROSTER_SCHEDULES_Diagram
+@startuml roster_schedules_Diagram
 
-entity "ROSTER SCHEDULES" as ROSTER_SCHEDULES {
-  _id : objectId
-  rosterId : objectId
-  userId : objectId
+entity "roster schedules" as roster_schedules {
+  _id : ObjectId
+  rosterId : ObjectId
+  userId : ObjectId
   reoccurrenceId : string
   fromDate : int
   toDate : int
@@ -11,19 +11,19 @@ entity "ROSTER SCHEDULES" as ROSTER_SCHEDULES {
   rule : string
   color : string
   isArchived : boolean
-  createdBy : objectId
+  createdBy : ObjectId
   __v : int
   createdAt : object
   updatedAt : object
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-ROSTER_SCHEDULES ||--|| CREATED_AT : has_createdAt
-ROSTER_SCHEDULES ||--|| UPDATED_AT : has_updatedAt
+roster_schedules ||--|| createdAt : has_createdAt
+roster_schedules ||--|| updatedAt : has_updatedAt
 @enduml

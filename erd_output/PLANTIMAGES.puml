@@ -1,7 +1,7 @@
-@startuml PLANTIMAGES_Diagram
+@startuml plantimages_Diagram
 
-entity "PLANTIMAGES" as PLANTIMAGES {
-  _id : objectId
+entity "plantimages" as plantimages {
+  _id : ObjectId
   url : string
   imageControlId : string
   imageName : string

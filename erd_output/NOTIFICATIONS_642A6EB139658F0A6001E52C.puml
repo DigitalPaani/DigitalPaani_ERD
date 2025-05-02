@@ -1,18 +1,18 @@
-@startuml NOTIFICATIONS_642A6EB139658F0A6001E52C_Diagram
+@startuml notifications_642a6eb139658f0a6001e52c_Diagram
 
-entity "NOTIFICATIONS 642A6EB139658F0A6001E52C" as NOTIFICATIONS_642A6EB139658F0A6001E52C {
-  _id : objectId
+entity "notifications 642a6eb139658f0a6001e52c" as notifications_642a6eb139658f0a6001e52c {
+  _id : ObjectId
   read : boolean
   title : string
   message : string
-  user : objectId
+  user : ObjectId
   to : string
   timeStamp : object
 }
 
-entity "TIME STAMP" as TIME_STAMP {
+entity "timeStamp" as timeStamp {
 }
 
 ' // Relationships
-NOTIFICATIONS_642A6EB139658F0A6001E52C ||--|| TIME_STAMP : has_timeStamp
+notifications_642a6eb139658f0a6001e52c ||--|| timeStamp : has_timeStamp
 @enduml

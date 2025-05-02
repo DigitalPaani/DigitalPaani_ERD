@@ -1,17 +1,17 @@
-@startuml DATA_INPUT_BACKUP_Diagram
+@startuml Data_Input_Backup_Diagram
 
-entity "DATA INPUT BACKUP" as DATA_INPUT_BACKUP {
-  _id : objectId
-  plantId : objectId
+entity "Data Input Backup" as Data_Input_Backup {
+  _id : ObjectId
+  plantId : ObjectId
   data : list
 }
 
-entity "DATA" as DATA {
+entity "data" as data {
   timestamp : string
   values : object
 }
 
-entity "VALUES" as VALUES {
+entity "values" as values {
   Water Quality Test Result : object
   Process Observation : object
   Maintenance : object
@@ -19,7 +19,7 @@ entity "VALUES" as VALUES {
   Lab Test : object
 }
 
-entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+entity "Water Quality Test Result" as Water_Quality_Test_Result {
   Inlet pH : string
   Outlet pH : string
   Inlet TDS : string
@@ -35,16 +35,16 @@ entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
   SV-30 (Stream-2) : string
 }
 
-entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+entity "Process Observation" as Process_Observation {
   SV 30 of Stream 1 : string
   SV30 of Stream 1 : string
   SV30 of Aeration Tank 1 : string
 }
 
-entity "MAINTENANCE" as MAINTENANCE {
+entity "Maintenance" as Maintenance {
 }
 
-entity "INVENTORY" as INVENTORY {
+entity "Inventory" as Inventory {
   Urea : string
   DAP : string
   Jaggery : string
@@ -53,15 +53,15 @@ entity "INVENTORY" as INVENTORY {
   Chlorine : string
 }
 
-entity "LAB TEST" as LAB_TEST {
+entity "Lab Test" as Lab_Test {
 }
 
 ' // Relationships
-DATA_INPUT_BACKUP ||--o{ DATA : has_data
-DATA ||--|| VALUES : has_values
-VALUES ||--|| WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
-VALUES ||--|| PROCESS_OBSERVATION : has_Process Observation
-VALUES ||--|| MAINTENANCE : has_Maintenance
-VALUES ||--|| INVENTORY : has_Inventory
-VALUES ||--|| LAB_TEST : has_Lab Test
+Data_Input_Backup ||--o{ data : has_data
+data ||--|| values : has_values
+values ||--|| Water_Quality_Test_Result : has_Water Quality Test Result
+values ||--|| Process_Observation : has_Process Observation
+values ||--|| Maintenance : has_Maintenance
+values ||--|| Inventory : has_Inventory
+values ||--|| Lab_Test : has_Lab Test
 @enduml

@@ -1,12 +1,12 @@
-@startuml ESCALATION_HEIRARCHY_Diagram
+@startuml Escalation_Heirarchy_Diagram
 
-entity "ESCALATION HEIRARCHY" as ESCALATION_HEIRARCHY {
-  _id : objectId
+entity "Escalation Heirarchy" as Escalation_Heirarchy {
+  _id : ObjectId
   escalation : object
-  plantId : objectId
+  plantId : ObjectId
 }
 
-entity "ESCALATION" as ESCALATION {
+entity "escalation" as escalation {
   Escalation Level 1 : list
   Escalation Level 2 : list
   Escalation Level 3 : list
@@ -14,31 +14,31 @@ entity "ESCALATION" as ESCALATION {
   Email Group : list
 }
 
-entity "ESCALATION LEVEL 1" as ESCALATION_LEVEL_1 {
-  buffer : binary
+entity "Escalation Level 1" as Escalation_Level_1 {
+  _id : ObjectId
 }
 
-entity "ESCALATION LEVEL 2" as ESCALATION_LEVEL_2 {
-  buffer : binary
+entity "Escalation Level 2" as Escalation_Level_2 {
+  _id : ObjectId
 }
 
-entity "ESCALATION LEVEL 3" as ESCALATION_LEVEL_3 {
-  buffer : binary
+entity "Escalation Level 3" as Escalation_Level_3 {
+  _id : ObjectId
 }
 
-entity "EMERGENCY GROUP" as EMERGENCY_GROUP {
-  buffer : binary
+entity "Emergency Group" as Emergency_Group {
+  _id : ObjectId
 }
 
-entity "EMAIL GROUP" as EMAIL_GROUP {
-  buffer : binary
+entity "Email Group" as Email_Group {
+  _id : ObjectId
 }
 
 ' // Relationships
-ESCALATION_HEIRARCHY ||--|| ESCALATION : has_escalation
-ESCALATION ||--o{ ESCALATION_LEVEL_1 : has_Escalation Level 1
-ESCALATION ||--o{ ESCALATION_LEVEL_2 : has_Escalation Level 2
-ESCALATION ||--o{ ESCALATION_LEVEL_3 : has_Escalation Level 3
-ESCALATION ||--o{ EMERGENCY_GROUP : has_Emergency Group
-ESCALATION ||--o{ EMAIL_GROUP : has_Email Group
+Escalation_Heirarchy ||--|| escalation : has_escalation
+escalation ||--o{ Escalation_Level_1 : has_Escalation Level 1
+escalation ||--o{ Escalation_Level_2 : has_Escalation Level 2
+escalation ||--o{ Escalation_Level_3 : has_Escalation Level 3
+escalation ||--o{ Emergency_Group : has_Emergency Group
+escalation ||--o{ Email_Group : has_Email Group
 @enduml

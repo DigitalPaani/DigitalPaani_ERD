@@ -1,7 +1,7 @@
-@startuml CLEARED_DATE_Diagram
+@startuml cleared_date_Diagram
 
-entity "CLEARED DATE" as CLEARED_DATE {
-  _id : objectId
+entity "cleared date" as cleared_date {
+  _id : ObjectId
   type : string
   date : string
 }

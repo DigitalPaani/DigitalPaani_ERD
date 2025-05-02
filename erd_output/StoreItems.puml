@@ -1,0 +1,53 @@
+@startuml StoreItems_Diagram
+
+entity "StoreItems" as StoreItems {
+  _id : ObjectId
+  storeId : ObjectId
+  storeCategoryName : string
+  storeItemDetails : list
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "storeItemDetails" as storeItemDetails {
+  itemId : ObjectId
+  name : string
+  min : int
+  max : int
+  unit : string
+  assetIds : list
+  expectedValue : list
+  sensors : list
+}
+
+entity "assetIds" as assetIds {
+  _id : ObjectId
+}
+
+entity "expectedValue" as expectedValue {
+  value : int
+  timeMins : int
+  time : int
+  timeUnit : string
+  _id : ObjectId
+}
+
+entity "sensors" as sensors {
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+StoreItems ||--o{ storeItemDetails : has_storeItemDetails
+storeItemDetails ||--o{ assetIds : has_assetIds
+storeItemDetails ||--o{ expectedValue : has_expectedValue
+storeItemDetails ||--o{ sensors : has_sensors
+StoreItems ||--|| createdAt : has_createdAt
+StoreItems ||--|| updatedAt : has_updatedAt
+@enduml

@@ -1,0 +1,14 @@
+@startuml HmiButtons_Diagram
+
+entity "HmiButtons" as HmiButtons {
+  _id : ObjectId
+  equipmentId : string
+  hmiPrefix : string
+  plantId : ObjectId
+  sensorId : ObjectId
+  __v : int
+  hmiTag : string
+  trackingSensor : ObjectId
+}
+
+@enduml

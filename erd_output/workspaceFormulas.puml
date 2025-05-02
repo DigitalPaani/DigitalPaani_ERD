@@ -1,0 +1,49 @@
+@startuml workspaceFormulas_Diagram
+
+entity "workspaceFormulas" as workspaceFormulas {
+  _id : ObjectId
+  workspaceId : ObjectId
+  customFormulas : list
+}
+
+entity "customFormulas" as customFormulas {
+  lhs : string
+  rhs : string
+  variableList : list
+  type : string
+  tag : string
+  priorityNum : int
+  isVirtualSensor : boolean
+  sensorType : string
+  sensorData : list
+  sensorId : string
+}
+
+entity "sensorData" as sensorData {
+  _id : ObjectId
+  plantId : ObjectId
+  sensorName : string
+  sensorTag : string
+  sensorNickName : string
+  dateCreated : string
+  isEnabled : boolean
+  sensorId : string
+  dataType : string
+  plcId : ObjectId
+  display : boolean
+  maxValue : unknown
+  minValue : unknown
+  unit : object
+  oldSensorTag : string
+}
+
+entity "unit" as unit {
+  label : string
+  value : string
+}
+
+' // Relationships
+workspaceFormulas ||--o{ customFormulas : has_customFormulas
+customFormulas ||--o{ sensorData : has_sensorData
+sensorData ||--|| unit : has_unit
+@enduml

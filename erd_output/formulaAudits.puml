@@ -1,0 +1,70 @@
+@startuml formulaAudits_Diagram
+
+entity "formulaAudits" as formulaAudits {
+  _id : ObjectId
+  version : int
+  name : string
+  description : string
+  createdBy : ObjectId
+  plantId : ObjectId
+  unit : string
+  userGroupId : ObjectId
+  workspaceId : ObjectId
+  formulaTag : string
+  formulaChips : list
+  applyToHistoricalData : boolean
+  variableList : list
+  isArchived : boolean
+  frequency : object
+  type : string
+  nextCalculationTime : int
+  sensorSettingIds : list
+  formulaSensorId : ObjectId
+  __v : int
+  createdAt : object
+  updatedAt : object
+}
+
+entity "formulaChips" as formulaChips {
+  value : string
+  type : string
+  color : string
+  sensorSetting : object
+  _id : ObjectId
+}
+
+entity "sensorSetting" as sensorSetting {
+  sensorId : string
+  sensorTag : string
+  granularity : string
+  aggregation : string
+  firstReferenceTimeInMinutes : int
+  lastReferenceTimeInMinutes : int
+  returnType : string
+  _id : ObjectId
+}
+
+entity "frequency" as frequency {
+  dateTime : int
+  timeInMinutes : int
+  _id : ObjectId
+}
+
+entity "sensorSettingIds" as sensorSettingIds {
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+formulaAudits ||--o{ formulaChips : has_formulaChips
+formulaChips ||--|| sensorSetting : has_sensorSetting
+formulaAudits ||--|| frequency : has_frequency
+formulaAudits ||--o{ sensorSettingIds : has_sensorSettingIds
+formulaAudits ||--|| createdAt : has_createdAt
+formulaAudits ||--|| updatedAt : has_updatedAt
+@enduml

@@ -1,53 +1,53 @@
-@startuml USERADDEDITEMS_Diagram
+@startuml useraddeditems_Diagram
 
-entity "USERADDEDITEMS" as USERADDEDITEMS {
-  _id : objectId
+entity "useraddeditems" as useraddeditems {
+  _id : ObjectId
   itemType : string
   assets : list
   itemData : object
   __v : int
 }
 
-entity "ASSETS" as ASSETS {
-  buffer : binary
+entity "assets" as assets {
+  _id : ObjectId
 }
 
-entity "ITEM DATA" as ITEM_DATA {
+entity "itemData" as itemData {
   name : string
   description : string
   unit : string
   sensors : object
 }
 
-entity "SENSORS" as SENSORS {
+entity "sensors" as sensors {
   sensorQuant : object
   sensorConsumed : object
   sensorConsumedInPlant : object
   sensorAdd : object
 }
 
-entity "SENSOR QUANT" as SENSOR_QUANT {
+entity "sensorQuant" as sensorQuant {
   sensorTag : string
   sensorType : string
   sensorTypeAbr : string
   type : string
 }
 
-entity "SENSOR CONSUMED" as SENSOR_CONSUMED {
+entity "sensorConsumed" as sensorConsumed {
   sensorTag : string
   sensorType : string
   sensorTypeAbr : string
   type : string
 }
 
-entity "SENSOR CONSUMED IN PLANT" as SENSOR_CONSUMED_IN_PLANT {
+entity "sensorConsumedInPlant" as sensorConsumedInPlant {
   sensorTag : string
   sensorType : string
   sensorTypeAbr : string
   type : string
 }
 
-entity "SENSOR ADD" as SENSOR_ADD {
+entity "sensorAdd" as sensorAdd {
   sensorTag : string
   sensorType : string
   sensorTypeAbr : string
@@ -55,11 +55,11 @@ entity "SENSOR ADD" as SENSOR_ADD {
 }
 
 ' // Relationships
-USERADDEDITEMS ||--o{ ASSETS : has_assets
-USERADDEDITEMS ||--|| ITEM_DATA : has_itemData
-ITEM_DATA ||--|| SENSORS : has_sensors
-SENSORS ||--|| SENSOR_QUANT : has_sensorQuant
-SENSORS ||--|| SENSOR_CONSUMED : has_sensorConsumed
-SENSORS ||--|| SENSOR_CONSUMED_IN_PLANT : has_sensorConsumedInPlant
-SENSORS ||--|| SENSOR_ADD : has_sensorAdd
+useraddeditems ||--o{ assets : has_assets
+useraddeditems ||--|| itemData : has_itemData
+itemData ||--|| sensors : has_sensors
+sensors ||--|| sensorQuant : has_sensorQuant
+sensors ||--|| sensorConsumed : has_sensorConsumed
+sensors ||--|| sensorConsumedInPlant : has_sensorConsumedInPlant
+sensors ||--|| sensorAdd : has_sensorAdd
 @enduml

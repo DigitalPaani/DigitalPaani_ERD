@@ -11,8 +11,18 @@ const OUTPUT_DIR = 'erd_output';
 
 
 function inferType(value) {
+  // Detect ObjectId reliably
+  if (
+    value instanceof ObjectId ||
+    (value &&
+      typeof value === 'object' &&
+      value._bsontype === 'ObjectID' &&
+      Buffer.isBuffer(value.buffer))
+  ) {
+    return 'ObjectId';
+  }
+
   if (Buffer.isBuffer(value)) return 'binary';
-  if (value instanceof ObjectId) return 'objectId';
   if (typeof value === 'string') return 'string';
   if (typeof value === 'boolean') return 'boolean';
   if (typeof value === 'number') return Number.isInteger(value) ? 'int' : 'float';
@@ -21,40 +31,42 @@ function inferType(value) {
   return 'unknown';
 }
 
+
+
 function formatEntityName(name) {
-  const cleaned = name.trim().replace(/[^a-zA-Z0-9]/g, '_');
-  const formatted = cleaned.replace(/([a-z])([A-Z])/g, '$1_$2').toUpperCase();
-  // Add underscore if it starts with a digit
-  return /^[0-9]/.test(formatted) ? `_${formatted}` : formatted;
+  const label = name.trim(); // Preserve original for label
+  const alias = label.replace(/[^a-zA-Z0-9]/g, '_'); // Make valid PlantUML alias
+  return { label, alias };
 }
 
 
 function processDocument(doc, name, entities, relationships, parent = null, relationName = null) {
-  const entityName = formatEntityName(name);
-  if (!entities[entityName]) entities[entityName] = {};
+  const { label: entityLabel, alias: entityAlias } = formatEntityName(name);
+  if (!entities[entityAlias]) entities[entityAlias] = {};
 
   Object.entries(doc).forEach(([key, value]) => {
     const type = inferType(value);
     if (type === 'object' && value !== null && !Array.isArray(value)) {
-      const subEntity = formatEntityName(key);
-      relationships.push(`${entityName} ||--|| ${subEntity} : has_${key}`);
-      processDocument(value, key, entities, relationships, entityName, key);
-      entities[entityName][key] = 'object';
+      const { alias: subEntityAlias } = formatEntityName(key);
+      relationships.push(`${entityAlias} ||--|| ${subEntityAlias} : has_${key}`);
+      processDocument(value, key, entities, relationships, entityAlias, key);
+      entities[entityAlias][key] = 'object';
     } else if (type === 'array') {
       const first = value[0];
       if (typeof first === 'object' && first !== null) {
-        const subEntity = formatEntityName(key);
-        relationships.push(`${entityName} ||--o{ ${subEntity} : has_${key}`);
-        processDocument(first, key, entities, relationships, entityName, key);
-        entities[entityName][key] = 'list';
+        const { alias: subEntityAlias } = formatEntityName(key);
+        relationships.push(`${entityAlias} ||--o{ ${subEntityAlias} : has_${key}`);
+        processDocument(first, key, entities, relationships, entityAlias, key);
+        entities[entityAlias][key] = 'list';
       } else {
-        entities[entityName][key] = 'list';
+        entities[entityAlias][key] = 'list';
       }
     } else {
-      entities[entityName][key] = type;
+      entities[entityAlias][key] = type;
     }
   });
 }
+
 
 async function main() {
   const client = new MongoClient(MONGO_URI);
@@ -73,7 +85,9 @@ async function main() {
 
     processDocument(docs[0], name, entities, relationships);
 
-    const lines = [`@startuml ${formatEntityName(name)}_Diagram`, ''];
+    const { label: diagramLabel, alias: diagramAlias } = formatEntityName(name);
+    const lines = [`@startuml ${diagramAlias}_Diagram`, ''];
+    
     for (const [entity, fields] of Object.entries(entities)) {
       const label = entity.replace(/_/g, ' ').replace(/\s+/g, ' ').trim(); // fix spacing
       lines.push(`entity "${label}" as ${entity} {`);
@@ -91,7 +105,7 @@ async function main() {
 
     lines.push('@enduml');
 
-    const filename = `${formatEntityName(name)}.puml`;
+    const filename = `${diagramAlias}.puml`;
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), lines.join('\n'), 'utf8');
     console.log(`Generated: ${filename}`);
   }

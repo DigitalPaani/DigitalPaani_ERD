@@ -1,0 +1,22 @@
+@startuml userGroup_user_role_Diagram
+
+entity "userGroup user role" as userGroup_user_role {
+  _id : ObjectId
+  userGroupId : ObjectId
+  userId : ObjectId
+  roleId : ObjectId
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+userGroup_user_role ||--|| createdAt : has_createdAt
+userGroup_user_role ||--|| updatedAt : has_updatedAt
+@enduml

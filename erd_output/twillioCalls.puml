@@ -1,0 +1,27 @@
+@startuml twillioCalls_Diagram
+
+entity "twillioCalls" as twillioCalls {
+  _id : ObjectId
+  message : string
+  to : string
+  callSid : string
+  event : object
+  createdAt : object
+  prevCallsSids : list
+  rechecking : boolean
+}
+
+entity "event" as event {
+  alertId : ObjectId
+  plantId : ObjectId
+  type : string
+  userId : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+' // Relationships
+twillioCalls ||--|| event : has_event
+twillioCalls ||--|| createdAt : has_createdAt
+@enduml

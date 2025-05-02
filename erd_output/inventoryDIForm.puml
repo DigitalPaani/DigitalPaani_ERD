@@ -1,0 +1,58 @@
+@startuml inventoryDIForm_Diagram
+
+entity "inventoryDIForm" as inventoryDIForm {
+  _id : ObjectId
+  plantId : ObjectId
+  form : object
+}
+
+entity "form" as form {
+  formName : string
+  timeInputRequired : boolean
+  clearSection : boolean
+  lastUpdated : string
+  questionBank : object
+}
+
+entity "questionBank" as questionBank {
+  Chemicals : object
+  Consumables : object
+}
+
+entity "Chemicals" as Chemicals {
+  nickName : unknown
+  questions : list
+}
+
+entity "questions" as questions {
+  title : string
+  min : string
+  max : int
+  range : boolean
+  criticalLowerLevel : int
+  checked : boolean
+  type : string
+  sensorType : string
+  sensorTypeAbr : string
+  sensorTag : string
+  sensorNickName : unknown
+  currentValue : unknown
+  previousValue : string
+  prevTimeDataStored : string
+  time : string
+  sensorId : ObjectId
+}
+
+entity "Consumables" as Consumables {
+  nickName : unknown
+  questions : list
+}
+
+' // Relationships
+inventoryDIForm ||--|| form : has_form
+form ||--|| questionBank : has_questionBank
+questionBank ||--|| Chemicals : has_Chemicals
+Chemicals ||--o{ questions : has_questions
+questionBank ||--|| Consumables : has_Consumables
+Consumables ||--o{ questions : has_questions
+@enduml

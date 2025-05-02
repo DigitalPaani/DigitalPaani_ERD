@@ -1,9 +1,9 @@
-@startuml TICKETS_62136D7FC435773EC77EC4FC_Diagram
+@startuml tickets_62136d7fc435773ec77ec4fc_Diagram
 
-entity "TICKETS 62136D7FC435773EC77EC4FC" as TICKETS_62136D7FC435773EC77EC4FC {
-  _id : objectId
-  plantId : objectId
-  alertId : objectId
+entity "tickets 62136d7fc435773ec77ec4fc" as tickets_62136d7fc435773ec77ec4fc {
+  _id : ObjectId
+  plantId : ObjectId
+  alertId : ObjectId
   dueTimeFromPosting : string
   observationFreq : unknown
   escalations : object
@@ -15,65 +15,65 @@ entity "TICKETS 62136D7FC435773EC77EC4FC" as TICKETS_62136D7FC435773EC77EC4FC {
   events : list
 }
 
-entity "ESCALATIONS" as ESCALATIONS {
+entity "escalations" as escalations {
   Level 1 : object
   Level 2 : object
   Level 3 : object
 }
 
-entity "LEVEL 1" as LEVEL_1 {
+entity "Level 1" as Level_1 {
   time : string
   group : string
 }
 
-entity "LEVEL 2" as LEVEL_2 {
+entity "Level 2" as Level_2 {
   time : string
   group : string
 }
 
-entity "LEVEL 3" as LEVEL_3 {
+entity "Level 3" as Level_3 {
   time : string
   group : string
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "OPENING INFO" as OPENING_INFO {
+entity "openingInfo" as openingInfo {
   openedAt : object
-  openedBy : objectId
+  openedBy : ObjectId
 }
 
-entity "OPENED AT" as OPENED_AT {
+entity "openedAt" as openedAt {
 }
 
-entity "CLOSING INFO" as CLOSING_INFO {
+entity "closingInfo" as closingInfo {
   closedAt : object
-  closedBy : objectId
+  closedBy : ObjectId
 }
 
-entity "CLOSED AT" as CLOSED_AT {
+entity "closedAt" as closedAt {
 }
 
-entity "EVENTS" as EVENTS {
+entity "events" as events {
   event : string
   message : string
   time : object
 }
 
-entity "TIME" as TIME {
+entity "time" as time {
 }
 
 ' // Relationships
-TICKETS_62136D7FC435773EC77EC4FC ||--|| ESCALATIONS : has_escalations
-ESCALATIONS ||--|| LEVEL_1 : has_Level 1
-ESCALATIONS ||--|| LEVEL_2 : has_Level 2
-ESCALATIONS ||--|| LEVEL_3 : has_Level 3
-TICKETS_62136D7FC435773EC77EC4FC ||--|| CREATED_AT : has_createdAt
-TICKETS_62136D7FC435773EC77EC4FC ||--|| OPENING_INFO : has_openingInfo
-OPENING_INFO ||--|| OPENED_AT : has_openedAt
-TICKETS_62136D7FC435773EC77EC4FC ||--|| CLOSING_INFO : has_closingInfo
-CLOSING_INFO ||--|| CLOSED_AT : has_closedAt
-TICKETS_62136D7FC435773EC77EC4FC ||--o{ EVENTS : has_events
-EVENTS ||--|| TIME : has_time
+tickets_62136d7fc435773ec77ec4fc ||--|| escalations : has_escalations
+escalations ||--|| Level_1 : has_Level 1
+escalations ||--|| Level_2 : has_Level 2
+escalations ||--|| Level_3 : has_Level 3
+tickets_62136d7fc435773ec77ec4fc ||--|| createdAt : has_createdAt
+tickets_62136d7fc435773ec77ec4fc ||--|| openingInfo : has_openingInfo
+openingInfo ||--|| openedAt : has_openedAt
+tickets_62136d7fc435773ec77ec4fc ||--|| closingInfo : has_closingInfo
+closingInfo ||--|| closedAt : has_closedAt
+tickets_62136d7fc435773ec77ec4fc ||--o{ events : has_events
+events ||--|| time : has_time
 @enduml

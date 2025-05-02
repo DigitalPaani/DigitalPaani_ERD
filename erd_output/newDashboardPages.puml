@@ -1,0 +1,70 @@
+@startuml newDashboardPages_Diagram
+
+entity "newDashboardPages" as newDashboardPages {
+  _id : ObjectId
+  plantId : ObjectId
+  pageConfig : object
+  deleted : boolean
+}
+
+entity "pageConfig" as pageConfig {
+  pageName : string
+  autoEmailing : boolean
+  public : boolean
+  defaultTimeInDays : int
+  createdBy : string
+  lastUpdateInfo : object
+  data : list
+  defaultTimeRangeSettings : object
+  defaultGranularitySettings : object
+}
+
+entity "lastUpdateInfo" as lastUpdateInfo {
+  lastUpdated : string
+  lastUpdater : ObjectId
+}
+
+entity "data" as data {
+  widgets : list
+  background : string
+  clusterName : string
+}
+
+entity "widgets" as widgets {
+  widgetId : ObjectId
+  checked : boolean
+  widgetType : string
+  widgetOriginId : ObjectId
+}
+
+entity "defaultTimeRangeSettings" as defaultTimeRangeSettings {
+  unit : string
+  unitMultiplier : int
+  timeRangeInMins : int
+  timeRangeType : string
+  startTime : object
+  endTime : object
+}
+
+entity "startTime" as startTime {
+}
+
+entity "endTime" as endTime {
+}
+
+entity "defaultGranularitySettings" as defaultGranularitySettings {
+  unit : string
+  unitMultiplier : int
+  granularityInMins : int
+}
+
+' // Relationships
+newDashboardPages ||--|| pageConfig : has_pageConfig
+pageConfig ||--|| lastUpdateInfo : has_lastUpdateInfo
+pageConfig ||--o{ data : has_data
+data ||--o{ widgets : has_widgets
+pageConfig ||--|| defaultTimeRangeSettings : has_defaultTimeRangeSettings
+defaultTimeRangeSettings ||--|| startTime : has_startTime
+defaultTimeRangeSettings ||--|| endTime : has_endTime
+pageConfig ||--|| defaultGranularitySettings : has_defaultGranularitySettings
+@enduml

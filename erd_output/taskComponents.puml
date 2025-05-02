@@ -1,0 +1,172 @@
+@startuml taskComponents_Diagram
+
+entity "taskComponents" as taskComponents {
+  _id : ObjectId
+  taskTemplateId : ObjectId
+  taskData : object
+  assetId : ObjectId
+  userGroupId : ObjectId
+  name : string
+  description : string
+  trainingVideoId : string
+  priority : string
+  taskType : string
+  workflowId : ObjectId
+  workflowDetails : object
+  taskCompletion : string
+  taskCompletionState : string
+  assigneeMethod : string
+  complexity : int
+  taskDeadlineTime : int
+  taskDeadlineUnit : string
+  taskExpectedTime : int
+  taskExpectedUnit : string
+  skillsSelected : list
+  dataEntry : boolean
+  richTextContent : string
+  escalations : list
+  componentActions : list
+  isSubtask : boolean
+  triggerId : ObjectId
+  TaskFormDataId : string
+  workflowActions : list
+  isDeleted : boolean
+  isObsolete : boolean
+  taskCompleted : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "taskData" as taskData {
+  taskTemplateId : ObjectId
+  name : string
+  description : string
+  dataEntry : boolean
+}
+
+entity "workflowDetails" as workflowDetails {
+  name : string
+  description : string
+  nodes : list
+  edges : list
+  workflowActions : list
+}
+
+entity "nodes" as nodes {
+  id : string
+  type : string
+  position : object
+  data : object
+  width : int
+  height : int
+  selected : boolean
+  positionAbsolute : object
+  dragging : boolean
+}
+
+entity "position" as position {
+  x : float
+  y : float
+}
+
+entity "data" as data {
+  type : string
+  label : string
+}
+
+entity "positionAbsolute" as positionAbsolute {
+  x : float
+  y : float
+}
+
+entity "edges" as edges {
+  id : string
+  source : string
+  sourceHandle : string
+  target : string
+  targetHandle : string
+  type : string
+  animated : boolean
+  data : object
+  markerEnd : object
+}
+
+entity "markerEnd" as markerEnd {
+  type : string
+  width : int
+  height : int
+  color : string
+}
+
+entity "workflowActions" as workflowActions {
+  nodeId : string
+  nodeLabel : string
+  actionNodes : list
+  _id : string
+}
+
+entity "actionNodes" as actionNodes {
+  id : string
+  label : string
+  selectedAction : string
+  selectedActionValue : string
+  _id : string
+  actionIds : list
+  nodeId : string
+}
+
+entity "skillsSelected" as skillsSelected {
+  _id : ObjectId
+}
+
+entity "escalations" as escalations {
+  value : string
+  unit : string
+  timeInMinutes : string
+  communicationMedium : string
+  userIds : list
+}
+
+entity "userIds" as userIds {
+  _id : ObjectId
+}
+
+entity "componentActions" as componentActions {
+  nodeId : string
+  actionNodes : list
+}
+
+entity "actionIds" as actionIds {
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+taskComponents ||--|| taskData : has_taskData
+taskComponents ||--|| workflowDetails : has_workflowDetails
+workflowDetails ||--o{ nodes : has_nodes
+nodes ||--|| position : has_position
+nodes ||--|| data : has_data
+nodes ||--|| positionAbsolute : has_positionAbsolute
+workflowDetails ||--o{ edges : has_edges
+edges ||--|| data : has_data
+edges ||--|| markerEnd : has_markerEnd
+workflowDetails ||--o{ workflowActions : has_workflowActions
+workflowActions ||--o{ actionNodes : has_actionNodes
+taskComponents ||--o{ skillsSelected : has_skillsSelected
+taskComponents ||--o{ escalations : has_escalations
+escalations ||--o{ userIds : has_userIds
+taskComponents ||--o{ componentActions : has_componentActions
+componentActions ||--o{ actionNodes : has_actionNodes
+actionNodes ||--o{ actionIds : has_actionIds
+taskComponents ||--o{ workflowActions : has_workflowActions
+workflowActions ||--o{ actionNodes : has_actionNodes
+taskComponents ||--|| createdAt : has_createdAt
+taskComponents ||--|| updatedAt : has_updatedAt
+@enduml

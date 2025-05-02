@@ -1,7 +1,7 @@
-@startuml ONE_TIME_TASKS_Diagram
+@startuml One_Time_Tasks_Diagram
 
-entity "ONE TIME TASKS" as ONE_TIME_TASKS {
-  _id : objectId
+entity "One Time Tasks" as One_Time_Tasks {
+  _id : ObjectId
   toUser : string
   dueTimeFromPosting : string
   ticket : boolean
@@ -9,34 +9,34 @@ entity "ONE TIME TASKS" as ONE_TIME_TASKS {
   description : object
   subTasks : list
   critical : boolean
-  plantId : objectId
+  plantId : ObjectId
   equipments : object
 }
 
-entity "HEADING" as HEADING {
+entity "heading" as heading {
   eng : string
   hindi : string
 }
 
-entity "DESCRIPTION" as DESCRIPTION {
+entity "description" as description {
   eng : string
   hind : string
 }
 
-entity "SUB TASKS" as SUB_TASKS {
+entity "subTasks" as subTasks {
   name : string
   namehindi : string
 }
 
-entity "EQUIPMENTS" as EQUIPMENTS {
+entity "equipments" as equipments {
   id : string
   nickName : string
   type : string
 }
 
 ' // Relationships
-ONE_TIME_TASKS ||--|| HEADING : has_heading
-ONE_TIME_TASKS ||--|| DESCRIPTION : has_description
-ONE_TIME_TASKS ||--o{ SUB_TASKS : has_subTasks
-ONE_TIME_TASKS ||--|| EQUIPMENTS : has_equipments
+One_Time_Tasks ||--|| heading : has_heading
+One_Time_Tasks ||--|| description : has_description
+One_Time_Tasks ||--o{ subTasks : has_subTasks
+One_Time_Tasks ||--|| equipments : has_equipments
 @enduml

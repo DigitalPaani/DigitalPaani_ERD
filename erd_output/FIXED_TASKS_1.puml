@@ -1,7 +1,7 @@
-@startuml FIXED_TASKS_1_Diagram
+@startuml Fixed_Tasks_1_Diagram
 
-entity "FIXED TASKS 1" as FIXED_TASKS_1 {
-  _id : objectId
+entity "Fixed Tasks 1" as Fixed_Tasks_1 {
+  _id : ObjectId
   toUser : string
   recurringDays : list
   weeks : list
@@ -11,51 +11,51 @@ entity "FIXED TASKS 1" as FIXED_TASKS_1 {
   heading : object
   description : object
   subTasks : list
-  plantId : objectId
+  plantId : ObjectId
 }
 
-entity "ESCALATIONS" as ESCALATIONS {
+entity "escalations" as escalations {
   Level 1 : object
   Level 2 : object
   Level 3 : object
 }
 
-entity "LEVEL 1" as LEVEL_1 {
+entity "Level 1" as Level_1 {
   time : string
   group : string
 }
 
-entity "LEVEL 2" as LEVEL_2 {
+entity "Level 2" as Level_2 {
   time : string
   group : string
 }
 
-entity "LEVEL 3" as LEVEL_3 {
+entity "Level 3" as Level_3 {
   time : string
   group : string
 }
 
-entity "HEADING" as HEADING {
+entity "heading" as heading {
   eng : string
   hindi : string
 }
 
-entity "DESCRIPTION" as DESCRIPTION {
+entity "description" as description {
   eng : string
   hind : string
 }
 
-entity "SUB TASKS" as SUB_TASKS {
+entity "subTasks" as subTasks {
   name : string
   namehindi : string
 }
 
 ' // Relationships
-FIXED_TASKS_1 ||--|| ESCALATIONS : has_escalations
-ESCALATIONS ||--|| LEVEL_1 : has_Level 1
-ESCALATIONS ||--|| LEVEL_2 : has_Level 2
-ESCALATIONS ||--|| LEVEL_3 : has_Level 3
-FIXED_TASKS_1 ||--|| HEADING : has_heading
-FIXED_TASKS_1 ||--|| DESCRIPTION : has_description
-FIXED_TASKS_1 ||--o{ SUB_TASKS : has_subTasks
+Fixed_Tasks_1 ||--|| escalations : has_escalations
+escalations ||--|| Level_1 : has_Level 1
+escalations ||--|| Level_2 : has_Level 2
+escalations ||--|| Level_3 : has_Level 3
+Fixed_Tasks_1 ||--|| heading : has_heading
+Fixed_Tasks_1 ||--|| description : has_description
+Fixed_Tasks_1 ||--o{ subTasks : has_subTasks
 @enduml

@@ -1,0 +1,21 @@
+@startuml dashboardClusters_Diagram
+
+entity "dashboardClusters" as dashboardClusters {
+  _id : ObjectId
+  name : string
+  plantId : ObjectId
+  defaultDashboardPageId : ObjectId
+  dashboardPages : list
+  subDashboardClusters : list
+  createdBy : string
+  deleted : boolean
+}
+
+entity "subDashboardClusters" as subDashboardClusters {
+  name : string
+  dashboardClusterId : ObjectId
+}
+
+' // Relationships
+dashboardClusters ||--o{ subDashboardClusters : has_subDashboardClusters
+@enduml

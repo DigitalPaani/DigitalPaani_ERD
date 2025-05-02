@@ -1,0 +1,22 @@
+@startuml sharedDashboard_Diagram
+
+entity "sharedDashboard" as sharedDashboard {
+  _id : ObjectId
+  pageId : ObjectId
+  sharedToUserId : ObjectId
+  userId : ObjectId
+  createdAt : object
+  permissionType : string
+  updatedAt : object
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+sharedDashboard ||--|| createdAt : has_createdAt
+sharedDashboard ||--|| updatedAt : has_updatedAt
+@enduml

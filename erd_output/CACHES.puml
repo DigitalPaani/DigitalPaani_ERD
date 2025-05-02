@@ -1,7 +1,7 @@
-@startuml CACHES_Diagram
+@startuml caches_Diagram
 
-entity "CACHES" as CACHES {
-  _id : objectId
+entity "caches" as caches {
+  _id : ObjectId
   __v : int
   value : string
 }

@@ -1,0 +1,14 @@
+@startuml globalFormulasAndVariables_Diagram
+
+entity "globalFormulasAndVariables" as globalFormulasAndVariables {
+  _id : ObjectId
+  lhs : string
+  rhs : string
+  tag : string
+  variableList : list
+  type : string
+  isVirtualSensor : boolean
+  priorityNum : int
+}
+
+@enduml

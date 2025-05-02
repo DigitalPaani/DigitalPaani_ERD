@@ -1,0 +1,25 @@
+@startuml dataBreakEvents_Diagram
+
+entity "dataBreakEvents" as dataBreakEvents {
+  _id : ObjectId
+  deviceId : ObjectId
+  stoppedAt : object
+  startedAt : object
+  issue : string
+  createdBy : string
+  recoveryStatus : string
+  recoveredDataCount : int
+  eventDurationInMins : float
+  __v : int
+}
+
+entity "stoppedAt" as stoppedAt {
+}
+
+entity "startedAt" as startedAt {
+}
+
+' // Relationships
+dataBreakEvents ||--|| stoppedAt : has_stoppedAt
+dataBreakEvents ||--|| startedAt : has_startedAt
+@enduml

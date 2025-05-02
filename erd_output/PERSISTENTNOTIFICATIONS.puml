@@ -1,20 +1,20 @@
-@startuml PERSISTENTNOTIFICATIONS_Diagram
+@startuml persistentnotifications_Diagram
 
-entity "PERSISTENTNOTIFICATIONS" as PERSISTENTNOTIFICATIONS {
-  _id : objectId
-  plantId : objectId
+entity "persistentnotifications" as persistentnotifications {
+  _id : ObjectId
+  plantId : ObjectId
   heading : string
   subHeading : string
   type : string
   read : boolean
   created_at : object
   __v : int
-  userId : objectId
+  userId : ObjectId
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "created at" as created_at {
 }
 
 ' // Relationships
-PERSISTENTNOTIFICATIONS ||--|| CREATED_AT : has_created_at
+persistentnotifications ||--|| created_at : has_created_at
 @enduml

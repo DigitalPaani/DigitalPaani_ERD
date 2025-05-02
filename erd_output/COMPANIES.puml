@@ -1,7 +1,7 @@
-@startuml COMPANIES_Diagram
+@startuml companies_Diagram
 
-entity "COMPANIES" as COMPANIES {
-  _id : objectId
+entity "companies" as companies {
+  _id : ObjectId
   companyName : string
   companyDescription : string
   companyAddress : string
@@ -12,23 +12,23 @@ entity "COMPANIES" as COMPANIES {
   __v : int
 }
 
-entity "CONTACT DETAILS" as CONTACT_DETAILS {
+entity "contactDetails" as contactDetails {
   fullName : string
   phoneNumber : string
   emailId : string
   designation : string
   comments : string
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-COMPANIES ||--o{ CONTACT_DETAILS : has_contactDetails
-COMPANIES ||--|| CREATED_AT : has_createdAt
-COMPANIES ||--|| UPDATED_AT : has_updatedAt
+companies ||--o{ contactDetails : has_contactDetails
+companies ||--|| createdAt : has_createdAt
+companies ||--|| updatedAt : has_updatedAt
 @enduml

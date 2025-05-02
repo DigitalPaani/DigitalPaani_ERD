@@ -1,7 +1,7 @@
-@startuml USERS_Diagram
+@startuml Users_Diagram
 
-entity "USERS" as USERS {
-  _id : objectId
+entity "Users" as Users {
+  _id : ObjectId
   name : string
   email : string
   password : string

@@ -1,0 +1,72 @@
+@startuml waterQualityDIForm_Diagram
+
+entity "waterQualityDIForm" as waterQualityDIForm {
+  _id : ObjectId
+  plantId : ObjectId
+  form : object
+  formConfiguration : object
+}
+
+entity "form" as form {
+  formName : string
+  timeInputRequired : boolean
+  clearSection : boolean
+  lastUpdated : string
+  questionBank : object
+  calculatedAt : string
+}
+
+entity "questionBank" as questionBank {
+  Equalization Tank1 : object
+  Aeration Tank1 : object
+  Treated Water Tank1 : object
+}
+
+entity "Equalization Tank1" as Equalization_Tank1 {
+  nickName : unknown
+  questions : list
+}
+
+entity "questions" as questions {
+  title : string
+  min : int
+  max : int
+  checked : boolean
+  type : string
+  range : boolean
+  sensorTypeAbr : string
+  sensorType : string
+  sensorTag : string
+  sensorNickName : string
+  currentValue : unknown
+  previousValue : string
+  prevTimeDataStored : string
+  time : string
+  sensorId : ObjectId
+}
+
+entity "Aeration Tank1" as Aeration_Tank1 {
+  nickName : unknown
+  questions : list
+}
+
+entity "Treated Water Tank1" as Treated_Water_Tank1 {
+  nickName : unknown
+  questions : list
+}
+
+entity "formConfiguration" as formConfiguration {
+  isFormConfigured : boolean
+}
+
+' // Relationships
+waterQualityDIForm ||--|| form : has_form
+form ||--|| questionBank : has_questionBank
+questionBank ||--|| Equalization_Tank1 : has_Equalization Tank1
+Equalization_Tank1 ||--o{ questions : has_questions
+questionBank ||--|| Aeration_Tank1 : has_Aeration Tank1
+Aeration_Tank1 ||--o{ questions : has_questions
+questionBank ||--|| Treated_Water_Tank1 : has_Treated Water Tank1
+Treated_Water_Tank1 ||--o{ questions : has_questions
+waterQualityDIForm ||--|| formConfiguration : has_formConfiguration
+@enduml

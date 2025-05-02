@@ -1,9 +1,9 @@
-@startuml SENSORS_Diagram
+@startuml sensors_Diagram
 
-entity "SENSORS" as SENSORS {
-  _id : objectId
+entity "sensors" as sensors {
+  _id : ObjectId
   sensorTag : string
-  plantId : objectId
+  plantId : ObjectId
   sensorType : string
   dateCreated : unknown
   sensorId : string

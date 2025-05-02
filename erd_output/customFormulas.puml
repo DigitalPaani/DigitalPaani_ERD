@@ -1,0 +1,19 @@
+@startuml customFormulas_Diagram
+
+entity "customFormulas" as customFormulas {
+  _id : ObjectId
+  plantId : ObjectId
+  formulas : list
+}
+
+entity "formulas" as formulas {
+  lhs : string
+  rhs : string
+  unit : string
+  isLhsFixed : boolean
+  order : int
+}
+
+' // Relationships
+customFormulas ||--o{ formulas : has_formulas
+@enduml

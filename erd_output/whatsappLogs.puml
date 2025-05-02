@@ -1,0 +1,65 @@
+@startuml whatsappLogs_Diagram
+
+entity "whatsappLogs" as whatsappLogs {
+  _id : ObjectId
+  contentSid : string
+  contentVariables : object
+  from : string
+  to : string
+  libResponse : object
+  serviceType : string
+  code : string
+  errorDetails : unknown
+  status : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "contentVariables" as contentVariables {
+  1 : string
+  2 : string
+  3 : string
+  4 : string
+}
+
+entity "libResponse" as libResponse {
+  body : string
+  numSegments : string
+  direction : string
+  from : string
+  to : string
+  dateUpdated : string
+  price : unknown
+  errorMessage : unknown
+  uri : string
+  accountSid : string
+  numMedia : string
+  status : string
+  messagingServiceSid : unknown
+  sid : string
+  dateSent : unknown
+  dateCreated : string
+  errorCode : unknown
+  priceUnit : unknown
+  apiVersion : string
+  subresourceUris : object
+}
+
+entity "subresourceUris" as subresourceUris {
+  media : string
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+whatsappLogs ||--|| contentVariables : has_contentVariables
+whatsappLogs ||--|| libResponse : has_libResponse
+libResponse ||--|| subresourceUris : has_subresourceUris
+whatsappLogs ||--|| createdAt : has_createdAt
+whatsappLogs ||--|| updatedAt : has_updatedAt
+@enduml

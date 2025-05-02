@@ -1,0 +1,70 @@
+@startuml callLogs_Diagram
+
+entity "callLogs" as callLogs {
+  _id : ObjectId
+  from : string
+  to : string
+  message : string
+  libResponse : object
+  serviceType : string
+  code : string
+  errorDetails : unknown
+  status : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "libResponse" as libResponse {
+  sid : string
+  dateCreated : unknown
+  dateUpdated : unknown
+  parentCallSid : unknown
+  accountSid : string
+  to : string
+  toFormatted : string
+  from : string
+  fromFormatted : string
+  phoneNumberSid : string
+  status : string
+  startTime : unknown
+  endTime : unknown
+  duration : unknown
+  price : unknown
+  priceUnit : string
+  direction : string
+  answeredBy : unknown
+  apiVersion : string
+  forwardedFrom : unknown
+  groupSid : unknown
+  callerName : unknown
+  queueTime : string
+  trunkSid : unknown
+  uri : string
+  subresourceUris : object
+}
+
+entity "subresourceUris" as subresourceUris {
+  events : string
+  notifications : string
+  payments : string
+  recordings : string
+  siprec : string
+  streams : string
+  transcriptions : string
+  user_defined_message_subscriptions : string
+  user_defined_messages : string
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+callLogs ||--|| libResponse : has_libResponse
+libResponse ||--|| subresourceUris : has_subresourceUris
+callLogs ||--|| createdAt : has_createdAt
+callLogs ||--|| updatedAt : has_updatedAt
+@enduml

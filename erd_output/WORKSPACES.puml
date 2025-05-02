@@ -1,42 +1,42 @@
-@startuml WORKSPACES_Diagram
+@startuml workspaces_Diagram
 
-entity "WORKSPACES" as WORKSPACES {
-  _id : objectId
+entity "workspaces" as workspaces {
+  _id : ObjectId
   workspaceName : string
   plants : list
-  client : objectId
-  createdBy : objectId
+  client : ObjectId
+  createdBy : ObjectId
   lastUpdateInfo : object
   __v : int
 }
 
-entity "PLANTS" as PLANTS {
-  plantId : objectId
+entity "plants" as plants {
+  plantId : ObjectId
   diagram : object
   sensors : list
   outputs : list
   displayNode : boolean
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "DIAGRAM" as DIAGRAM {
+entity "diagram" as diagram {
   imageURL : string
   imageControlId : string
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "LAST UPDATE INFO" as LAST_UPDATE_INFO {
+entity "lastUpdateInfo" as lastUpdateInfo {
   lastUpdated : object
-  lastUpdater : objectId
-  _id : objectId
+  lastUpdater : ObjectId
+  _id : ObjectId
 }
 
-entity "LAST UPDATED" as LAST_UPDATED {
+entity "lastUpdated" as lastUpdated {
 }
 
 ' // Relationships
-WORKSPACES ||--o{ PLANTS : has_plants
-PLANTS ||--|| DIAGRAM : has_diagram
-WORKSPACES ||--|| LAST_UPDATE_INFO : has_lastUpdateInfo
-LAST_UPDATE_INFO ||--|| LAST_UPDATED : has_lastUpdated
+workspaces ||--o{ plants : has_plants
+plants ||--|| diagram : has_diagram
+workspaces ||--|| lastUpdateInfo : has_lastUpdateInfo
+lastUpdateInfo ||--|| lastUpdated : has_lastUpdated
 @enduml

@@ -1,0 +1,33 @@
+@startuml sensorOffSets_Diagram
+
+entity "sensorOffSets" as sensorOffSets {
+  _id : ObjectId
+  sensorId : ObjectId
+  plantId : ObjectId
+  __v : int
+  activity : list
+  createdAt : object
+  updatedAt : object
+  value : int
+}
+
+entity "activity" as activity {
+  value : int
+  calculatedAtInMs : int
+  userId : ObjectId
+  createdAt : object
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+sensorOffSets ||--o{ activity : has_activity
+activity ||--|| createdAt : has_createdAt
+sensorOffSets ||--|| createdAt : has_createdAt
+sensorOffSets ||--|| updatedAt : has_updatedAt
+@enduml

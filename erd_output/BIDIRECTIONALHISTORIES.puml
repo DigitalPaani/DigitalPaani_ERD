@@ -1,13 +1,13 @@
-@startuml BIDIRECTIONALHISTORIES_Diagram
+@startuml bidirectionalhistories_Diagram
 
-entity "BIDIRECTIONALHISTORIES" as BIDIRECTIONALHISTORIES {
-  _id : objectId
-  plantId : objectId
+entity "bidirectionalhistories" as bidirectionalhistories {
+  _id : ObjectId
+  plantId : ObjectId
   hmiButtons : list
   equipmentId : string
   created_at : object
   events : list
-  sensorId : objectId
+  sensorId : ObjectId
   initiated : boolean
   acknowledged : boolean
   ongoing : boolean
@@ -19,22 +19,22 @@ entity "BIDIRECTIONALHISTORIES" as BIDIRECTIONALHISTORIES {
   __v : int
 }
 
-entity "HMI BUTTONS" as HMI_BUTTONS {
-  _id : objectId
-  plantId : objectId
+entity "hmiButtons" as hmiButtons {
+  _id : ObjectId
+  plantId : ObjectId
   equipmentId : string
   hmiPrefix : string
-  sensorId : objectId
+  sensorId : ObjectId
   __v : int
   hmiTag : string
-  trackingSensor : objectId
+  trackingSensor : ObjectId
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "created at" as created_at {
 }
 
-entity "EVENTS" as EVENTS {
-  userId : objectId
+entity "events" as events {
+  userId : ObjectId
   command : string
   ipAddr : string
   browserDetails : string
@@ -42,15 +42,15 @@ entity "EVENTS" as EVENTS {
   type : string
   heading : string
   success : boolean
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "TIMESTAMP" as TIMESTAMP {
+entity "timestamp" as timestamp {
 }
 
 ' // Relationships
-BIDIRECTIONALHISTORIES ||--o{ HMI_BUTTONS : has_hmiButtons
-BIDIRECTIONALHISTORIES ||--|| CREATED_AT : has_created_at
-BIDIRECTIONALHISTORIES ||--o{ EVENTS : has_events
-EVENTS ||--|| TIMESTAMP : has_timestamp
+bidirectionalhistories ||--o{ hmiButtons : has_hmiButtons
+bidirectionalhistories ||--|| created_at : has_created_at
+bidirectionalhistories ||--o{ events : has_events
+events ||--|| timestamp : has_timestamp
 @enduml

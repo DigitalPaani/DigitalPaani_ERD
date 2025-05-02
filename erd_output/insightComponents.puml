@@ -1,0 +1,37 @@
+@startuml insightComponents_Diagram
+
+entity "insightComponents" as insightComponents {
+  _id : ObjectId
+  insightTemplateId : ObjectId
+  triggerId : ObjectId
+  name : string
+  description : string
+  insightClassification : string
+  insightType : string
+  attachmentId : unknown
+  richTextContent : string
+  userGroupId : ObjectId
+  assetId : ObjectId
+  equipmentIds : list
+  priority : int
+  isDeleted : boolean
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "equipmentIds" as equipmentIds {
+  _id : ObjectId
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+insightComponents ||--o{ equipmentIds : has_equipmentIds
+insightComponents ||--|| createdAt : has_createdAt
+insightComponents ||--|| updatedAt : has_updatedAt
+@enduml

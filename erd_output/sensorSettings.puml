@@ -1,0 +1,26 @@
+@startuml sensorSettings_Diagram
+
+entity "sensorSettings" as sensorSettings {
+  _id : ObjectId
+  sensorId : ObjectId
+  sensorTag : string
+  granularity : string
+  aggregation : string
+  firstReferenceTimeInMinutes : int
+  lastReferenceTimeInMinutes : int
+  returnType : string
+  createdAt : object
+  updatedAt : object
+  __v : int
+}
+
+entity "createdAt" as createdAt {
+}
+
+entity "updatedAt" as updatedAt {
+}
+
+' // Relationships
+sensorSettings ||--|| createdAt : has_createdAt
+sensorSettings ||--|| updatedAt : has_updatedAt
+@enduml

@@ -1,0 +1,216 @@
+@startuml dashboardPages_Diagram
+
+entity "dashboardPages" as dashboardPages {
+  _id : ObjectId
+  plantId : ObjectId
+  pageConfig : object
+}
+
+entity "pageConfig" as pageConfig {
+  pageName : string
+  autoEmailing : boolean
+  public : boolean
+  defaultTimeInDays : int
+  createdBy : string
+  lastUpdateInfo : object
+  data : object
+}
+
+entity "lastUpdateInfo" as lastUpdateInfo {
+  lastUpdated : string
+  lastUpdater : ObjectId
+}
+
+entity "data" as data {
+  Water Quantity and Availability : object
+  Inlet and Outlet Water Quality : object
+  Biological Process Health : object
+  Safety : object
+  Energy Consumption : object
+  Equipment Performance and Maintenance : object
+}
+
+entity "Water Quantity and Availability" as Water_Quantity_and_Availability {
+  widgets : list
+  background : string
+}
+
+entity "widgets" as widgets {
+  widgetName : string
+  widgetType : string
+  graphType : string
+  valueTypes : list
+  widgetCategory : string
+  widgetDescription : string
+  moreInfo : string
+  checked : boolean
+  keyWords : list
+  metrics : object
+}
+
+entity "metrics" as metrics {
+  LT_UTWTdd1_1 : object
+  LT_CCTdd1_1 : object
+  LT_TWTdd1_1 : object
+  LT_EQTdd1_1 : object
+  LT_SMPdd1_1 : object
+  TUR_TWTdd1_1 : object
+  EMKWH_1 : object
+  EMKW_1 : object
+  BWS_MGFdd1_1 : object
+  INLETPT_UFdd1_1 : object
+  INLETPT_MGFdd1_1 : object
+  INLETPT_ACFdd1_1 : object
+  BWS_ACFdd1_1 : object
+  CATPT_UFdd1_2 : object
+  PT_HEADdd1_1 : object
+}
+
+entity "LT UTWTdd1 1" as LT_UTWTdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "LT CCTdd1 1" as LT_CCTdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "LT TWTdd1 1" as LT_TWTdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "LT EQTdd1 1" as LT_EQTdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "LT SMPdd1 1" as LT_SMPdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "Inlet and Outlet Water Quality" as Inlet_and_Outlet_Water_Quality {
+  widgets : list
+}
+
+entity "TUR TWTdd1 1" as TUR_TWTdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "Biological Process Health" as Biological_Process_Health {
+  widgets : list
+}
+
+entity "Safety" as Safety {
+  widgets : list
+}
+
+entity "Energy Consumption" as Energy_Consumption {
+  widgets : list
+}
+
+entity "EMKWH 1" as EMKWH_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "EMKW 1" as EMKW_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "Equipment Performance and Maintenance" as Equipment_Performance_and_Maintenance {
+  widgets : list
+}
+
+entity "BWS MGFdd1 1" as BWS_MGFdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "INLETPT UFdd1 1" as INLETPT_UFdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "INLETPT MGFdd1 1" as INLETPT_MGFdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "INLETPT ACFdd1 1" as INLETPT_ACFdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "BWS ACFdd1 1" as BWS_ACFdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "CATPT UFdd1 2" as CATPT_UFdd1_2 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+entity "PT HEADdd1 1" as PT_HEADdd1_1 {
+  checked : boolean
+  sensorId : string
+  dataType : string
+}
+
+' // Relationships
+dashboardPages ||--|| pageConfig : has_pageConfig
+pageConfig ||--|| lastUpdateInfo : has_lastUpdateInfo
+pageConfig ||--|| data : has_data
+data ||--|| Water_Quantity_and_Availability : has_Water Quantity and Availability
+Water_Quantity_and_Availability ||--o{ widgets : has_widgets
+widgets ||--|| metrics : has_metrics
+metrics ||--|| LT_UTWTdd1_1 : has_LT_UTWTdd1_1
+metrics ||--|| LT_CCTdd1_1 : has_LT_CCTdd1_1
+metrics ||--|| LT_TWTdd1_1 : has_LT_TWTdd1_1
+metrics ||--|| LT_EQTdd1_1 : has_LT_EQTdd1_1
+metrics ||--|| LT_SMPdd1_1 : has_LT_SMPdd1_1
+data ||--|| Inlet_and_Outlet_Water_Quality : has_Inlet and Outlet Water Quality
+Inlet_and_Outlet_Water_Quality ||--o{ widgets : has_widgets
+widgets ||--|| metrics : has_metrics
+metrics ||--|| TUR_TWTdd1_1 : has_TUR_TWTdd1_1
+data ||--|| Biological_Process_Health : has_Biological Process Health
+Biological_Process_Health ||--o{ widgets : has_widgets
+widgets ||--|| metrics : has_metrics
+data ||--|| Safety : has_Safety
+Safety ||--o{ widgets : has_widgets
+widgets ||--|| metrics : has_metrics
+data ||--|| Energy_Consumption : has_Energy Consumption
+Energy_Consumption ||--o{ widgets : has_widgets
+widgets ||--|| metrics : has_metrics
+metrics ||--|| EMKWH_1 : has_EMKWH_1
+metrics ||--|| EMKW_1 : has_EMKW_1
+data ||--|| Equipment_Performance_and_Maintenance : has_Equipment Performance and Maintenance
+Equipment_Performance_and_Maintenance ||--o{ widgets : has_widgets
+widgets ||--|| metrics : has_metrics
+metrics ||--|| BWS_MGFdd1_1 : has_BWS_MGFdd1_1
+metrics ||--|| INLETPT_UFdd1_1 : has_INLETPT_UFdd1_1
+metrics ||--|| INLETPT_MGFdd1_1 : has_INLETPT_MGFdd1_1
+metrics ||--|| INLETPT_ACFdd1_1 : has_INLETPT_ACFdd1_1
+metrics ||--|| BWS_ACFdd1_1 : has_BWS_ACFdd1_1
+metrics ||--|| CATPT_UFdd1_2 : has_CATPT_UFdd1_2
+metrics ||--|| PT_HEADdd1_1 : has_PT_HEADdd1_1
+@enduml

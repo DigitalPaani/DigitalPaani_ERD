@@ -1,0 +1,162 @@
+@startuml alertTasks_Diagram
+
+entity "0" as 0 {
+  operator : string
+  sensorTag : string
+  threshold : int
+  thresholdType : string
+}
+
+entity "1" as 1 {
+  operator : string
+  sensorTag : string
+  threshold : int
+  thresholdType : string
+}
+
+entity "alertTasks" as alertTasks {
+  _id : ObjectId
+  toUser : string
+  type : string
+  dueTimeFromPosting : string
+  escalations : object
+  heading : object
+  description : object
+  subTasks : list
+  metadata : object
+  plantId : ObjectId
+  attachedTickets : list
+  isOpen : boolean
+  ccUsers : list
+  primaryUser : object
+  resolutionFreq : string
+  equipments : object
+  issueType : list
+  resolutionConditions : list
+  observationConditions : list
+  observationFreq : string
+  isActive : boolean
+  isDeleted : boolean
+  emergency : boolean
+  emailAfter : int
+  verifiedClosed : boolean
+  priority : string
+  history : list
+}
+
+entity "escalations" as escalations {
+  Level 1 : object
+  Level 2 : object
+  Level 3 : object
+}
+
+entity "Level 1" as Level_1 {
+  time : string
+  group : string
+  _id : ObjectId
+}
+
+entity "Level 2" as Level_2 {
+  time : string
+  group : string
+  _id : ObjectId
+}
+
+entity "Level 3" as Level_3 {
+  time : string
+  group : string
+  _id : ObjectId
+}
+
+entity "heading" as heading {
+  eng : string
+  hindi : string
+}
+
+entity "description" as description {
+  eng : string
+  hindi : string
+}
+
+entity "subTasks" as subTasks {
+  name : string
+  namehindi : string
+  _id : ObjectId
+}
+
+entity "metadata" as metadata {
+  createdBy : string
+  createdAt : string
+}
+
+entity "ccUsers" as ccUsers {
+  plantId : list
+  name : string
+  number : string
+  email : string
+  forid : ObjectId
+  role : string
+  password : string
+  _id : ObjectId
+}
+
+entity "plantId" as plantId {
+  _id : ObjectId
+}
+
+entity "primaryUser" as primaryUser {
+  forWho : string
+  plantId : list
+  name : string
+  number : string
+  email : string
+  forid : ObjectId
+  role : string
+  password : string
+  userStatus : unknown
+}
+
+entity "equipments" as equipments {
+  id : string
+  nickName : string
+  type : string
+}
+
+entity "resolutionConditions" as resolutionConditions {
+  0 : object
+  1 : object
+}
+
+entity "observationConditions" as observationConditions {
+  0 : object
+}
+
+entity "history" as history {
+  updatedBy : ObjectId
+  updatedAt : string
+  type : string
+  previousStatus : boolean
+  _id : ObjectId
+}
+
+' // Relationships
+alertTasks ||--|| escalations : has_escalations
+escalations ||--|| Level_1 : has_Level 1
+escalations ||--|| Level_2 : has_Level 2
+escalations ||--|| Level_3 : has_Level 3
+alertTasks ||--|| heading : has_heading
+alertTasks ||--|| description : has_description
+alertTasks ||--o{ subTasks : has_subTasks
+alertTasks ||--|| metadata : has_metadata
+alertTasks ||--o{ ccUsers : has_ccUsers
+ccUsers ||--o{ plantId : has_plantId
+alertTasks ||--|| primaryUser : has_primaryUser
+primaryUser ||--o{ plantId : has_plantId
+alertTasks ||--|| equipments : has_equipments
+alertTasks ||--o{ resolutionConditions : has_resolutionConditions
+resolutionConditions ||--|| 0 : has_0
+resolutionConditions ||--|| 1 : has_1
+alertTasks ||--o{ observationConditions : has_observationConditions
+observationConditions ||--|| 0 : has_0
+alertTasks ||--o{ history : has_history
+@enduml

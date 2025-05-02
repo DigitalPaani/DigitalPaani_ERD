@@ -1,12 +1,12 @@
-@startuml DATA_INPUT_FORM_Diagram
+@startuml Data_Input_Form_Diagram
 
-entity "DATA INPUT FORM" as DATA_INPUT_FORM {
-  _id : objectId
-  plantId : objectId
+entity "Data Input Form" as Data_Input_Form {
+  _id : ObjectId
+  plantId : ObjectId
   form : object
 }
 
-entity "FORM" as FORM {
+entity "form" as form {
   Water Quality Test Result : list
   Process Observation : list
   Maintenance : list
@@ -14,7 +14,7 @@ entity "FORM" as FORM {
   Inventory : object
 }
 
-entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
+entity "Water Quality Test Result" as Water_Quality_Test_Result {
   title : string
   min : int
   max : int
@@ -23,20 +23,20 @@ entity "WATER QUALITY TEST RESULT" as WATER_QUALITY_TEST_RESULT {
   range : boolean
 }
 
-entity "PROCESS OBSERVATION" as PROCESS_OBSERVATION {
+entity "Process Observation" as Process_Observation {
   type : string
   title : string
   checked : boolean
   options : list
 }
 
-entity "MAINTENANCE" as MAINTENANCE {
+entity "Maintenance" as Maintenance {
   title : string
   type : string
   checked : boolean
 }
 
-entity "INVENTORY" as INVENTORY {
+entity "Inventory" as Inventory {
   Chemicals : list
   Consumables : list
   Electrical Spare List : list
@@ -45,14 +45,14 @@ entity "INVENTORY" as INVENTORY {
   Tool for Cleaning : list
 }
 
-entity "CHEMICALS" as CHEMICALS {
+entity "Chemicals" as Chemicals {
   title : string
   min : int
   checked : boolean
   type : string
 }
 
-entity "CONSUMABLES" as CONSUMABLES {
+entity "Consumables" as Consumables {
   title : string
   min : int
   checked : boolean
@@ -60,11 +60,11 @@ entity "CONSUMABLES" as CONSUMABLES {
 }
 
 ' // Relationships
-DATA_INPUT_FORM ||--|| FORM : has_form
-FORM ||--o{ WATER_QUALITY_TEST_RESULT : has_Water Quality Test Result
-FORM ||--o{ PROCESS_OBSERVATION : has_Process Observation
-FORM ||--o{ MAINTENANCE : has_Maintenance
-FORM ||--|| INVENTORY : has_Inventory
-INVENTORY ||--o{ CHEMICALS : has_Chemicals
-INVENTORY ||--o{ CONSUMABLES : has_Consumables
+Data_Input_Form ||--|| form : has_form
+form ||--o{ Water_Quality_Test_Result : has_Water Quality Test Result
+form ||--o{ Process_Observation : has_Process Observation
+form ||--o{ Maintenance : has_Maintenance
+form ||--|| Inventory : has_Inventory
+Inventory ||--o{ Chemicals : has_Chemicals
+Inventory ||--o{ Consumables : has_Consumables
 @enduml

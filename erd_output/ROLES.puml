@@ -1,28 +1,28 @@
-@startuml ROLES_Diagram
+@startuml Roles_Diagram
 
-entity "ROLES" as ROLES {
-  _id : objectId
+entity "Roles" as Roles {
+  _id : ObjectId
   name : string
   permissionTags : list
   defaultHomepage : string
-  assignedGroup : objectId
+  assignedGroup : ObjectId
   description : string
   roleScope : string
   roleType : string
   isArchived : boolean
-  createdBy : objectId
+  createdBy : ObjectId
   createdAt : object
   updatedAt : object
   __v : int
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-ROLES ||--|| CREATED_AT : has_createdAt
-ROLES ||--|| UPDATED_AT : has_updatedAt
+Roles ||--|| createdAt : has_createdAt
+Roles ||--|| updatedAt : has_updatedAt
 @enduml

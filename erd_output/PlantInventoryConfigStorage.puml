@@ -1,0 +1,52 @@
+@startuml PlantInventoryConfigStorage_Diagram
+
+entity "PlantInventoryConfigStorage" as PlantInventoryConfigStorage {
+  _id : ObjectId
+  inventoryCategoryName : string
+  plantId : ObjectId
+  __v : int
+  clientId : ObjectId
+  inventoryItemDetails : list
+  formConfiguration : object
+}
+
+entity "inventoryItemDetails" as inventoryItemDetails {
+  checked : boolean
+  itemId : ObjectId
+  name : string
+  min : int
+  unit : string
+  expectedValue : list
+  sensorsConfig : list
+  _id : ObjectId
+}
+
+entity "expectedValue" as expectedValue {
+  value : int
+  unit : string
+  timeMins : int
+  time : int
+  timeUnit : string
+  _id : ObjectId
+}
+
+entity "sensorsConfig" as sensorsConfig {
+  sensorId : ObjectId
+  type : string
+  sensorTag : string
+  sensorType : string
+  sensorTypeAbr : string
+  _id : ObjectId
+}
+
+entity "formConfiguration" as formConfiguration {
+  isFormConfigured : boolean
+  _id : ObjectId
+}
+
+' // Relationships
+PlantInventoryConfigStorage ||--o{ inventoryItemDetails : has_inventoryItemDetails
+inventoryItemDetails ||--o{ expectedValue : has_expectedValue
+inventoryItemDetails ||--o{ sensorsConfig : has_sensorsConfig
+PlantInventoryConfigStorage ||--|| formConfiguration : has_formConfiguration
+@enduml

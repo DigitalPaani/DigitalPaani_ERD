@@ -1,9 +1,14 @@
-@startuml ALERT_TASKS_Diagram
-' !include FIXED_TASKS_1.puml
-' !include ONE_TIME_TASKS.puml
+@startuml Alert_Tasks_Diagram
 
-entity "ALERT TASKS" as ALERT_TASKS {
-  _id : objectId
+entity "0" as 0 {
+  operator : string
+  sensorTag : string
+  threshold : int
+  thresholdType : string
+}
+
+entity "Alert Tasks" as Alert_Tasks {
+  _id : ObjectId
   toUser : string
   condition : list
   type : string
@@ -14,7 +19,7 @@ entity "ALERT TASKS" as ALERT_TASKS {
   description : object
   subTasks : list
   metadata : object
-  plantId : objectId
+  plantId : ObjectId
   attachedTickets : list
   isOpen : boolean
   ccUsers : list
@@ -25,107 +30,100 @@ entity "ALERT TASKS" as ALERT_TASKS {
   issueType : list
 }
 
-entity "CONDITION" as CONDITION {
+entity "condition" as condition {
   0 : object
 }
 
-entity "0" as _0 {
-  operator : string
-  sensorTag : string
-  threshold : int
-  thresholdType : string
-}
-
-entity "ESCALATIONS" as ESCALATIONS {
+entity "escalations" as escalations {
   Level 1 : object
   Level 2 : object
   Level 3 : object
 }
 
-entity "LEVEL 1" as LEVEL_1 {
+entity "Level 1" as Level_1 {
   time : string
   group : string
 }
 
-entity "LEVEL 2" as LEVEL_2 {
+entity "Level 2" as Level_2 {
   time : string
   group : string
 }
 
-entity "LEVEL 3" as LEVEL_3 {
+entity "Level 3" as Level_3 {
   time : string
   group : string
 }
 
-entity "HEADING" as HEADING {
+entity "heading" as heading {
   eng : string
   hindi : string
 }
 
-entity "DESCRIPTION" as DESCRIPTION {
+entity "description" as description {
   eng : string
   hind : string
 }
 
-entity "SUB TASKS" as SUB_TASKS {
+entity "subTasks" as subTasks {
   name : string
   namehindi : string
 }
 
-entity "METADATA" as METADATA {
+entity "metadata" as metadata {
   createdBy : string
   createdAt : string
 }
 
-entity "CC USERS" as CC_USERS {
-  _id : objectId
+entity "ccUsers" as ccUsers {
+  _id : ObjectId
   role : string
   name : string
   email : string
   number : string
-  forid : objectId
+  forid : ObjectId
   password : string
   plantId : list
   userStatus : string
 }
 
-entity "PLANT ID" as PLANT_ID {
-  buffer : binary
+entity "plantId" as plantId {
+  _id : ObjectId
 }
 
-entity "PRIMARY USER" as PRIMARY_USER {
-  _id : objectId
+entity "primaryUser" as primaryUser {
+  _id : ObjectId
   forWho : string
   plantId : list
   name : string
   number : string
   email : string
-  forid : objectId
+  forid : ObjectId
   role : string
   password : string
   userStatus : unknown
 }
 
-entity "EQUIPMENTS" as EQUIPMENTS {
+entity "equipments" as equipments {
   id : string
   nickName : string
   type : string
 }
 
 ' // Relationships
-ALERT_TASKS ||--o{ CONDITION : has_condition
-CONDITION ||--|| _0 : has_0
-ALERT_TASKS ||--|| ESCALATIONS : has_escalations
-ESCALATIONS ||--|| LEVEL_1 : has_Level 1
-ESCALATIONS ||--|| LEVEL_2 : has_Level 2
-ESCALATIONS ||--|| LEVEL_3 : has_Level 3
-ALERT_TASKS ||--|| HEADING : has_heading
-ALERT_TASKS ||--|| DESCRIPTION : has_description
-ALERT_TASKS ||--o{ SUB_TASKS : has_subTasks
-ALERT_TASKS ||--|| METADATA : has_metadata
-ALERT_TASKS ||--o{ CC_USERS : has_ccUsers
-CC_USERS ||--o{ PLANT_ID : has_plantId
-ALERT_TASKS ||--|| PRIMARY_USER : has_primaryUser
-PRIMARY_USER ||--o{ PLANT_ID : has_plantId
-ALERT_TASKS ||--|| EQUIPMENTS : has_equipments
+Alert_Tasks ||--o{ condition : has_condition
+condition ||--|| 0 : has_0
+Alert_Tasks ||--|| escalations : has_escalations
+escalations ||--|| Level_1 : has_Level 1
+escalations ||--|| Level_2 : has_Level 2
+escalations ||--|| Level_3 : has_Level 3
+Alert_Tasks ||--|| heading : has_heading
+Alert_Tasks ||--|| description : has_description
+Alert_Tasks ||--o{ subTasks : has_subTasks
+Alert_Tasks ||--|| metadata : has_metadata
+Alert_Tasks ||--o{ ccUsers : has_ccUsers
+ccUsers ||--o{ plantId : has_plantId
+Alert_Tasks ||--|| primaryUser : has_primaryUser
+primaryUser ||--o{ plantId : has_plantId
+Alert_Tasks ||--|| equipments : has_equipments
 @enduml

@@ -1,7 +1,7 @@
-@startuml TESTS_Diagram
+@startuml tests_Diagram
 
-entity "TESTS" as TESTS {
-  _id : objectId
+entity "tests" as tests {
+  _id : ObjectId
   __v : int
 }
 

@@ -1,13 +1,13 @@
-@startuml TASKS_Diagram
+@startuml tasks_Diagram
 
-entity "TASKS" as TASKS {
-  _id : objectId
-  triggerId : objectId
-  taskTemplateId : objectId
-  userGroupId : objectId
-  assetId : objectId
-  assignee : objectId
-  workflowId : objectId
+entity "tasks" as tasks {
+  _id : ObjectId
+  triggerId : ObjectId
+  taskTemplateId : ObjectId
+  userGroupId : ObjectId
+  assetId : ObjectId
+  assignee : ObjectId
+  workflowId : ObjectId
   workflowDetails : object
   name : string
   description : string
@@ -31,7 +31,7 @@ entity "TASKS" as TASKS {
   escalations : list
   componentActions : list
   isObsolete : boolean
-  taskComponentId : objectId
+  taskComponentId : ObjectId
   taskCompleted : boolean
   isArchived : boolean
   createdBy : unknown
@@ -40,8 +40,8 @@ entity "TASKS" as TASKS {
   __v : int
 }
 
-entity "WORKFLOW DETAILS" as WORKFLOW_DETAILS {
-  workflowId : objectId
+entity "workflowDetails" as workflowDetails {
+  workflowId : ObjectId
   name : string
   description : string
   nodes : list
@@ -50,7 +50,7 @@ entity "WORKFLOW DETAILS" as WORKFLOW_DETAILS {
   transitionStatus : string
 }
 
-entity "NODES" as NODES {
+entity "nodes" as nodes {
   id : string
   type : string
   position : object
@@ -62,22 +62,22 @@ entity "NODES" as NODES {
   dragging : boolean
 }
 
-entity "POSITION" as POSITION {
+entity "position" as position {
   x : float
   y : float
 }
 
-entity "DATA" as DATA {
+entity "data" as data {
   type : string
   label : string
 }
 
-entity "POSITION ABSOLUTE" as POSITION_ABSOLUTE {
+entity "positionAbsolute" as positionAbsolute {
   x : float
   y : float
 }
 
-entity "EDGES" as EDGES {
+entity "edges" as edges {
   id : string
   source : string
   sourceHandle : string
@@ -89,21 +89,21 @@ entity "EDGES" as EDGES {
   markerEnd : object
 }
 
-entity "MARKER END" as MARKER_END {
+entity "markerEnd" as markerEnd {
   type : string
   width : int
   height : int
   color : string
 }
 
-entity "WORKFLOW ACTIONS" as WORKFLOW_ACTIONS {
+entity "workflowActions" as workflowActions {
   nodeId : string
   nodeLabel : string
   actionNodes : list
   _id : string
 }
 
-entity "ACTION NODES" as ACTION_NODES {
+entity "actionNodes" as actionNodes {
   id : string
   label : string
   selectedAction : string
@@ -112,53 +112,53 @@ entity "ACTION NODES" as ACTION_NODES {
   actionIds : list
 }
 
-entity "SKILLS SELECTED" as SKILLS_SELECTED {
-  buffer : binary
+entity "skillsSelected" as skillsSelected {
+  _id : ObjectId
 }
 
-entity "ESCALATIONS" as ESCALATIONS {
+entity "escalations" as escalations {
   timeInMinutes : int
   communicationMedium : string
   userIds : list
   isNotified : boolean
 }
 
-entity "USER IDS" as USER_IDS {
-  buffer : binary
+entity "userIds" as userIds {
+  _id : ObjectId
 }
 
-entity "COMPONENT ACTIONS" as COMPONENT_ACTIONS {
+entity "componentActions" as componentActions {
   nodeId : string
   actionNodes : list
 }
 
-entity "ACTION IDS" as ACTION_IDS {
-  buffer : binary
+entity "actionIds" as actionIds {
+  _id : ObjectId
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-TASKS ||--|| WORKFLOW_DETAILS : has_workflowDetails
-WORKFLOW_DETAILS ||--o{ NODES : has_nodes
-NODES ||--|| POSITION : has_position
-NODES ||--|| DATA : has_data
-NODES ||--|| POSITION_ABSOLUTE : has_positionAbsolute
-WORKFLOW_DETAILS ||--o{ EDGES : has_edges
-EDGES ||--|| DATA : has_data
-EDGES ||--|| MARKER_END : has_markerEnd
-WORKFLOW_DETAILS ||--o{ WORKFLOW_ACTIONS : has_workflowActions
-WORKFLOW_ACTIONS ||--o{ ACTION_NODES : has_actionNodes
-TASKS ||--o{ SKILLS_SELECTED : has_skillsSelected
-TASKS ||--o{ ESCALATIONS : has_escalations
-ESCALATIONS ||--o{ USER_IDS : has_userIds
-TASKS ||--o{ COMPONENT_ACTIONS : has_componentActions
-COMPONENT_ACTIONS ||--o{ ACTION_NODES : has_actionNodes
-ACTION_NODES ||--o{ ACTION_IDS : has_actionIds
-TASKS ||--|| CREATED_AT : has_createdAt
-TASKS ||--|| UPDATED_AT : has_updatedAt
+tasks ||--|| workflowDetails : has_workflowDetails
+workflowDetails ||--o{ nodes : has_nodes
+nodes ||--|| position : has_position
+nodes ||--|| data : has_data
+nodes ||--|| positionAbsolute : has_positionAbsolute
+workflowDetails ||--o{ edges : has_edges
+edges ||--|| data : has_data
+edges ||--|| markerEnd : has_markerEnd
+workflowDetails ||--o{ workflowActions : has_workflowActions
+workflowActions ||--o{ actionNodes : has_actionNodes
+tasks ||--o{ skillsSelected : has_skillsSelected
+tasks ||--o{ escalations : has_escalations
+escalations ||--o{ userIds : has_userIds
+tasks ||--o{ componentActions : has_componentActions
+componentActions ||--o{ actionNodes : has_actionNodes
+actionNodes ||--o{ actionIds : has_actionIds
+tasks ||--|| createdAt : has_createdAt
+tasks ||--|| updatedAt : has_updatedAt
 @enduml

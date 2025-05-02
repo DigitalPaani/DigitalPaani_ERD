@@ -1,44 +1,44 @@
-@startuml TASK_LOGS_Diagram
+@startuml task_logs_Diagram
 
-entity "TASK LOGS" as TASK_LOGS {
-  _id : objectId
+entity "task logs" as task_logs {
+  _id : ObjectId
   actionId : unknown
   url : string
   filename : string
   mimetype : string
   message : string
   isArchived : boolean
-  taskId : objectId
+  taskId : ObjectId
   transitionFrom : object
   transitionTo : object
   type : string
-  createdBy : objectId
+  createdBy : ObjectId
   createdAt : object
   updatedAt : object
   __v : int
 }
 
-entity "TRANSITION FROM" as TRANSITION_FROM {
+entity "transitionFrom" as transitionFrom {
   id : string
   value : string
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "TRANSITION TO" as TRANSITION_TO {
+entity "transitionTo" as transitionTo {
   id : string
   value : string
-  _id : objectId
+  _id : ObjectId
 }
 
-entity "CREATED AT" as CREATED_AT {
+entity "createdAt" as createdAt {
 }
 
-entity "UPDATED AT" as UPDATED_AT {
+entity "updatedAt" as updatedAt {
 }
 
 ' // Relationships
-TASK_LOGS ||--|| TRANSITION_FROM : has_transitionFrom
-TASK_LOGS ||--|| TRANSITION_TO : has_transitionTo
-TASK_LOGS ||--|| CREATED_AT : has_createdAt
-TASK_LOGS ||--|| UPDATED_AT : has_updatedAt
+task_logs ||--|| transitionFrom : has_transitionFrom
+task_logs ||--|| transitionTo : has_transitionTo
+task_logs ||--|| createdAt : has_createdAt
+task_logs ||--|| updatedAt : has_updatedAt
 @enduml

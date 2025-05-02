@@ -1,26 +1,26 @@
-@startuml PLCS_Diagram
+@startuml plcs_Diagram
 
-entity "PLCS" as PLCS {
-  _id : objectId
+entity "plcs" as plcs {
+  _id : ObjectId
   nickName : string
-  plantId : objectId
+  plantId : ObjectId
   lastUpdateTime : object
   lastMessageSentTime : object
   connectionStatus : string
   lastPinged : object
 }
 
-entity "LAST UPDATE TIME" as LAST_UPDATE_TIME {
+entity "lastUpdateTime" as lastUpdateTime {
 }
 
-entity "LAST MESSAGE SENT TIME" as LAST_MESSAGE_SENT_TIME {
+entity "lastMessageSentTime" as lastMessageSentTime {
 }
 
-entity "LAST PINGED" as LAST_PINGED {
+entity "lastPinged" as lastPinged {
 }
 
 ' // Relationships
-PLCS ||--|| LAST_UPDATE_TIME : has_lastUpdateTime
-PLCS ||--|| LAST_MESSAGE_SENT_TIME : has_lastMessageSentTime
-PLCS ||--|| LAST_PINGED : has_lastPinged
+plcs ||--|| lastUpdateTime : has_lastUpdateTime
+plcs ||--|| lastMessageSentTime : has_lastMessageSentTime
+plcs ||--|| lastPinged : has_lastPinged
 @enduml

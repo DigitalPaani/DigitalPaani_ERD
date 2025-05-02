@@ -1,0 +1,217 @@
+@startuml chokePointConfig2_Diagram
+
+entity "chokePointConfig2" as chokePointConfig2 {
+  _id : ObjectId
+  layoutId : ObjectId
+  __v : int
+  nodes : object
+}
+
+entity "nodes" as nodes {
+  Equalization Tank1 : object
+  Pump2 : object
+  Pump1 : object
+  Pump3 : object
+  Pump4 : object
+  Pump5 : object
+  Pump6 : object
+  Pump7 : object
+  Pump8 : object
+  Pump9 : object
+  Pump10 : object
+  Pump11 : object
+  Pump12 : object
+  Pump13 : object
+  Pump14 : object
+  Pump15 : object
+  Pump16 : object
+  Pump17 : object
+  Pump18 : object
+  Pump19 : object
+  Pump20 : object
+  Pump21 : object
+  Pump24 : object
+  Pump22 : object
+  Pump23 : object
+  Blower1 : object
+  Blower2 : object
+  MGF1 : object
+  ACF1 : object
+  Agitator1 : object
+  Flowmeter1 : object
+  Motorized Valve14 : object
+  Motorized Valve13 : object
+  Flowmeter2 : object
+}
+
+entity "Equalization Tank1" as Equalization_Tank1 {
+  64510b95bf14bbb5792b543e : list
+}
+
+entity "Pump2" as Pump2 {
+}
+
+entity "Pump1" as Pump1 {
+}
+
+entity "Pump3" as Pump3 {
+  64510b95bf14bbb5792b5444 : list
+}
+
+entity "Pump4" as Pump4 {
+  64510b95bf14bbb5792b5447 : list
+}
+
+entity "Pump5" as Pump5 {
+  64510b95bf14bbb5792b544d : list
+}
+
+entity "Pump6" as Pump6 {
+  64510b95bf14bbb5792b5450 : list
+}
+
+entity "Pump7" as Pump7 {
+  64510b95bf14bbb5792b5453 : list
+}
+
+entity "Pump8" as Pump8 {
+  64510b95bf14bbb5792b5456 : list
+}
+
+entity "Pump9" as Pump9 {
+  64510b95bf14bbb5792b5459 : list
+}
+
+entity "Pump10" as Pump10 {
+  64510b95bf14bbb5792b545c : list
+}
+
+entity "Pump11" as Pump11 {
+  64510c3abf14bbb5792b5465 : list
+}
+
+entity "Pump12" as Pump12 {
+  64523f39bf14bbb5792b57d0 : list
+}
+
+entity "Pump13" as Pump13 {
+  64523f39bf14bbb5792b57d2 : list
+}
+
+entity "Pump14" as Pump14 {
+  64523f39bf14bbb5792b57d6 : list
+}
+
+entity "Pump15" as Pump15 {
+  64523f39bf14bbb5792b57db : list
+}
+
+entity "Pump16" as Pump16 {
+  645241f7bf14bbb5792b57dd : list
+}
+
+entity "Pump17" as Pump17 {
+  645241f7bf14bbb5792b57e1 : list
+}
+
+entity "Pump18" as Pump18 {
+  645241f7bf14bbb5792b57e1 : list
+}
+
+entity "Pump19" as Pump19 {
+  645241f7bf14bbb5792b57e3 : list
+}
+
+entity "Pump20" as Pump20 {
+  645241f7bf14bbb5792b57e0 : list
+}
+
+entity "Pump21" as Pump21 {
+  645241f7bf14bbb5792b57e7 : list
+}
+
+entity "Pump24" as Pump24 {
+  64525c5fbf14bbb5792b582a : list
+}
+
+entity "Pump22" as Pump22 {
+  64524fd1bf14bbb5792b57eb : list
+}
+
+entity "Pump23" as Pump23 {
+  64524fd1bf14bbb5792b57f2 : list
+}
+
+entity "Blower1" as Blower1 {
+  64524fd1bf14bbb5792b57ed : list
+}
+
+entity "Blower2" as Blower2 {
+  64524fd1bf14bbb5792b57ee : list
+}
+
+entity "MGF1" as MGF1 {
+  64525954bf14bbb5792b5826 : list
+}
+
+entity "ACF1" as ACF1 {
+  64525954bf14bbb5792b5827 : list
+}
+
+entity "Agitator1" as Agitator1 {
+  64525c5fbf14bbb5792b582e : list
+}
+
+entity "Flowmeter1" as Flowmeter1 {
+  64561597bf14bbb5792b5f91 : list
+}
+
+entity "Motorized Valve14" as Motorized_Valve14 {
+  6458bf61bf14bbb5792b6392 : list
+}
+
+entity "Motorized Valve13" as Motorized_Valve13 {
+  6458bf61bf14bbb5792b6391 : list
+}
+
+entity "Flowmeter2" as Flowmeter2 {
+  64561597bf14bbb5792b5f93 : list
+}
+
+' // Relationships
+chokePointConfig2 ||--|| nodes : has_nodes
+nodes ||--|| Equalization_Tank1 : has_Equalization Tank1
+nodes ||--|| Pump2 : has_Pump2
+nodes ||--|| Pump1 : has_Pump1
+nodes ||--|| Pump3 : has_Pump3
+nodes ||--|| Pump4 : has_Pump4
+nodes ||--|| Pump5 : has_Pump5
+nodes ||--|| Pump6 : has_Pump6
+nodes ||--|| Pump7 : has_Pump7
+nodes ||--|| Pump8 : has_Pump8
+nodes ||--|| Pump9 : has_Pump9
+nodes ||--|| Pump10 : has_Pump10
+nodes ||--|| Pump11 : has_Pump11
+nodes ||--|| Pump12 : has_Pump12
+nodes ||--|| Pump13 : has_Pump13
+nodes ||--|| Pump14 : has_Pump14
+nodes ||--|| Pump15 : has_Pump15
+nodes ||--|| Pump16 : has_Pump16
+nodes ||--|| Pump17 : has_Pump17
+nodes ||--|| Pump18 : has_Pump18
+nodes ||--|| Pump19 : has_Pump19
+nodes ||--|| Pump20 : has_Pump20
+nodes ||--|| Pump21 : has_Pump21
+nodes ||--|| Pump24 : has_Pump24
+nodes ||--|| Pump22 : has_Pump22
+nodes ||--|| Pump23 : has_Pump23
+nodes ||--|| Blower1 : has_Blower1
+nodes ||--|| Blower2 : has_Blower2
+nodes ||--|| MGF1 : has_MGF1
+nodes ||--|| ACF1 : has_ACF1
+nodes ||--|| Agitator1 : has_Agitator1
+nodes ||--|| Flowmeter1 : has_Flowmeter1
+nodes ||--|| Motorized_Valve14 : has_Motorized Valve14
+nodes ||--|| Motorized_Valve13 : has_Motorized Valve13
+nodes ||--|| Flowmeter2 : has_Flowmeter2
+@enduml

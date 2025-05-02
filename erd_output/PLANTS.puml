@@ -1,7 +1,7 @@
-@startuml PLANTS_Diagram
+@startuml Plants_Diagram
 
-entity "PLANTS" as PLANTS {
-  _id : objectId
+entity "Plants" as Plants {
+  _id : ObjectId
   plantName : string
   client : object
   csm : object
@@ -27,48 +27,48 @@ entity "PLANTS" as PLANTS {
   userGroup : object
 }
 
-entity "CLIENT" as CLIENT {
-  id : objectId
+entity "client" as client {
+  id : ObjectId
   name : string
 }
 
-entity "CSM" as CSM {
-  id : objectId
+entity "csm" as csm {
+  id : ObjectId
   name : string
 }
 
-entity "SERVICE PROVIDER" as SERVICE_PROVIDER {
+entity "serviceProvider" as serviceProvider {
   id : unknown
   name : unknown
 }
 
-entity "AUTO EMAILING" as AUTO_EMAILING {
-  dailyReportPageId : objectId
-  weeklyReportPageId : objectId
-  monthlyReportPageId : objectId
+entity "autoEmailing" as autoEmailing {
+  dailyReportPageId : ObjectId
+  weeklyReportPageId : ObjectId
+  monthlyReportPageId : ObjectId
 }
 
-entity "EMBEDDED LINKS" as EMBEDDED_LINKS {
+entity "embeddedLinks" as embeddedLinks {
   name : string
   link : string
 }
 
-entity "DATA BREAK CONFIG" as DATA_BREAK_CONFIG {
+entity "dataBreakConfig" as dataBreakConfig {
   sendDataBreakAlerts : boolean
 }
 
-entity "USER GROUP" as USER_GROUP {
-  id : objectId
+entity "userGroup" as userGroup {
+  id : ObjectId
   name : string
   abbr : string
 }
 
 ' // Relationships
-PLANTS ||--|| CLIENT : has_client
-PLANTS ||--|| CSM : has_csm
-PLANTS ||--|| SERVICE_PROVIDER : has_serviceProvider
-PLANTS ||--|| AUTO_EMAILING : has_autoEmailing
-PLANTS ||--o{ EMBEDDED_LINKS : has_embeddedLinks
-PLANTS ||--|| DATA_BREAK_CONFIG : has_dataBreakConfig
-PLANTS ||--|| USER_GROUP : has_userGroup
+Plants ||--|| client : has_client
+Plants ||--|| csm : has_csm
+Plants ||--|| serviceProvider : has_serviceProvider
+Plants ||--|| autoEmailing : has_autoEmailing
+Plants ||--o{ embeddedLinks : has_embeddedLinks
+Plants ||--|| dataBreakConfig : has_dataBreakConfig
+Plants ||--|| userGroup : has_userGroup
 @enduml

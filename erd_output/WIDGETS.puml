@@ -1,32 +1,32 @@
-@startuml WIDGETS_Diagram
+@startuml widgets_Diagram
 
-entity "WIDGETS" as WIDGETS {
-  _id : objectId
+entity "widgets" as widgets {
+  _id : ObjectId
   checked : boolean
   widgetType : string
   heading : object
   font : object
   position : object
-  widgetOriginId : objectId
-  dashboardPageId : objectId
+  widgetOriginId : ObjectId
+  dashboardPageId : ObjectId
 }
 
-entity "HEADING" as HEADING {
+entity "heading" as heading {
   english : string
   hindi : string
 }
 
-entity "FONT" as FONT {
+entity "font" as font {
   family : string
   color : string
   size : string
 }
 
-entity "POSITION" as POSITION {
+entity "position" as position {
 }
 
 ' // Relationships
-WIDGETS ||--|| HEADING : has_heading
-WIDGETS ||--|| FONT : has_font
-WIDGETS ||--|| POSITION : has_position
+widgets ||--|| heading : has_heading
+widgets ||--|| font : has_font
+widgets ||--|| position : has_position
 @enduml
