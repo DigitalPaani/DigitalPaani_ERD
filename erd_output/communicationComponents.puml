@@ -25,7 +25,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 communicationComponents ||--o{ userIds : has_userIds
 communicationComponents ||--|| createdAt : has_createdAt
 communicationComponents ||--|| updatedAt : has_updatedAt

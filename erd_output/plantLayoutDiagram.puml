@@ -42,7 +42,14 @@ entity "sensors" as sensors {
   sensorTag : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+plantLayoutDiagram }o--|| Plants : refers_to
 plantLayoutDiagram ||--o{ nodes : has_nodes
 nodes ||--|| data : has_data
 data ||--|| configInfo : has_configInfo

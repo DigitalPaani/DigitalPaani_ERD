@@ -46,7 +46,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 emailLogs ||--o{ libResponse : has_libResponse
 libResponse ||--|| headers : has_headers
 emailLogs ||--|| createdAt : has_createdAt

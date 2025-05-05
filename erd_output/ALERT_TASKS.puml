@@ -110,7 +110,13 @@ entity "equipments" as equipments {
   type : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 Alert_Tasks ||--o{ condition : has_condition
 condition ||--|| 0 : has_0
 Alert_Tasks ||--|| escalations : has_escalations
@@ -121,6 +127,7 @@ Alert_Tasks ||--|| heading : has_heading
 Alert_Tasks ||--|| description : has_description
 Alert_Tasks ||--o{ subTasks : has_subTasks
 Alert_Tasks ||--|| metadata : has_metadata
+Alert_Tasks }o--|| Plants : refers_to
 Alert_Tasks ||--o{ ccUsers : has_ccUsers
 ccUsers ||--o{ plantId : has_plantId
 Alert_Tasks ||--|| primaryUser : has_primaryUser

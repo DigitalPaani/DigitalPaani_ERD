@@ -83,7 +83,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 workflows ||--o{ nodes : has_nodes
 nodes ||--|| position : has_position
 nodes ||--|| data : has_data

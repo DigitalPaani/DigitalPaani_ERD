@@ -15,6 +15,13 @@ entity "persistentnotifications" as persistentnotifications {
 entity "created at" as created_at {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+persistentnotifications }o--|| Plants : refers_to
 persistentnotifications ||--|| created_at : has_created_at
 @enduml

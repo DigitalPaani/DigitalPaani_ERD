@@ -34,8 +34,15 @@ entity "lastUpdateInfo" as lastUpdateInfo {
 entity "lastUpdated" as lastUpdated {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 workspaces ||--o{ plants : has_plants
+plants }o--|| Plants : refers_to
 plants ||--|| diagram : has_diagram
 workspaces ||--|| lastUpdateInfo : has_lastUpdateInfo
 lastUpdateInfo ||--|| lastUpdated : has_lastUpdated

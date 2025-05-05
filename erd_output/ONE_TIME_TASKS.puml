@@ -34,9 +34,16 @@ entity "equipments" as equipments {
   type : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 One_Time_Tasks ||--|| heading : has_heading
 One_Time_Tasks ||--|| description : has_description
 One_Time_Tasks ||--o{ subTasks : has_subTasks
+One_Time_Tasks }o--|| Plants : refers_to
 One_Time_Tasks ||--|| equipments : has_equipments
 @enduml

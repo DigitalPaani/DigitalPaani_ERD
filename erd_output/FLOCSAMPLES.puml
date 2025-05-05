@@ -36,7 +36,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 flocsamples ||--o{ marks : has_marks
 marks ||--|| timestamp : has_timestamp
 flocsamples ||--|| startTime : has_startTime

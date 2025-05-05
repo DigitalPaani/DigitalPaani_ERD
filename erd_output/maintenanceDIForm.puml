@@ -200,7 +200,14 @@ entity "formConfiguration" as formConfiguration {
   isFormConfigured : boolean
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+maintenanceDIForm }o--|| Plants : refers_to
 maintenanceDIForm ||--|| form : has_form
 form ||--|| questionBank : has_questionBank
 questionBank ||--|| Blower1 : has_Blower1

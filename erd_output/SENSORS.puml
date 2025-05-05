@@ -13,4 +13,12 @@ entity "sensors" as sensors {
   oldSensorTag : string
 }
 
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+sensors }o--|| Plants : refers_to
 @enduml

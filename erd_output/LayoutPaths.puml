@@ -15,7 +15,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 LayoutPaths ||--|| createdAt : has_createdAt
 LayoutPaths ||--|| updatedAt : has_updatedAt
 @enduml

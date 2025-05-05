@@ -9,9 +9,7 @@ const DB_NAME = process.env.DB_NAME;
 const SAMPLE_LIMIT = 50;
 const OUTPUT_DIR = 'erd_output';
 
-
 function inferType(value) {
-  // Detect ObjectId reliably
   if (
     value instanceof ObjectId ||
     (value &&
@@ -31,14 +29,14 @@ function inferType(value) {
   return 'unknown';
 }
 
-
-
 function formatEntityName(name) {
-  const label = name.trim(); // Preserve original for label
-  const alias = label.replace(/[^a-zA-Z0-9]/g, '_'); // Make valid PlantUML alias
+  const label = name.trim();
+  const alias = label.replace(/[^a-zA-Z0-9]/g, '_');
   return { label, alias };
 }
 
+// Global flag, reset per collection
+let usesPlant = false;
 
 function processDocument(doc, name, entities, relationships, parent = null, relationName = null) {
   const { label: entityLabel, alias: entityAlias } = formatEntityName(name);
@@ -46,12 +44,15 @@ function processDocument(doc, name, entities, relationships, parent = null, rela
 
   Object.entries(doc).forEach(([key, value]) => {
     const type = inferType(value);
+
     if (type === 'object' && value !== null && !Array.isArray(value)) {
       const { alias: subEntityAlias } = formatEntityName(key);
       relationships.push(`${entityAlias} ||--|| ${subEntityAlias} : has_${key}`);
       processDocument(value, key, entities, relationships, entityAlias, key);
       entities[entityAlias][key] = 'object';
-    } else if (type === 'array') {
+    }
+
+    else if (type === 'array') {
       const first = value[0];
       if (typeof first === 'object' && first !== null) {
         const { alias: subEntityAlias } = formatEntityName(key);
@@ -61,8 +62,17 @@ function processDocument(doc, name, entities, relationships, parent = null, rela
       } else {
         entities[entityAlias][key] = 'list';
       }
-    } else {
+    }
+
+    else {
       entities[entityAlias][key] = type;
+
+      // Detect plantId and create relationship from *any* entity
+      if (key === 'plantId' && type === 'ObjectId') {
+        usesPlant = true;
+        const rel = `${entityAlias} }o--|| Plants : refers_to`;
+        if (!relationships.includes(rel)) relationships.push(rel);
+      }
     }
   });
 }
@@ -77,6 +87,8 @@ async function main() {
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
   for (const { name } of collections) {
+    usesPlant = false; // Reset for each collection
+
     const docs = await db.collection(name).find().limit(SAMPLE_LIMIT).toArray();
     if (docs.length === 0) continue;
 
@@ -87,19 +99,25 @@ async function main() {
 
     const { label: diagramLabel, alias: diagramAlias } = formatEntityName(name);
     const lines = [`@startuml ${diagramAlias}_Diagram`, ''];
-    
+
     for (const [entity, fields] of Object.entries(entities)) {
-      const label = entity.replace(/_/g, ' ').replace(/\s+/g, ' ').trim(); // fix spacing
+      const label = entity.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
       lines.push(`entity "${label}" as ${entity} {`);
       for (const [field, type] of Object.entries(fields)) {
         lines.push(`  ${field} : ${type}`);
       }
       lines.push('}\n');
     }
-    
+
+    if (usesPlant) {
+      lines.push(`\n' Shared Plant entity`);
+      lines.push(`entity "Plants" as Plants {`);
+      lines.push(`  _id : ObjectId`);
+      lines.push(`}`);
+    }
 
     if (relationships.length > 0) {
-      lines.push("' // Relationships");
+      lines.push(`\n' Relationships`);
       lines.push(...relationships);
     }
 

@@ -30,7 +30,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 insightComponents ||--o{ equipmentIds : has_equipmentIds
 insightComponents ||--|| createdAt : has_createdAt
 insightComponents ||--|| updatedAt : has_updatedAt

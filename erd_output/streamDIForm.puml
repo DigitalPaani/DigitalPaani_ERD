@@ -22,7 +22,14 @@ entity "formConfiguration" as formConfiguration {
   isFormConfigured : boolean
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+streamDIForm }o--|| Plants : refers_to
 streamDIForm ||--|| form : has_form
 form ||--|| questionBank : has_questionBank
 streamDIForm ||--|| formConfiguration : has_formConfiguration

@@ -48,7 +48,14 @@ entity "Consumables" as Consumables {
   questions : list
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+inventoryDIForm }o--|| Plants : refers_to
 inventoryDIForm ||--|| form : has_form
 form ||--|| questionBank : has_questionBank
 questionBank ||--|| Chemicals : has_Chemicals

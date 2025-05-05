@@ -65,7 +65,8 @@ entity "plantIds" as plantIds {
   _id : ObjectId
 }
 
-' // Relationships
+
+' Relationships
 tickets ||--|| escalations : has_escalations
 escalations ||--|| Level_1 : has_Level 1
 escalations ||--|| Level_2 : has_Level 2

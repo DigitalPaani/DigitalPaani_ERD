@@ -62,7 +62,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 callLogs ||--|| libResponse : has_libResponse
 libResponse ||--|| subresourceUris : has_subresourceUris
 callLogs ||--|| createdAt : has_createdAt

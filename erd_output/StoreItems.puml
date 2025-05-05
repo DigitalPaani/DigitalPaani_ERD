@@ -43,7 +43,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 StoreItems ||--o{ storeItemDetails : has_storeItemDetails
 storeItemDetails ||--o{ assetIds : has_assetIds
 storeItemDetails ||--o{ expectedValue : has_expectedValue

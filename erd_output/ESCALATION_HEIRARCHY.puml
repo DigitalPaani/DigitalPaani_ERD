@@ -34,11 +34,18 @@ entity "Email Group" as Email_Group {
   _id : ObjectId
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 Escalation_Heirarchy ||--|| escalation : has_escalation
 escalation ||--o{ Escalation_Level_1 : has_Escalation Level 1
 escalation ||--o{ Escalation_Level_2 : has_Escalation Level 2
 escalation ||--o{ Escalation_Level_3 : has_Escalation Level 3
 escalation ||--o{ Emergency_Group : has_Emergency Group
 escalation ||--o{ Email_Group : has_Email Group
+Escalation_Heirarchy }o--|| Plants : refers_to
 @enduml

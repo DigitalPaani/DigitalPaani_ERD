@@ -47,7 +47,14 @@ entity "formConfiguration" as formConfiguration {
   isFormConfigured : boolean
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+labTestDIForm }o--|| Plants : refers_to
 labTestDIForm ||--|| form : has_form
 form ||--|| questionBank : has_questionBank
 questionBank ||--|| Treated_Water_Tank1 : has_Treated Water Tank1

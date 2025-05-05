@@ -51,7 +51,8 @@ entity "subTasks" as subTasks {
   namehindi : string
 }
 
-' // Relationships
+
+' Relationships
 workspaceAlerts ||--|| escalations : has_escalations
 escalations ||--|| Level_1 : has_Level 1
 escalations ||--|| Level_2 : has_Level 2

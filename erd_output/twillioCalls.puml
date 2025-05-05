@@ -21,7 +21,14 @@ entity "event" as event {
 entity "createdAt" as createdAt {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 twillioCalls ||--|| event : has_event
+event }o--|| Plants : refers_to
 twillioCalls ||--|| createdAt : has_createdAt
 @enduml

@@ -24,7 +24,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 whatsappTemplates ||--o{ variables : has_variables
 whatsappTemplates ||--|| createdAt : has_createdAt
 whatsappTemplates ||--|| updatedAt : has_updatedAt

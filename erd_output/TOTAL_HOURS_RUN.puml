@@ -27,6 +27,13 @@ entity "hoursRun" as hoursRun {
   ONOFF_FP_1 : int
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 Total_Hours_Run ||--|| hoursRun : has_hoursRun
+Total_Hours_Run }o--|| Plants : refers_to
 @enduml

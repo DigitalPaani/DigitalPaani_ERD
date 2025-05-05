@@ -20,7 +20,8 @@ entity "plantIds" as plantIds {
   _id : ObjectId
 }
 
-' // Relationships
+
+' Relationships
 SSEConnections ||--|| connectionId : has_connectionId
 SSEConnections ||--|| lastConnected : has_lastConnected
 SSEConnections ||--o{ plantIds : has_plantIds

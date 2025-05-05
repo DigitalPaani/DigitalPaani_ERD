@@ -147,7 +147,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 taskComponents ||--|| taskData : has_taskData
 taskComponents ||--|| workflowDetails : has_workflowDetails
 workflowDetails ||--o{ nodes : has_nodes

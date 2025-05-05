@@ -15,7 +15,8 @@ entity "startTime" as startTime {
 entity "endTime" as endTime {
 }
 
-' // Relationships
+
+' Relationships
 timeFrames ||--|| startTime : has_startTime
 timeFrames ||--|| endTime : has_endTime
 @enduml

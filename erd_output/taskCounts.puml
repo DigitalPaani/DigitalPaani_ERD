@@ -436,7 +436,8 @@ entity "67d094939a5027faae5f7032" as 67d094939a5027faae5f7032 {
   Operator Group : object
 }
 
-' // Relationships
+
+' Relationships
 taskCounts ||--|| count : has_count
 count ||--|| 618b5c42cf12270d003549b4 : has_618b5c42cf12270d003549b4
 618b5c42cf12270d003549b4 ||--|| Senior_Client : has_Senior Client

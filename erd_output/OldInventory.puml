@@ -29,6 +29,13 @@ entity "Inventory" as Inventory {
   Poly : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+OldInventory }o--|| Plants : refers_to
 OldInventory ||--|| Inventory : has_Inventory
 @enduml

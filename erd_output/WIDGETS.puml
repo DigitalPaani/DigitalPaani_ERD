@@ -25,7 +25,8 @@ entity "font" as font {
 entity "position" as position {
 }
 
-' // Relationships
+
+' Relationships
 widgets ||--|| heading : has_heading
 widgets ||--|| font : has_font
 widgets ||--|| position : has_position

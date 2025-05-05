@@ -63,7 +63,8 @@ entity "userGroup" as userGroup {
   abbr : string
 }
 
-' // Relationships
+
+' Relationships
 Plants ||--|| client : has_client
 Plants ||--|| csm : has_csm
 Plants ||--|| serviceProvider : has_serviceProvider

@@ -48,8 +48,16 @@ entity "events" as events {
 entity "timestamp" as timestamp {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+bidirectionalhistories }o--|| Plants : refers_to
 bidirectionalhistories ||--o{ hmiButtons : has_hmiButtons
+hmiButtons }o--|| Plants : refers_to
 bidirectionalhistories ||--|| created_at : has_created_at
 bidirectionalhistories ||--o{ events : has_events
 events ||--|| timestamp : has_timestamp

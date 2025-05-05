@@ -27,7 +27,8 @@ entity "endTime" as endTime {
 entity "date" as date {
 }
 
-' // Relationships
+
+' Relationships
 WidgetAnalysisHistory ||--|| timeFrame : has_timeFrame
 timeFrame ||--|| startTime : has_startTime
 timeFrame ||--|| endTime : has_endTime

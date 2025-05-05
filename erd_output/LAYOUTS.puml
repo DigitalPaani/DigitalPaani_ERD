@@ -47,7 +47,8 @@ entity "size" as size {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 Layouts ||--|| createdAt : has_createdAt
 Layouts ||--|| layout : has_layout
 layout ||--o{ cells : has_cells

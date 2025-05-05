@@ -176,7 +176,14 @@ entity "PT HEADdd1 1" as PT_HEADdd1_1 {
   dataType : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+dashboardPages }o--|| Plants : refers_to
 dashboardPages ||--|| pageConfig : has_pageConfig
 pageConfig ||--|| lastUpdateInfo : has_lastUpdateInfo
 pageConfig ||--|| data : has_data

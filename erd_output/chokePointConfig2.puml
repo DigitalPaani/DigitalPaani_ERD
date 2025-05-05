@@ -178,7 +178,8 @@ entity "Flowmeter2" as Flowmeter2 {
   64561597bf14bbb5792b5f93 : list
 }
 
-' // Relationships
+
+' Relationships
 chokePointConfig2 ||--|| nodes : has_nodes
 nodes ||--|| Equalization_Tank1 : has_Equalization Tank1
 nodes ||--|| Pump2 : has_Pump2

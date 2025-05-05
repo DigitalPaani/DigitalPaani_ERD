@@ -54,7 +54,8 @@ entity "sensorAdd" as sensorAdd {
   type : string
 }
 
-' // Relationships
+
+' Relationships
 useraddeditems ||--o{ assets : has_assets
 useraddeditems ||--|| itemData : has_itemData
 itemData ||--|| sensors : has_sensors

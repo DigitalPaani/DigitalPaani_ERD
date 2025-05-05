@@ -91,7 +91,13 @@ entity "primaryUser" as primaryUser {
   userStatus : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 manualAlerts ||--|| escalations : has_escalations
 escalations ||--|| Level_1 : has_Level 1
 escalations ||--|| Level_2 : has_Level 2
@@ -99,6 +105,7 @@ escalations ||--|| Level_3 : has_Level 3
 manualAlerts ||--|| heading : has_heading
 manualAlerts ||--|| description : has_description
 manualAlerts ||--o{ subTasks : has_subTasks
+manualAlerts }o--|| Plants : refers_to
 manualAlerts ||--|| metaData : has_metaData
 manualAlerts ||--o{ ccUsers : has_ccUsers
 ccUsers ||--|| defaultPageId : has_defaultPageId

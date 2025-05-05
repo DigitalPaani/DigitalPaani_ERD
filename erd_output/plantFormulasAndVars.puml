@@ -62,9 +62,17 @@ entity "sensorData" as sensorData {
   unit : unknown
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+plantFormulasAndVars }o--|| Plants : refers_to
 plantFormulasAndVars ||--o{ globalFormulas : has_globalFormulas
 plantFormulasAndVars ||--o{ globalVariables : has_globalVariables
 plantFormulasAndVars ||--o{ customFormulas : has_customFormulas
 customFormulas ||--o{ sensorData : has_sensorData
+sensorData }o--|| Plants : refers_to
 @enduml

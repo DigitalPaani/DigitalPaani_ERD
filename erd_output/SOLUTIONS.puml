@@ -22,4 +22,12 @@ entity "Solutions" as Solutions {
   chemicalStoreId : ObjectId
 }
 
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+Solutions }o--|| Plants : refers_to
 @enduml

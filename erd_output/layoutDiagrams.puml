@@ -140,7 +140,8 @@ entity "hmiButtons" as hmiButtons {
   hmiTag : string
 }
 
-' // Relationships
+
+' Relationships
 layoutDiagrams ||--o{ concernedPlantIds : has_concernedPlantIds
 layoutDiagrams ||--o{ edges : has_edges
 edges ||--|| data : has_data

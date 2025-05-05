@@ -60,7 +60,14 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+formulaAudits }o--|| Plants : refers_to
 formulaAudits ||--o{ formulaChips : has_formulaChips
 formulaChips ||--|| sensorSetting : has_sensorSetting
 formulaAudits ||--|| frequency : has_frequency

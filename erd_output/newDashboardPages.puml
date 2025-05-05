@@ -58,7 +58,14 @@ entity "defaultGranularitySettings" as defaultGranularitySettings {
   granularityInMins : int
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+newDashboardPages }o--|| Plants : refers_to
 newDashboardPages ||--|| pageConfig : has_pageConfig
 pageConfig ||--|| lastUpdateInfo : has_lastUpdateInfo
 pageConfig ||--o{ data : has_data

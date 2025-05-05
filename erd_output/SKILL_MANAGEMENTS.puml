@@ -19,7 +19,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 skill_managements ||--|| createdAt : has_createdAt
 skill_managements ||--|| updatedAt : has_updatedAt
 @enduml

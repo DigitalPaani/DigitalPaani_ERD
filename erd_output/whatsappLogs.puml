@@ -56,7 +56,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 whatsappLogs ||--|| contentVariables : has_contentVariables
 whatsappLogs ||--|| libResponse : has_libResponse
 libResponse ||--|| subresourceUris : has_subresourceUris

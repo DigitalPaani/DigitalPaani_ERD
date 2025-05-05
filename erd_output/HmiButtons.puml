@@ -11,4 +11,12 @@ entity "HmiButtons" as HmiButtons {
   trackingSensor : ObjectId
 }
 
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+HmiButtons }o--|| Plants : refers_to
 @enduml

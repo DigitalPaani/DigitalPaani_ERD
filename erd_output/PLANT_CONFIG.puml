@@ -161,7 +161,14 @@ entity "Valves" as Valves {
   _id : ObjectId
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+Plant_Config }o--|| Plants : refers_to
 Plant_Config ||--|| plantConfig : has_plantConfig
 plantConfig ||--o{ Tanks : has_Tanks
 Tanks ||--o{ sensors : has_sensors

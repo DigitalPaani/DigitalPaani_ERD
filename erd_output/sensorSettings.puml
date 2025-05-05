@@ -20,7 +20,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 sensorSettings ||--|| createdAt : has_createdAt
 sensorSettings ||--|| updatedAt : has_updatedAt
 @enduml

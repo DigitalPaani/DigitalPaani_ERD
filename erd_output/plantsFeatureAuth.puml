@@ -35,7 +35,14 @@ entity "plantLevelSettings" as plantLevelSettings {
   paidPlan : boolean
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+plantsFeatureAuth }o--|| Plants : refers_to
 plantsFeatureAuth ||--o{ featureList : has_featureList
 featureList ||--o{ userUsage : has_userUsage
 userUsage ||--|| lastUsed : has_lastUsed

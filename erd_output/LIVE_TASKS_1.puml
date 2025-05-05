@@ -33,7 +33,14 @@ entity "subTaskStatus" as subTaskStatus {
   completedBy : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+Live_Tasks_1 }o--|| Plants : refers_to
 Live_Tasks_1 ||--o{ history : has_history
 Live_Tasks_1 ||--o{ timeLine : has_timeLine
 Live_Tasks_1 ||--o{ subTaskStatus : has_subTaskStatus

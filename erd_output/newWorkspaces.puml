@@ -22,7 +22,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 newWorkspaces ||--o{ assetIds : has_assetIds
 newWorkspaces ||--|| createdAt : has_createdAt
 newWorkspaces ||--|| updatedAt : has_updatedAt

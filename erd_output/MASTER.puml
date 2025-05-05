@@ -154,7 +154,8 @@ entity "Tool for Cleaning" as Tool_for_Cleaning {
   General : list
 }
 
-' // Relationships
+
+' Relationships
 Master ||--|| masterData : has_masterData
 masterData ||--|| Water_Quality_Test_Result : has_Water Quality Test Result
 Water_Quality_Test_Result ||--o{ General : has_General

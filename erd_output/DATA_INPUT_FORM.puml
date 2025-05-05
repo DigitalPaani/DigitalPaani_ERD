@@ -59,7 +59,14 @@ entity "Consumables" as Consumables {
   type : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+Data_Input_Form }o--|| Plants : refers_to
 Data_Input_Form ||--|| form : has_form
 form ||--o{ Water_Quality_Test_Result : has_Water Quality Test Result
 form ||--o{ Process_Observation : has_Process Observation

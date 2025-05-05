@@ -42,8 +42,15 @@ entity "unit" as unit {
   value : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 workspaceFormulas ||--o{ customFormulas : has_customFormulas
 customFormulas ||--o{ sensorData : has_sensorData
+sensorData }o--|| Plants : refers_to
 sensorData ||--|| unit : has_unit
 @enduml

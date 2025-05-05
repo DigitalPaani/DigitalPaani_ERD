@@ -22,7 +22,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 twilioCalls ||--|| createdAt : has_createdAt
 twilioCalls ||--|| updatedAt : has_updatedAt
 @enduml

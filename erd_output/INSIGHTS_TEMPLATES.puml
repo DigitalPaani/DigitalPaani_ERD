@@ -21,7 +21,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 insights_templates ||--|| createdAt : has_createdAt
 insights_templates ||--|| updatedAt : has_updatedAt
 @enduml

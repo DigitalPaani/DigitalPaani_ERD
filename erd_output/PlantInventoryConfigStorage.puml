@@ -44,7 +44,14 @@ entity "formConfiguration" as formConfiguration {
   _id : ObjectId
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+PlantInventoryConfigStorage }o--|| Plants : refers_to
 PlantInventoryConfigStorage ||--o{ inventoryItemDetails : has_inventoryItemDetails
 inventoryItemDetails ||--o{ expectedValue : has_expectedValue
 inventoryItemDetails ||--o{ sensorsConfig : has_sensorsConfig

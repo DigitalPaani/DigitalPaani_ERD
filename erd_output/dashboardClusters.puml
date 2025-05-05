@@ -16,6 +16,13 @@ entity "subDashboardClusters" as subDashboardClusters {
   dashboardClusterId : ObjectId
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+dashboardClusters }o--|| Plants : refers_to
 dashboardClusters ||--o{ subDashboardClusters : has_subDashboardClusters
 @enduml

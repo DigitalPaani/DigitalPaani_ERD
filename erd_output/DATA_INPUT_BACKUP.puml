@@ -56,7 +56,14 @@ entity "Inventory" as Inventory {
 entity "Lab Test" as Lab_Test {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+Data_Input_Backup }o--|| Plants : refers_to
 Data_Input_Backup ||--o{ data : has_data
 data ||--|| values : has_values
 values ||--|| Water_Quality_Test_Result : has_Water Quality Test Result

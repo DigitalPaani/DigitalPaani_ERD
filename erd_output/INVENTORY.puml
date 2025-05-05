@@ -12,6 +12,7 @@ entity "data" as data {
   unit : string
 }
 
-' // Relationships
+
+' Relationships
 Inventory ||--o{ data : has_data
 @enduml

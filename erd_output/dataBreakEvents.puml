@@ -19,7 +19,8 @@ entity "stoppedAt" as stoppedAt {
 entity "startedAt" as startedAt {
 }
 
-' // Relationships
+
+' Relationships
 dataBreakEvents ||--|| stoppedAt : has_stoppedAt
 dataBreakEvents ||--|| startedAt : has_startedAt
 @enduml

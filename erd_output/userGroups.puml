@@ -34,7 +34,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 userGroups ||--o{ userIds : has_userIds
 userGroups ||--o{ workspaceAssets : has_workspaceAssets
 workspaceAssets ||--o{ assetIds : has_assetIds

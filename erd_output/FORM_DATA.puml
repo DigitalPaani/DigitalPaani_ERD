@@ -99,11 +99,18 @@ entity "Lab Test" as Lab_Test {
   Oil & Grease : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 Form_Data ||--|| data : has_data
 data ||--|| Water_Quality_Test_Result : has_Water Quality Test Result
 data ||--|| Process_Observation : has_Process Observation
 data ||--|| Maintenance : has_Maintenance
 data ||--|| Inventory : has_Inventory
 data ||--|| Lab_Test : has_Lab Test
+Form_Data }o--|| Plants : refers_to
 @enduml

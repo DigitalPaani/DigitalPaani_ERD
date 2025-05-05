@@ -24,7 +24,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 rosters ||--o{ assetIds : has_assetIds
 rosters ||--|| createdAt : has_createdAt
 rosters ||--|| updatedAt : has_updatedAt

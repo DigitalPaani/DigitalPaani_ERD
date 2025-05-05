@@ -25,7 +25,14 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+sensorOffSets }o--|| Plants : refers_to
 sensorOffSets ||--o{ activity : has_activity
 activity ||--|| createdAt : has_createdAt
 sensorOffSets ||--|| createdAt : has_createdAt

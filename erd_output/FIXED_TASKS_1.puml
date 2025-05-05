@@ -50,7 +50,13 @@ entity "subTasks" as subTasks {
   namehindi : string
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 Fixed_Tasks_1 ||--|| escalations : has_escalations
 escalations ||--|| Level_1 : has_Level 1
 escalations ||--|| Level_2 : has_Level 2
@@ -58,4 +64,5 @@ escalations ||--|| Level_3 : has_Level 3
 Fixed_Tasks_1 ||--|| heading : has_heading
 Fixed_Tasks_1 ||--|| description : has_description
 Fixed_Tasks_1 ||--o{ subTasks : has_subTasks
+Fixed_Tasks_1 }o--|| Plants : refers_to
 @enduml

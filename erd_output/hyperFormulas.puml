@@ -21,7 +21,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 hyperFormulas ||--o{ parameters : has_parameters
 hyperFormulas ||--|| createdAt : has_createdAt
 hyperFormulas ||--|| updatedAt : has_updatedAt

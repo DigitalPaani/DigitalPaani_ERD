@@ -16,7 +16,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 sharedDashboard ||--|| createdAt : has_createdAt
 sharedDashboard ||--|| updatedAt : has_updatedAt
 @enduml

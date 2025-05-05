@@ -14,6 +14,13 @@ entity "notifications" as notifications {
 entity "timeStamp" as timeStamp {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
 notifications ||--|| timeStamp : has_timeStamp
+notifications }o--|| Plants : refers_to
 @enduml

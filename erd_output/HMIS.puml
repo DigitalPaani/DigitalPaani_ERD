@@ -17,7 +17,14 @@ entity "plcIds" as plcIds {
 entity "lastDataTimeStamp" as lastDataTimeStamp {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+hmis }o--|| Plants : refers_to
 hmis ||--o{ plcIds : has_plcIds
 hmis ||--|| lastDataTimeStamp : has_lastDataTimeStamp
 @enduml

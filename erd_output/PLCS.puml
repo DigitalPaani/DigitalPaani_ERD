@@ -19,7 +19,14 @@ entity "lastMessageSentTime" as lastMessageSentTime {
 entity "lastPinged" as lastPinged {
 }
 
-' // Relationships
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+plcs }o--|| Plants : refers_to
 plcs ||--|| lastUpdateTime : has_lastUpdateTime
 plcs ||--|| lastMessageSentTime : has_lastMessageSentTime
 plcs ||--|| lastPinged : has_lastPinged

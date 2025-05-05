@@ -16,6 +16,7 @@ entity "assets" as assets {
   _id : ObjectId
 }
 
-' // Relationships
+
+' Relationships
 Stores ||--o{ assets : has_assets
 @enduml

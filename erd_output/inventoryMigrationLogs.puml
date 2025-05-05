@@ -7,4 +7,12 @@ entity "inventoryMigrationLogs" as inventoryMigrationLogs {
   migrationSuccessfull : boolean
 }
 
+
+' Shared Plant entity
+entity "Plants" as Plants {
+  _id : ObjectId
+}
+
+' Relationships
+inventoryMigrationLogs }o--|| Plants : refers_to
 @enduml

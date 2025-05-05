@@ -80,7 +80,8 @@ entity "font" as font {
   size : string
 }
 
-' // Relationships
+
+' Relationships
 dashboardPageHistories ||--|| pageConfig : has_pageConfig
 pageConfig ||--|| defaultTimeRangeSettings : has_defaultTimeRangeSettings
 defaultTimeRangeSettings ||--|| startTime : has_startTime

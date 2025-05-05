@@ -36,7 +36,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 task_logs ||--|| transitionFrom : has_transitionFrom
 task_logs ||--|| transitionTo : has_transitionTo
 task_logs ||--|| createdAt : has_createdAt

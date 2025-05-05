@@ -26,7 +26,8 @@ entity "createdAt" as createdAt {
 entity "updatedAt" as updatedAt {
 }
 
-' // Relationships
+
+' Relationships
 dashboardEmailConfigs ||--o{ usersOrUserGroups : has_usersOrUserGroups
 dashboardEmailConfigs ||--|| createdAt : has_createdAt
 dashboardEmailConfigs ||--|| updatedAt : has_updatedAt

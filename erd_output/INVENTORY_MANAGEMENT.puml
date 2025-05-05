@@ -32,7 +32,8 @@ entity "remarks" as remarks {
   remove : list
 }
 
-' // Relationships
+
+' Relationships
 Inventory_Management ||--o{ plant_inventory : has_plant_inventory
 plant_inventory ||--o{ inventory_list : has_inventory_list
 inventory_list ||--|| product_data : has_product_data
